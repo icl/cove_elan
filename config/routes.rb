@@ -1,6 +1,11 @@
 CoveElan::Application.routes.draw do
   devise_for :users
 
+  resources :corpora
+  resources :elan_parser_db_projects
+  resources :elan_parser_db_documents
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -50,7 +55,7 @@ CoveElan::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

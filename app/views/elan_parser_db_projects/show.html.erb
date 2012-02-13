@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Project Name:</b>
+  <%= @project.project_name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @project.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_elan_parser_db_project_path(@project) %> |
+<%= link_to 'Back', elan_parser_db_projects_path %>
