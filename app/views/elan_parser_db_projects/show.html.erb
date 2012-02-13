@@ -10,6 +10,10 @@
   <%= @project.description %>
 </p>
 
+<p>
+  <b>Corpus:</b>
+  <%= @selected_corpus.name %>
+</p>
 
 <%= link_to 'Edit', edit_elan_parser_db_project_path(@project) %> |
 <%= link_to 'Back', elan_parser_db_projects_path %>

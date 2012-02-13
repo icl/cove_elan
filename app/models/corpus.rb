@@ -1,4 +1,5 @@
 class Corpus < ActiveRecord::Base
- has_many :corpora_projects
- has_many :projects, :through => "corpora_projects", :class_name => "ElanParser::DB::Project"
+  validates :id, :presence => 'true'
+  has_many :corpus_projects
+  has_many :projects, :through => :corpus_projects
 end

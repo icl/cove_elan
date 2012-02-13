@@ -11,16 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213155517) do
+ActiveRecord::Schema.define(:version => 20120213153028) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
     t.text   "description"
-  end
-
-  create_table "corpora_projects", :force => true do |t|
-    t.integer "corpora_id"
-    t.integer "projects_id"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|

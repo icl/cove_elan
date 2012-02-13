@@ -1,8 +1,8 @@
 class CorporaProjects < ActiveRecord::Migration
   def up
     create_table :corpora_projects do |t|
-      t.belongs_to :corpora
-      t.belongs_to :projects
+      t.belongs_to :corpus
+      t.belongs_to :project
     end
   end
 
