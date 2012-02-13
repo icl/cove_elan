@@ -14,3 +14,7 @@
 #   inflect.acronym 'RESTful'
 # end
 
+# Add special inflector rules
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'corpus', 'corpora'
+end
