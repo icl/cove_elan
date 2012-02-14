@@ -39,6 +39,7 @@ class ElanParserDbDocumentsController < ApplicationController
     if (!params[:elan_parser_db_document].nil?)
       uploaded_io = params[:elan_parser_db_document][:file_name]
       @document = ElanParser::DB::Document.new(:file_name => uploaded_io.original_filename)
+			@document.user_id = current_user.id
 
       happymapper_document = ElanParser::XML::AnnotationDocument.parse(uploaded_io.read)
 

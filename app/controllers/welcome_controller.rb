@@ -1,10 +1,13 @@
 
 class WelcomeController < ApplicationController
-  def index
-    @corpora = Corpus.all
+	before_filter :authenticate_user!
 
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+  def index
+		@corpora = Corpus.all
+		@user = User.find(current_user.id)
+
+		respond_to do |format|
+			format.html # index.html.erb
+		end
   end
 end
