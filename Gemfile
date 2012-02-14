@@ -30,6 +30,8 @@ group :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
