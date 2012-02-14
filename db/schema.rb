@@ -23,16 +23,16 @@ ActiveRecord::Schema.define(:version => 20120214220636) do
     t.integer "project_id"
   end
 
+  create_table "document_projects", :force => true do |t|
+    t.integer "document_id"
+    t.integer "project_id"
+  end
+
   create_table "documents", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "file_name",  :null => false
     t.integer  "user_id"
-  end
-
-  create_table "documents_projects", :force => true do |t|
-    t.integer "document_id"
-    t.integer "project_id"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|

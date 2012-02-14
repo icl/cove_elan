@@ -3,8 +3,6 @@ class Project < ActiveRecord::Base
 
       belongs_to :user
 
-	has_one :document, :dependent => :destroy
-
       has_many :document_project
       has_many :documents, :through => :document_project, :dependent => :destroy
 end

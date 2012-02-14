@@ -31,19 +31,24 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @corpora = Corpus.all
 
+		complete = false
+
     corpus = Corpus.find_by_id(params[:corpus][:corpus_id])
 
     if (!corpus.nil?)
+    	@project = Project.new(params[:project])
       CorpusProject.create(:corpus => corpus, :project => @project)
+			if @project.save
+				complete = true
+			end
+		else
+      @project.errors.add :corpus, "can't be blank"
     end
 
     respond_to do |format|
-      if @project.save and !corpus.nil?
+      if complete == true
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
       else
-        if (corpus.nil?)
-          @project.errors.add :corpus, "can't be blank"
-        end
         format.html { render action: "new" }
       end
     end
