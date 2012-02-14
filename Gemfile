@@ -26,6 +26,10 @@ gem 'jquery-rails'
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
+
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'capybara'
 end
 
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
