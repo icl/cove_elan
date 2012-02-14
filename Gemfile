@@ -26,7 +26,15 @@ gem 'jquery-rails'
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
+
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
+
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
