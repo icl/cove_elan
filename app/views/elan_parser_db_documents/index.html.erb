@@ -11,7 +11,7 @@
 <% @documents.each do |document| %>
   <tr>
     <td><%= document.file_name %></td>
-    <td><%= link_to 'Show', document %></td>
+    <td><%= link_to 'Download', download_elan_parser_db_document_path(document) %></td>
     <td><%= link_to 'Edit', edit_elan_parser_db_document_path(document) %></td>
     <td><%= link_to 'Destroy', document, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

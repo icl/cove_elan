@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213155517) do
+ActiveRecord::Schema.define(:version => 20120213221729) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20120213155517) do
   end
 
   create_table "corpora_projects", :force => true do |t|
-    t.integer "corpora_id"
-    t.integer "projects_id"
+    t.integer "corpus_id"
+    t.integer "project_id"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
