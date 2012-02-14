@@ -1,8 +1,6 @@
-require 'elan_parser_db_model'
-
-class ElanParserDbProjectsController < ApplicationController
+class ProjectsController < ApplicationController
   def index
-    @projects = ElanParser::DB::Project.all
+    @projects = Project.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,18 +9,17 @@ class ElanParserDbProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = ElanParser::DB::Project.find(params[:id])
+    @project = Project.find(params[:id])
     @corpora = Corpus.all
     @selected_corpus  = CorpusProject.find_by_project_id(params[:id]).corpus
   end
 
   # GET /projects/new
   def new
-    @project = ElanParser::DB::Project.new
+    @project = Project.new
 
     #Get a list of corpora for this project to attach to.
     @corpora = Corpus.all
-    @selected_corpus  = Corpus.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,9 +28,8 @@ class ElanParserDbProjectsController < ApplicationController
 
   # POST /projects
   def create
-    @project = ElanParser::DB::Project.new(params[:elan_parser_db_project])
+    @project = Project.new(params[:project])
     @corpora = Corpus.all
-    @selected_corpus  = Corpus.new
 
     corpus = Corpus.find_by_id(params[:corpus][:corpus_id])
 
@@ -41,10 +37,8 @@ class ElanParserDbProjectsController < ApplicationController
       CorpusProject.create(:corpus => corpus, :project => @project)
     end
 
-    donkey = "punch"
-
     respond_to do |format|
-      if @project.save
+      if @project.save and !corpus.nil?
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
       else
         if (corpus.nil?)
@@ -56,7 +50,7 @@ class ElanParserDbProjectsController < ApplicationController
   end
 
   def show
-    @project = ElanParser::DB::Project.find(params[:id])
+    @project = Project.find(params[:id])
     @corpora = Corpus.all
     @selected_corpus  = CorpusProject.find_by_project_id(params[:id]).corpus
 
@@ -67,7 +61,7 @@ class ElanParserDbProjectsController < ApplicationController
 
   # PUT /projects/1
   def update
-    @project = ElanParser::DB::Project.find(params[:id])
+    @project = Project.find(params[:id])
     @corpora = Corpus.all
 
     corpus = Corpus.find_by_id(params[:corpus][:corpus_id])
@@ -78,7 +72,7 @@ class ElanParserDbProjectsController < ApplicationController
 
 
     respond_to do |format|
-      if @project.update_attributes(params[:elan_parser_db_project])
+      if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
       else
         if (corpus.nil?)
@@ -91,11 +85,11 @@ class ElanParserDbProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
-    @project = ElanParser::DB::Project.find(params[:id])
+    @project = Project.find(params[:id])
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to elan_parser_db_projects_url }
+      format.html { redirect_to projects_url }
     end
   end
 end

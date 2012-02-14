@@ -2,9 +2,9 @@ CoveElan::Application.routes.draw do
   devise_for :users
 
   resources :corpora
-  resources :elan_parser_db_projects
-  resources :elan_parser_db_documents
-  match 'elan_parser_db_documents/:id/download' => 'elan_parser_db_documents#download', :as => :download_elan_parser_db_document
+  resources :projects
+  resources :documents
+  match 'documents/:id/download' => 'documents#download', :as => :download_document
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,8 +2,8 @@
 
 <h3>Choose Something</h3>
 <p><%= link_to :corpora, corpora_path %></p>
-<p><%= link_to :projects, elan_parser_db_projects_path %></p>
-<p><%= link_to :documents, elan_parser_db_documents_path %></p>
+<p><%= link_to :projects, projects_path %></p>
+<p><%= link_to :documents, documents_path %></p>
 
 <h4>Existing Structure</h4>
 <% @corpora.each do |corpus| %>
@@ -14,7 +14,7 @@
 				<li><%= project.project_name %></li>
 				<% project.documents.each do |document| %>
 					<ul>
-						<li><%=link_to "Download", download_elan_parser_db_document_path(document)%> (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)</li>
+						<li><%=link_to "Download", download_document_path(document)%> (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)</li>
 					</ul>
 				<% end %>
 			</ul>
