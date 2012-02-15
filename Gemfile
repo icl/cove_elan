@@ -34,6 +34,10 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+group :development, :test do
+  gem "jasminerice"
+end
+
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 
 # To use ActiveModel has_secure_password
