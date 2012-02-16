@@ -13,7 +13,7 @@ describe "Dashboard" do
         visit '/'
 
         within ".document-list-item" do
-          page.should have_css "a"
+          page.should have_link @document.file_name, :href => download_document_path( @document)
         end
       end
       it "has a link to view it online"
