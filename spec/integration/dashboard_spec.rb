@@ -7,16 +7,19 @@ describe "Dashboard" do
 
       before :each do
         @document = Factory.create(:document)
-       end
-      it "has a link to download it" do
-        login_user
+                login_user
         visit '/'
 
+
+       end
+      it "has a link to download it" do
         within ".document-list-item" do
           page.should have_link @document.file_name, :href => download_document_path( @document)
         end
       end
-      it "has a link to view it online"
+      it "has a link to view it online" do
+        
+      end
     end
   end
 end
