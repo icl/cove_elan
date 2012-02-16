@@ -14,7 +14,7 @@
 				<li><%= project.project_name %></li>
 				<% project.documents.each do |document| %>
 					<ul>
-						<li><%=link_to document.file_name, download_document_path(document)%> (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)</li>
+						<li class="document-list-item"><%=link_to document.file_name, download_document_path(document)%> (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)</li>
 					</ul>
 				<% end %>
 			</ul>
