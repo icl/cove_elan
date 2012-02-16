@@ -14,7 +14,16 @@
 				<li><%= project.project_name %></li>
 				<% project.documents.each do |document| %>
 					<ul>
-						<li class="document-list-item"><%=link_to document.file_name, download_document_path(document)%> (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)</li>
+            <li class="document-list-item">
+            <%=link_to document.file_name , download_document_path(document), :id => document.file_name, :class => 'download-document' %> 
+
+            <%=link_to "", document, :class=> 'icon-eye-open view-document-link', :id => document.base_name %>
+    
+            
+            <div>
+              (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)
+            </div>  
+            </li>
 					</ul>
 				<% end %>
 			</ul>

@@ -7,4 +7,8 @@ class Document < ActiveRecord::Base
 
       has_many :document_project
       has_many :projects, :through => :document_project, :dependent => :destroy
+
+      def base_name
+        File.basename file_name, '.eaf'
+      end
 end
