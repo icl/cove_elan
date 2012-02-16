@@ -12,7 +12,7 @@ describe "welcome page" do
 
       click_button "Sign in"
     end
-    page.should have_content "Logout"
+    page.should have_content "Sign out"
 
   end
 end
