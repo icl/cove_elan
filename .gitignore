@@ -17,4 +17,4 @@ private/files/*
 config/database.yml
 .sass-cache/
 *.swp
-*.~
+*~
