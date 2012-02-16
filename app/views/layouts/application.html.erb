@@ -7,11 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if user_signed_in? %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-<% else %>
-  <%= link_to('Login', new_user_session_path)  %>  
-<% end %>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+
+        <%= link_to "Cove", root_path, :class => 'brand'  %>
+      <ul class="nav">
+        <li></li>
+      </ul>
+
+      <ul class="nav pull-right">
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+          <% else %>
+            <%= link_to('Login', new_user_session_path)  %>  
+          <% end %>
+        </li>
+
+      </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <%= yield %>
   </div>
