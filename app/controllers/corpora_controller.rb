@@ -1,4 +1,7 @@
 class CorporaController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /corpora
   # GET /corpora.json
   def index

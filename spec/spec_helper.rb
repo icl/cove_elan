@@ -32,3 +32,24 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+
+def click_navbar_link name
+    within ".navbar" do
+      click_link name
+    end
+end
+
+def login_user
+    @user = Factory.create :user
+    visit '/'
+
+    within '#new_user' do
+      fill_in 'Email', with: @user.email
+      fill_in "Password", with: '123456'
+
+      click_button "Sign in"
+    end
+end
+
+

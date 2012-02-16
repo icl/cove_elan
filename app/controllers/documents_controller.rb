@@ -5,6 +5,9 @@ require 'elan_parser_save_xml'
 require 'elan_parser_build_xml'
 
 class DocumentsController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
     @documents = Document.all
 
