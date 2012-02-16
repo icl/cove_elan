@@ -25,7 +25,11 @@ describe "User Menu" do
   end
 
   context "When a user isn't logged in" do
-    it "should show a sign in link"
+    it "should show a sign in link" do
+      with "#user-menu" do
+        page.should have_content "Sign in"
+      end
+    end
     it "should show a sign up link"
   end
 end
