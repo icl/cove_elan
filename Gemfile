@@ -6,7 +6,6 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg', '~> 0.13'
-gem 'elan_parser'
 gem 'devise'
 
 # Gems used only for assets and not required
@@ -39,7 +38,7 @@ group :development, :test do
 end
 
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
-
+gem 'elan_parser', :git => 'git://github.com/icl/elan_parser.git'
 gem 'capistrano'
 gem "airbrake"
 # To use ActiveModel has_secure_password
