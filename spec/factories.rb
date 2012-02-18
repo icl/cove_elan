@@ -9,14 +9,15 @@ FactoryGirl.define do
   end
 
   factory :document do
-    sequence(:file_name) { |n| "document_#{n}" }
-    after_create { |document| Factory(:project, :documents => [document])}
+#    sequence(:eaf) { |n| "document_#{n}" }
+		eaf { File.open(File.join(Rails.root, 'spec', 'fixtures', '02_09.eaf')) }
+		association(:project)
   end
 
   factory :project do
     sequence(:project_name) { |n| "project_#{n}" }
     description "Some Cool Project"
-    after_create { |project| Factory(:corpus, :projects => [project] )}
+		association(:corpus)
   end
 
   factory :corpus do
