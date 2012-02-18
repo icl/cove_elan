@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'capybara/dsl'
 
 describe "Dashboard" do
 
