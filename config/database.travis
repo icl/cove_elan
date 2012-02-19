@@ -1,0 +1,12 @@
+test: &test
+  adapter: postgresql
+  database: cove_elan_test
+  username: postgres
+
+production:
+  adapter: postgresql
+  database: cove_elan_test
+  username: postgres
+
+cucumber:
+  <<: *test
