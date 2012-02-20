@@ -33,7 +33,7 @@ class DocumentsController < ApplicationController
 
     @document = Document.new(params[:document])
 
-    if (!params[:project][:project_id].nil?) then
+    unless (params[:project][:project_id].empty?) then
       @document.project_id = params[:project][:project_id]
       @selected_project = Project.find(params[:project][:project_id])
     end

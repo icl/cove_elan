@@ -34,8 +34,9 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @corpora = Corpus.all
 
-    if (!params[:corpus].nil?)
+    unless (params[:corpus][:corpus_id].empty?)
       @project.corpus_id = params[:corpus][:corpus_id]
+      @selected_corpus = Corpus.find(params[:corpus][:corpus_id])
     end
 
     respond_to do |format|
