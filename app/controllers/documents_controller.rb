@@ -1,7 +1,5 @@
 require 'elan_parser'
-
 class DocumentsController < ApplicationController
-
   before_filter :authenticate_user!
 
   def index

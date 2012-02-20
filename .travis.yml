@@ -1,0 +1,8 @@
+rvm:
+  - 1.9.3
+
+before_script:
+  - "psql -c 'create database cove_elan_test;' -U postgres"
+  - 'cp config/database.travis config/database.yml'
+
+script: "rake db:migrate && rake db:test:prepare && rspec spec/"
