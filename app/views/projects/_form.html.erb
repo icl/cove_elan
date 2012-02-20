@@ -15,7 +15,8 @@
 
   <div class="field">
     <%= f.label :project_corpus %>
-    <%= collection_select(:corpus, :corpus_id, @corpora, :id, :name, :prompt => true, :selected => @selected_corpus) %>
+    <%= collection_select(:corpus, :corpus_id, @corpora, :id, :name, 
+      @selected_corpus.blank? ? {:prompt => "Please select"} : {:selected => @selected_corpus.id}) %>
   </div>
   <div class="field">
     <%= f.label :project_name %><br />

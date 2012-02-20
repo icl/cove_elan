@@ -10,12 +10,9 @@ class Corpora < ActiveRecord::Migration
 
 	  t.column :file_name, :string, :null => false
     t.belongs_to :user
-	end
-
-  create_table :document_projects do |t|
-    t.belongs_to :document
     t.belongs_to :project
-  end
+    t.belongs_to :annotation_document
+	end
 	
 	create_table :projects do |t|
 	  t.timestamps
@@ -23,6 +20,7 @@ class Corpora < ActiveRecord::Migration
 	  t.column :description, :text, :null => false
 
     t.belongs_to :user
+    t.belongs_to :corpus
 	end
   end
 

@@ -11,28 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120214220636) do
+ActiveRecord::Schema.define(:version => 20120219104246) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
     t.text   "description"
   end
 
-  create_table "corpora_projects", :force => true do |t|
-    t.integer "corpus_id"
-    t.integer "project_id"
-  end
-
-  create_table "document_projects", :force => true do |t|
-    t.integer "document_id"
-    t.integer "project_id"
-  end
-
   create_table "documents", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "file_name",  :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "user_id"
+    t.integer  "project_id"
+    t.integer  "annotation_document_id"
+    t.string   "eaf"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
@@ -237,6 +229,7 @@ ActiveRecord::Schema.define(:version => 20120214220636) do
     t.string   "project_name", :null => false
     t.text     "description",  :null => false
     t.integer  "user_id"
+    t.integer  "corpus_id"
   end
 
   create_table "users", :force => true do |t|

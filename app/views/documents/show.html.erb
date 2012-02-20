@@ -2,7 +2,7 @@
 
 <p>
   <b>File Name:</b>
-  <%= @document.file_name %>
+  <%= File.basename(@document.eaf.to_s) %>
 </p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |

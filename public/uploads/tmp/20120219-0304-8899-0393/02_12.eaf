@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2011-08-30T23:38:55-08:00" FORMAT="2.7" VERSION="2.7" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv2.7.xsd">
+    <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
+        <MEDIA_DESCRIPTOR MEDIA_URL="file:///Volumes/Data/Random Dance/Cogs 160 Course/160_Summer_2011/Personal Folders/Jobeth/LamplightELAN/Daily1-02-12-pm.mov" MIME_TYPE="video/quicktime" RELATIVE_MEDIA_URL="file:/./Daily1-02-12-pm.mov"/>
+        <PROPERTY NAME="lastUsedAnnotationId">20</PROPERTY>
+    </HEADER>
+    <TIME_ORDER>
+        <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="8233455"/>
+        <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="8233455"/>
+        <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="8237355"/>
+        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="8239355"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="8904300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="8909700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="8911100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="8929700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="8935300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="8939000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="8974000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="8974100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="8985700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="8986500"/>
+        <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="8986700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="8988600"/>
+        <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="8994200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="9011000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts19" TIME_VALUE="9020700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts20" TIME_VALUE="9034700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts21" TIME_VALUE="9045400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts22" TIME_VALUE="9058200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts23" TIME_VALUE="9058400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts24" TIME_VALUE="9060800"/>
+        <TIME_SLOT TIME_SLOT_ID="ts25" TIME_VALUE="9061700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts26" TIME_VALUE="9063900"/>
+        <TIME_SLOT TIME_SLOT_ID="ts27" TIME_VALUE="9109500"/>
+        <TIME_SLOT TIME_SLOT_ID="ts28" TIME_VALUE="9109500"/>
+        <TIME_SLOT TIME_SLOT_ID="ts29" TIME_VALUE="9131500"/>
+        <TIME_SLOT TIME_SLOT_ID="ts30" TIME_VALUE="9145200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts31" TIME_VALUE="9157800"/>
+        <TIME_SLOT TIME_SLOT_ID="ts32" TIME_VALUE="9157800"/>
+        <TIME_SLOT TIME_SLOT_ID="ts33" TIME_VALUE="9224000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts34" TIME_VALUE="9224000"/>
+        <TIME_SLOT TIME_SLOT_ID="ts35" TIME_VALUE="9224100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts36" TIME_VALUE="9224100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts37" TIME_VALUE="9247300"/>
+        <TIME_SLOT TIME_SLOT_ID="ts38" TIME_VALUE="9252100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts39" TIME_VALUE="9252200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts40" TIME_VALUE="9252200"/>
+    </TIME_ORDER>
+    <TIER DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="default-lt" TIER_ID="default"/>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Mod Ta">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1" TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts3">
+                <ANNOTATION_VALUE>W;  "We're going to do the lamp phrasing"</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2" TIME_SLOT_REF1="ts28" TIME_SLOT_REF2="ts32">
+                <ANNOTATION_VALUE>JPM; Discusses with one another.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a3" TIME_SLOT_REF1="ts35" TIME_SLOT_REF2="ts38">
+                <ANNOTATION_VALUE>W; Wayne speaks to group, changing the focus of the rehearsal.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Mod G">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4" TIME_SLOT_REF1="ts6" TIME_SLOT_REF2="ts7">
+                <ANNOTATION_VALUE>A</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5" TIME_SLOT_REF1="ts23" TIME_SLOT_REF2="ts25">
+                <ANNOTATION_VALUE>CN; Gestures Neil Over</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a6" TIME_SLOT_REF1="ts29" TIME_SLOT_REF2="ts30">
+                <ANNOTATION_VALUE>JP; Gesture to one another as they speak.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Mod S">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7" TIME_SLOT_REF1="ts13" TIME_SLOT_REF2="ts15">
+                <ANNOTATION_VALUE>P; Makes a brief twist.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Mod To"/>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Ec">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a8" TIME_SLOT_REF1="ts18" TIME_SLOT_REF2="ts20">
+                <ANNOTATION_VALUE>GT; Agnes approaces Antoine.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a9" TIME_SLOT_REF1="ts22" TIME_SLOT_REF2="ts24">
+                <ANNOTATION_VALUE>CN; Catarina spots Neil.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Jt Touch">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a10" TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts8">
+                <ANNOTATION_VALUE>AE; Angel is directed towards Anna.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a11" TIME_SLOT_REF1="ts9" TIME_SLOT_REF2="ts10">
+                <ANNOTATION_VALUE>VH; eye contact occurs, and then duet begins.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a12" TIME_SLOT_REF1="ts17" TIME_SLOT_REF2="ts19">
+                <ANNOTATION_VALUE>VH; Anh is lead by his partner, coordinating by hands and foot.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a13" TIME_SLOT_REF1="ts21" TIME_SLOT_REF2="ts26">
+                <ANNOTATION_VALUE>GT; Agnes pivots around her partner. </ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Jt Att">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a14" TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts4">
+                <ANNOTATION_VALUE>Everyone follows Wayne's instruction.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a15" TIME_SLOT_REF1="ts12" TIME_SLOT_REF2="ts16">
+                <ANNOTATION_VALUE>JMP; Jess and Paolo seem to circle Maxime.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a16" TIME_SLOT_REF1="ts27" TIME_SLOT_REF2="ts31">
+                <ANNOTATION_VALUE>JPM;Notice one another and face each other.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a17" TIME_SLOT_REF1="ts34" TIME_SLOT_REF2="ts40">
+                <ANNOTATION_VALUE>Everyone pays attention to Wayne.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Gz">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a18" TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts14">
+                <ANNOTATION_VALUE>JP; Jess observes Paolo before approaching</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Sp"/>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Mx"/>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Ps">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a19" TIME_SLOT_REF1="ts36" TIME_SLOT_REF2="ts37">
+                <ANNOTATION_VALUE>Everyone pauses, some sit.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="Jobeth" DEFAULT_LOCALE="en" LINGUISTIC_TYPE_REF="Dancers" TIER_ID="Int">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a20" TIME_SLOT_REF1="ts33" TIME_SLOT_REF2="ts39">
+                <ANNOTATION_VALUE>W; Wayne interrupts to speak to group.</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="default-lt" TIME_ALIGNABLE="true"/>
+    <LINGUISTIC_TYPE CONTROLLED_VOCABULARY_REF="Dancers" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="Dancers" TIME_ALIGNABLE="true"/>
+    <LOCALE COUNTRY_CODE="US" LANGUAGE_CODE="en"/>
+    <CONSTRAINT DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
+    <CONSTRAINT DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>
+    <CONSTRAINT DESCRIPTION="1-1 association with a parent annotation" STEREOTYPE="Symbolic_Association"/>
+    <CONSTRAINT DESCRIPTION="Time alignable annotations within the parent annotation's time interval, gaps are allowed" STEREOTYPE="Included_In"/>
+    <CONTROLLED_VOCABULARY CV_ID="Dancers" DESCRIPTION="People who dance">
+        <CV_ENTRY DESCRIPTION="Anna">A</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Jessica">J</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Catarina">C</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Agnes">G</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Daniela">L</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Alex">X</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Michael-John">MJ</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Louis">U</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Davide">D</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Antoine">T</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Maxime">M</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Neil">N</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Paolo">P</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Angel">E</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Anh">V</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Hannes">H</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Wayne">W</CV_ENTRY>
+        <CV_ENTRY DESCRIPTION="Odette">O</CV_ENTRY>
+    </CONTROLLED_VOCABULARY>
+</ANNOTATION_DOCUMENT>

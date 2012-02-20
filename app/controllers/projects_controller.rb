@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
     @corpora = Corpus.all
-    @selected_corpus  = CorpusProject.find_by_project_id(params[:id]).corpus
+    @selected_corpus  = @project.corpus
   end
 
   # GET /projects/new
@@ -34,22 +34,12 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @corpora = Corpus.all
 
-		complete = false
-
-    corpus = Corpus.find_by_id(params[:corpus][:corpus_id])
-
-    if (!corpus.nil?)
-    	@project = Project.new(params[:project])
-      CorpusProject.create(:corpus => corpus, :project => @project)
-			if @project.save
-				complete = true
-			end
-		else
-      @project.errors.add :corpus, "can't be blank"
+    if (!params[:corpus].nil?)
+      @project.corpus_id = params[:corpus][:corpus_id]
     end
 
     respond_to do |format|
-      if complete == true
+      if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
       else
         format.html { render action: "new" }
@@ -60,7 +50,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @corpora = Corpus.all
-    @selected_corpus  = CorpusProject.find_by_project_id(params[:id]).corpus
+    @selected_corpus  = @project.corpus
 
     respond_to do |format|
       format.html # show.html.erb
@@ -72,20 +62,12 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @corpora = Corpus.all
 
-    corpus = Corpus.find_by_id(params[:corpus][:corpus_id])
-    if (!corpus.nil?)
-      CorpusProject.find_by_project_id(params[:id]).destroy
-      CorpusProject.create(:corpus => corpus, :project => @project)
-    end
-
+    @project.corpus_id = params[:corpus][:corpus_id]
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
       else
-        if (corpus.nil?)
-          @project.errors.add :corpus, "can't be blank"
-        end
         format.html { render action: "edit" }
       end
     end

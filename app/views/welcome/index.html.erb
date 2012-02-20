@@ -15,9 +15,10 @@
 				<% project.documents.each do |document| %>
 					<ul>
             <li class="document-list-item">
-            <%=link_to document.file_name , download_document_path(document), :id => document.file_name, :class => 'download-document' %> 
+            <%=link_to File.basename(document.eaf.to_s) , download_document_path(document), 
+              :id => File.basename(document.eaf.to_s), :class => 'download-document' %> 
 
-            <%=link_to "", document, :class=> 'icon-eye-open view-document-link', :id => document.base_name %>
+            <%=link_to "", document, :class=> 'icon-eye-open view-document-link', :id => File.basename(document.eaf.to_s) %>
     
             
             <div>

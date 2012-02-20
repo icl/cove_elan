@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/icl/elan_parser.git
-  revision: 4a1dd1d8669d03405517109546cff5c8bafec6aa
-  specs:
-    elan_parser (0.0.2)
-      activerecord
-      happymapper
-      nokogiri
-      pg
-
-GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 612c0067cf0313cd02c33c4870413a15e96a261a
   specs:
@@ -65,6 +55,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.5.8)
+      activesupport (~> 3.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
@@ -93,6 +85,11 @@ GEM
       railties (~> 3.1)
       warden (~> 1.1)
     diff-lcs (1.1.3)
+    elan_parser (0.0.4)
+      activerecord
+      happymapper
+      nokogiri
+      pg
     erubis (2.7.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
@@ -221,11 +218,12 @@ DEPENDENCIES
   airbrake
   capistrano
   capybara
+  carrierwave
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
   devise
-  elan_parser!
+  elan_parser
   factory_girl
   factory_girl_rails
   jasminerice

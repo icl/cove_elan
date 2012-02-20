@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= f.label :document_project %>
-    <%= collection_select(:project, :project_id, @projects, :id, :project_name, :prompt => true, :selected => @selected_project) %>
+    <%= collection_select(:project, :project_id, @projects, :id, :project_name, 
+      @selected_project.blank? ? {:prompt => "Please select"} : {:selected => @selected_project.id}) %>
   </div>
 
-  <% if @selected_project.nil? %>
     <div class="field">
-      <%= f.label :file %><br />
-      <%= f.file_field :file_name %>
+      <% if @document.eaf? %><p>Current Document: <%= File.basename(@document.eaf.to_s) %></p><% end %>
+      <%= f.file_field :eaf %>
+      <%= f.hidden_field :eaf_cache %>
     </div>
-  <% end %>
 
   <div class="actions">
     <%= f.submit %>
