@@ -39,7 +39,7 @@ end
 
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'elan_parser', :git => 'git://github.com/icl/elan_parser.git'
-gem 'capistrano'
+gem 'capistrano', '~> 2.11'
 gem "airbrake"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
