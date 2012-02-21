@@ -1,19 +1,9 @@
 require 'spec_helper'
 
 describe :corpora do
-	before(:suite) do
-		DatabaseCleaner.strategy = :transaction
-		DatabaseCleaner.clean_with(:truncation)
-	end
 
 	before(:each) do
-		DatabaseCleaner.start
-
 		@project = Factory.create(:project)
-	end
-
-	after(:each) do
-		DatabaseCleaner.clean
 	end
 
 	it "Should create a project" do
