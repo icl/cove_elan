@@ -67,6 +67,7 @@ class Document < ActiveRecord::Base
 						ts2 = annotation.alignable_annotation.alignable_annotation_time_slot.time_slot_ref2.time_value
 						annotations.push(
 							:annotation_value => annotation.alignable_annotation.annotation_value,
+							:tier_id => tier.id,
 							:ts_ref1 => ts1,
 							:ts_ref2 => ts2
 						)
