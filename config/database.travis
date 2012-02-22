@@ -2,11 +2,13 @@ test: &test
   adapter: postgresql
   database: cove_elan_test
   username: postgres
+  min_messages: WARNING
 
 production:
   adapter: postgresql
   database: cove_elan_test
   username: postgres
+  min_messages: WARNING
 
 cucumber:
   <<: *test

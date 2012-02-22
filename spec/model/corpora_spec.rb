@@ -1,19 +1,10 @@
 require 'spec_helper'
 
 describe :corpora do
-	before(:suite) do
-		DatabaseCleaner.strategy = :transaction
-		DatabaseCleaner.clean_with(:truncation)
-	end
+
 
 	before(:each) do
-		DatabaseCleaner.start
-
 		@corpus = Factory.create(:corpus)
-	end
-
-	after(:each) do
-		DatabaseCleaner.clean
 	end
 
 	it "Should create a corpus" do
