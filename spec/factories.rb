@@ -24,4 +24,9 @@ FactoryGirl.define do
     sequence(:name) { |n| "corpus_#{n}" }
     description "A bunch of Media"
   end
+
+	factory :video_group do
+		association(:corpus)
+		association(:document)
+	end
 end
