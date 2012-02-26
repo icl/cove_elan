@@ -18,10 +18,24 @@ FactoryGirl.define do
 		association(:corpus)
   end
 
+  factory :project_with_work, :class => Project do
+    sequence(:project_name) { |n| "project_#{n}" }
+    description "Some Cool Project"
+		association(:corpus)
+    association(:document)
+  end
+
   factory :corpus do
     sequence(:name) { |n| "corpus_#{n}" }
     description "A bunch of Media"
   end
+
+  factory :corpus_with_work, :class => Corpus do
+    sequence(:name) { |n| "corpus_#{n}" }
+    description "A bunch of Media"
+    association(:document)
+  end
+
 
 	factory :work_document do
 		association(:document)

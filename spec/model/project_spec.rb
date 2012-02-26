@@ -10,6 +10,10 @@ describe :corpora do
 		@project.should be_valid
 	end
 
+  it "Should create a project with a document" do
+    @project_work = Factory.create(:project_with_work)
+  end
+
 	it "Should validate that a description exists" do
 		@project.description = nil
 		@project.should be_invalid
@@ -24,4 +28,5 @@ describe :corpora do
 		work_document = Factory.create(:work_document)
 		work_document.project.should be_valid
 	end
+
 end

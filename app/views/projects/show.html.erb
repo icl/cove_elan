@@ -12,7 +12,21 @@
 
 <p>
   <b>Corpus:</b>
-  <%= @selected_corpus.name %>
+  <%= @project.corpus.name %>
+</p>
+
+<p>
+  <b>Tier Template:</b>
+  <%= File.basename(@project.document.eaf.to_s) %>
+</p>
+
+<p>
+  <b>Project Tier List</b>
+  <ul>
+    <% @project.document.tiers.each do |tier| %>
+      <li><%= tier[:tier_id] %></li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

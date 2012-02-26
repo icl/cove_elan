@@ -83,4 +83,35 @@ class CorporaController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # ADD DOCUMENT /corpora/1/new_document
+  def new_document
+    @corpus = Corpus.find(params[:id])
+    @document = @corpus.documents.new
+  end
+
+  def fuck
+    @corpus = Corpus.find(params[:id])
+		@document = @corpus.documents.new(:eaf => params[:corpus][:document][:eaf])
+    @document.create_annotation_document if @document.eaf?
+
+    @document.save
+    @corpus.save
+    puts @corpus.valid?
+    puts params[:action]
+
+    respond_to do |format|
+      if @corpus.valid?
+        format.html { redirect_to @corpus, notice: 'Corpus was successfully created.' }
+        format.json { render json: @corpus, status: :created, location: @corpus }
+      else
+        format.html { render action: "new_document" }
+        format.json { render json: @corpus.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def show_documents
+
+  end
 end

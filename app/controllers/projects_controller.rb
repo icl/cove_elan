@@ -31,16 +31,28 @@ class ProjectsController < ApplicationController
 
   # POST /projects
   def create
-    @project = Project.new(params[:project])
     @corpora = Corpus.all
+
+		@document = Document.new(:eaf => params[:project][:documents][:eaf])
+
+    @document.create_annotation_document if @document.eaf?
+
+    @project = Project.new(:project_name => params[:project][:project_name], 
+        :description => params[:project][:description],
+        :user_id => current_user.id,
+        :document => @document)
+
+		@document.save
 		
     unless (params[:corpus][:corpus_id].empty?)
       @project.corpus_id = params[:corpus][:corpus_id]
       @selected_corpus = Corpus.find(params[:corpus][:corpus_id])
     end
 
+    @project.save
+
     respond_to do |format|
-      if @project.save
+      if @project.valid?
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
       else
         format.html { render action: "new" }
@@ -50,8 +62,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @corpora = Corpus.all
-    @selected_corpus  = @project.corpus
 
     respond_to do |format|
       format.html # show.html.erb

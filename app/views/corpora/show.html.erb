@@ -10,6 +10,26 @@
   <%= @corpus.description %>
 </p>
 
+<p>
+  <b>Corpus Media:</b>
+  <% @corpus.documents.each do |d| %>
+    <ul>
+      <li>
+        <%= File.basename(d.eaf.to_s) %>
+      </li>
+
+        <ul>
+          <% d.media_descriptors.each do |m| %>
+            <li>
+              <%= m[:media_url] %>
+            </li>
+          <% end %>
+        </ul>
+    </ul>
+  <% end %>
+</p>
+
 
 <%= link_to 'Edit', edit_corpus_path(@corpus) %> |
-<%= link_to 'Back', corpora_path %>
+<%= link_to 'Back', corpora_path %> |
+<%= link_to 'Add a Video Group', corpus_new_document_path %>

@@ -9,4 +9,8 @@ class Project < ActiveRecord::Base
 
 			has_many :work_documents
 			has_one  :project
+
+	    has_one :document, :as => :documentable, :dependent => :destroy
+
+	    accepts_nested_attributes_for :document
 end

@@ -11,6 +11,10 @@ describe :corpora do
 		@corpus.should be_valid
 	end
 
+  it "Should create a corpus with a document" do
+    @corpus_work = Factory.create(:corpus_with_work)
+  end
+
 	it "Should validate that a description exists" do
 		@corpus.description = nil
 		@corpus.should be_invalid

@@ -1,0 +1,31 @@
+<%= form_for(@corpus, :url => corpus_create_document_path(@corpus)) do |f| %>
+  <% if @corpus.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@corpus.errors.count, "error") %> prohibited this corpora from being saved:</h2>
+
+      <ul>
+      <% @corpus.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br /><br />
+
+  <p>Elan EAF document, used for corpus video groups. 
+    All corpus projects and work documents must contain a corpus video group.</p>
+  <%= f.fields_for :document do |document_form| %>
+    <div class="field">
+      <% if !@document.nil? and @document.eaf? %>
+        <p>Current Document: <%= File.basename(@document.eaf.to_s) %></p>
+      <% end %>
+      <%= document_form.file_field :eaf %>
+      <%= document_form.hidden_field :eaf_cache %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

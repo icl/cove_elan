@@ -5,6 +5,7 @@ class Document < ActiveRecord::Base
       validate :annotation_document_is_valid, :on => :create
 
 			belongs_to :documentable, :polymorphic => true
+      belongs_to :annotation_document, :class_name => "ElanParser::DB::AnnotationDocument", :dependent => :destroy
 
       mount_uploader :eaf, EafUploader
 

@@ -26,6 +26,18 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+
+  <p>Elan EAF document, used for project template tiers. All project work documents must contain the template tier set.</p>
+  <%= f.fields_for :documents do |document_form| %>
+    <div class="field">
+      <% if !@project.document.nil? and @project.document.eaf? %>
+        <p>Current Document: <%= File.basename(@project.document.eaf.to_s) %></p>
+      <% end %>
+      <%= document_form.file_field :eaf %>
+      <%= document_form.hidden_field :eaf_cache %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

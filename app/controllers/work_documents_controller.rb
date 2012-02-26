@@ -39,14 +39,15 @@ class WorkDocumentsController < ApplicationController
     end
 
     @document.create_annotation_document if @document.eaf?
+		@document.save if @document.valid?
 
-		@document.save
 		@work_document.save
 
     respond_to do |format|
       if @work_document.valid?
         format.html { redirect_to @work_document, notice: 'Document was successfully created.' }
       else
+        @document.destroy
         format.html { render action: "new" }
       end
     end
