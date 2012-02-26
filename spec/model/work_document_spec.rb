@@ -20,7 +20,7 @@ describe :corpora do
 		@project.should be_invalid	
 	end
 
-	it "Should find work work_documents bound to it" do
+	it "Should find documents bound to it" do
 		work_document = Factory.create(:work_document)
 		work_document.project.should be_valid
 	end

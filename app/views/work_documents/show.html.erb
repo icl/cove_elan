@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>File Name:</b>
+  <%= File.basename(@work_document.document.eaf.to_s) %>
+</p>
+
+<%= link_to 'Edit', edit_work_document_path(@work_document) %> |
+<%= link_to 'Back', work_documents_path %>

@@ -1,14 +1,10 @@
 require 'carrierwave/orm/activerecord'
 
 class Document < ActiveRecord::Base
-      validates :project, :eaf, :presence => true
+      validates :eaf, :presence => true
       validate :annotation_document_is_valid, :on => :create
 
-      belongs_to :user
-      belongs_to :project
-      belongs_to :annotation_document, :class_name => "ElanParser::DB::AnnotationDocument"
-	
-			has_one :video_group
+			belongs_to :documentable, :polymorphic => true
 
       mount_uploader :eaf, EafUploader
 

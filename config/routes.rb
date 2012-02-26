@@ -3,7 +3,9 @@ CoveElan::Application.routes.draw do
 
   resources :corpora
   resources :projects
-  resources :documents
+  resources :work_documents
+#	resources :documents
+
   match 'documents/:id/download' => 'documents#download', :as => :download_document
 
   # The priority is based upon order of creation:

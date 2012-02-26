@@ -5,13 +5,17 @@ class Corpora < ActiveRecord::Migration
       t.column :description, :text
     end
 	
-	create_table :documents do |t|
+	create_table :work_documents do |t|
 	  t.timestamps
-
-	  t.column :file_name, :string, :null => false
     t.belongs_to :user
-    t.belongs_to :project
-    t.belongs_to :annotation_document
+		t.belongs_to :project
+	end
+
+	create_table :documents do |t|
+		t.string :eaf
+		t.references :documentable, :polymorphic => true
+		t.belongs_to :annotation_document
+		t.timestamps
 	end
 	
 	create_table :projects do |t|

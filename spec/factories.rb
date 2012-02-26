@@ -9,9 +9,7 @@ FactoryGirl.define do
   end
 
   factory :document do
-#    sequence(:eaf) { |n| "document_#{n}" }
 		eaf { File.open(File.join(Rails.root, 'spec', 'fixtures', '02_09.eaf')) }
-		association(:project)
   end
 
   factory :project do
@@ -25,8 +23,8 @@ FactoryGirl.define do
     description "A bunch of Media"
   end
 
-	factory :video_group do
-		association(:corpus)
+	factory :work_document do
 		association(:document)
+		association(:project)
 	end
 end

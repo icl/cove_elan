@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222001310) do
+ActiveRecord::Schema.define(:version => 20120219094728) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -19,12 +19,12 @@ ActiveRecord::Schema.define(:version => 20120222001310) do
   end
 
   create_table "documents", :force => true do |t|
+    t.string   "eaf"
+    t.integer  "documentable_id"
+    t.string   "documentable_type"
+    t.integer  "annotation_document_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.integer  "annotation_document_id"
-    t.string   "eaf"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
@@ -252,9 +252,11 @@ ActiveRecord::Schema.define(:version => 20120222001310) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-  create_table "video_groups", :force => true do |t|
-    t.integer "document_id"
-    t.integer "corpus_id"
+  create_table "work_documents", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "project_id"
   end
 
 end

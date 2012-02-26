@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @corpora = Corpus.all
-
+		
     unless (params[:corpus][:corpus_id].empty?)
       @project.corpus_id = params[:corpus][:corpus_id]
       @selected_corpus = Corpus.find(params[:corpus][:corpus_id])
@@ -63,10 +63,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @corpora = Corpus.all
 
-    @project.corpus_id = params[:corpus][:corpus_id]
-
     respond_to do |format|
-      if @project.update_attributes(params[:project])
+      if @project.update_attributes(params[:project]) and @project.update_attributes(params[:corpus])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
       else
         format.html { render action: "edit" }

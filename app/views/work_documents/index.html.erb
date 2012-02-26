@@ -1,0 +1,23 @@
+<h1>Listing documents</h1>
+
+<table>
+  <tr>
+    <th>File Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @work_documents.each do |work_document| %>
+  <tr>
+    <td><%= File.basename(work_document.document.eaf.to_s) %></td>
+    <td><%= link_to 'Download', download_document_path(work_document.document) %></td>
+    <td><%= link_to 'Edit', edit_work_document_path(work_document) %></td>
+    <td><%= link_to 'Destroy', work_document, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Document', new_work_document_path %>

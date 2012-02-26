@@ -3,7 +3,7 @@
 <h3>Choose Something</h3>
 <p><%= link_to :corpora, corpora_path %></p>
 <p><%= link_to :projects, projects_path %></p>
-<p><%= link_to :documents, documents_path %></p>
+<p><%= link_to :work_documents, work_documents_path %></p>
 
 <h4>Existing Structure</h4>
 <% @corpora.each do |corpus| %>
@@ -12,17 +12,17 @@
 		<% corpus.projects.each do |project| %>
 			<ul>
 				<li><%= project.project_name %></li>
-				<% project.documents.each do |document| %>
+				<% project.work_documents.each do |work_document| %>
 					<ul>
             <li class="document-list-item">
-            <%=link_to File.basename(document.eaf.to_s) , download_document_path(document), 
-              :id => File.basename(document.eaf.to_s), :class => 'download-document' %> 
+            <%=link_to File.basename(work_document.document.eaf.to_s) , download_document_path(work_document.document), 
+              :id => File.basename(work_document.document.eaf.to_s), :class => 'download-work_document' %> 
 
-            <%=link_to "", document, :class=> 'icon-eye-open view-document-link', :id => File.basename(document.eaf.to_s) %>
+            <%=link_to "", work_document, :class=> 'icon-eye-open view-work_document-link', :id => File.basename(work_document.document.eaf.to_s) %>
     
             
             <div>
-              (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)
+              (Uploaded by: <%=@user.first_name%> <%=@user.last_name%> on <%=work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)
             </div>  
             </li>
 					</ul>
