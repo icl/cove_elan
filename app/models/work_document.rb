@@ -8,6 +8,7 @@ class WorkDocument < ActiveRecord::Base
 
 	belongs_to :project
 
+  private
   def matches_project_tiers
     return if self.project.nil? or !self.document.valid?
 

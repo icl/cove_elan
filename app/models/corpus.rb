@@ -1,6 +1,6 @@
 class Corpus < ActiveRecord::Base
 	validates :name, :description, :presence => 'true'
-  validate :document_media_is_unique, :on => :fuck
+  validate :document_media_is_unique
 
   has_many :projects
 
@@ -8,18 +8,33 @@ class Corpus < ActiveRecord::Base
 
 	accepts_nested_attributes_for :documents
 
+  private
+  #Validate that all document media is unique
   def document_media_is_unique
-  puts "HERE"
+   return if self.documents.count == 0
+
+   valid = true
+
    corpus_media   = Array.new
-   document_media = Array.new
 
-   self.documents.each { |d| d.media_descriptors.each { |m| corpus_media.push(m[:media_url]) } }
-   self.documents.last.media_descriptors.each { |m| document_media.push(m[:media_url]) }
+   self.documents.each { |d| corpus_media.push(:id => d.id, :media => d.media_descriptors) }
 
-   leftover_media = (corpus_media | document_media) - (corpus_media & document_media)
+   last_media_urls = Array.new
+   last = self.documents.last
+   last.media_descriptors.each { |m| last_media_urls.push(m[:media_url]) }
 
-   #errors.add :wtf, "SUCKS" if leftover_media.empty?
-   errors.add :wtf, "MOO"
+   corpus_media.each do |m|
+    if m[:id] != last.id then
+      item_media_urls = Array.new
+      m[:media].each { |m| item_media_urls.push(m[:media_url]) }
 
+      if (last_media_urls == item_media_urls)
+        valid = false
+        break
+      end
+    end
+   end
+
+      errors.add :file, "contains a media set already in this corpus." if valid == false
   end
 end
