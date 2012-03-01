@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219094728) do
+ActiveRecord::Schema.define(:version => 20120228223522) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -232,6 +232,11 @@ ActiveRecord::Schema.define(:version => 20120219094728) do
     t.integer  "corpus_id"
   end
 
+  create_table "templates", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -253,10 +258,10 @@ ActiveRecord::Schema.define(:version => 20120219094728) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "work_documents", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
-    t.integer  "project_id"
+    t.integer  "template_id"
   end
 
 end

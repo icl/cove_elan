@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
       belongs_to :user
       belongs_to :corpus
 
-			has_many :work_documents
+			#has_many :work_documents
 			has_one  :project
 
 	    has_one :document, :as => :documentable, :dependent => :destroy

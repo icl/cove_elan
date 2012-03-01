@@ -8,10 +8,6 @@ CoveElan::Application.routes.draw do
 
   match 'documents/:id/download' => 'documents#download', :as => :download_document
 
-  match 'corpora/:id/new_document' => 'corpora#new_document', :as => :corpus_new_document
-  match 'corpora/:id/documents' => 'corpora#show_documents', :as => :corpus_documents
-  match 'corpora/:id/documents/create' => 'corpora#create_document', :as => :corpus_create_document
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,11 @@
+  <p>Elan EAF document, used for document video groups. 
+    All document projects and work documents must contain a document video group.</p>
+  <%= form_for :document, :url => reate_work_document_path do |document_form| %>
+    <div class="field">
+      <%= document_form.file_field :eaf %>
+      <%= document_form.hidden_field :eaf_cache %>
+    </div>
+  <div class="actions">
+    <%= document_form.submit %>
+  </div>
+  <% end %>

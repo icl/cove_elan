@@ -28,3 +28,16 @@ border-radius: 3px;
    color: red;
   background-color: rgba(255,0,0,.25);
 }
+
+
+.wrapper {
+	width: 960px;
+}
+
+.float {
+	float: left;
+}
+
+.welcome_portlet {
+	width: 33%
+}

@@ -13,14 +13,14 @@ class WorkDocumentsController < ApplicationController
   # GET /work_documents/1/edit
   def edit
     @work_document = WorkDocument.find(params[:id])
-    @projects = Project.all
-    @selected_project = @work_document.project
+    #@projects = Project.all
+    #@selected_project = @work_document.project
   end
 
   # GET /work_documents/new
   def new
     @work_document = WorkDocument.new
-    @projects = Project.all
+    #@projects = Project.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -29,14 +29,16 @@ class WorkDocumentsController < ApplicationController
 
   # POST /work_documents
   def create
-    @projects = Project.all
+    #@projects = Project.all
 		@document = Document.new(:eaf => params[:work_document][:documents][:eaf])
+		#@work_document = WorkDocument.new(:document => @document, 
+		#	:user_id => current_user.id, :project_id => params[:project][:project_id])
 		@work_document = WorkDocument.new(:document => @document, 
-			:user_id => current_user.id, :project_id => params[:project][:project_id])
+			:user_id => current_user.id)
 
-    unless (params[:project][:project_id].empty?) then
-      @selected_project = Project.find(params[:project][:project_id])
-    end
+    #unless (params[:project][:project_id].empty?) then
+    #  @selected_project = Project.find(params[:project][:project_id])
+    #end
 
     @document.create_annotation_document if @document.eaf?
 		@document.save if @document.valid?
@@ -55,8 +57,8 @@ class WorkDocumentsController < ApplicationController
 
   def show
     @work_document = WorkDocument.find(params[:id])
-    @projects = Project.all
-    @selected_project = @work_document.project
+    #@projects = Project.all
+    #@selected_project = @work_document.project
 
     respond_to do |format|
       format.html # show.html.erb
@@ -66,10 +68,10 @@ class WorkDocumentsController < ApplicationController
   # PUT /work_documents/1
   def update
     @work_document = WorkDocument.find(params[:id])
-    @projects = Project.all
+    #@projects = Project.all
 
     respond_to do |format|
-      if @work_document.update_attributes(params[:project])
+      if @work_document.update_attributes(params[:work_document])
         format.html { redirect_to @work_document, notice: 'Work Document was successfully updated.' }
       else
         format.html { render action: "edit" }
