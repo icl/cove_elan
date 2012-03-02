@@ -1,9 +1,10 @@
 class WorkDocument < ActiveRecord::Base
 	#validates :project, :presence => true
   #validate :matches_project_tiers, :on => :save
-	validate :template_identify, :on => :create
+	after_create { template_identify }
 
 	has_one :document, :as => :documentable, :dependent => :destroy
+
 	belongs_to :user
 
 	accepts_nested_attributes_for :document
@@ -11,12 +12,27 @@ class WorkDocument < ActiveRecord::Base
 	belongs_to :template
 
 	#belongs_to :project
+	def clone_for_template
+    elan_xml = ElanParser::XML::Build.new
+    elan_xml.build_eaf_document(self.document.annotation_document_id)
+		
+		new_doc = Document.new(:eaf => self.document.eaf)
+
+    new_doc.create_annotation_document if new_doc.eaf?
+
+		new_doc.annotation_document.tiers.each { |t| t.annotations.each { |a| a.destroy } }
+
+		new_doc.save
+
+		template = Template.create(:document => new_doc)
+
+		return template
+	end
 
 
-	private
 	#Look thru the document media descriptors and tiers to identify if this template becomes a template or not
 	def template_identify
-		return unless self.document.valid?
+		return if !self.document.valid? or !self.template_id.nil?
 
 		self_tiers = Array.new
 		self_media = Array.new
@@ -25,28 +41,29 @@ class WorkDocument < ActiveRecord::Base
 		self.document.media_descriptors.each { |m| self_media.push(m[:media_url]) }
 
 		is_template = true
-		template_id = 0
 
-		WorkDocument.all.each do |work_document|
-			if (work_document.id != self.id) then
-				doc_tiers = Array.new
-				doc_media = Array.new
+		# Determine if there is a document with an existing template
+		Template.all.each do |t|
+			wd = t.work_documents.first
+			
+			wd_tiers = Array.new
+			wd_media = Array.new
 
-				work_document.document.tiers.each { |t| doc_tiers.push(t[:tier_id]) }
-				work_document.document.media_descriptors.each { |m| doc_media.push(m[:media_url]) }
+			wd.document.tiers.each { |t| wd_tiers.push(t[:tier_id]) }
+			wd.document.media_descriptors.each { |m| wd_media.push(m[:media_url]) }
 
-				if (doc_tiers == self_tiers && doc_media == self_media)
+			if (wd_tiers == self_tiers && wd_media == self_media)
 					is_template = false
-					template_id = work_document.template.id
-				end
+					self.template = t
+					self.save
+					break
 			end
 		end
 
-		if (is_template == true)
-			self.template = Template.create()
-		else
-			self.template_id = template_id
+		if (is_template)
+			template = self.clone_for_template
+			self.template = template
+			self.save
 		end
-
 	end
 end

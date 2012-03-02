@@ -10,7 +10,7 @@
 <p>Templates</p>
 <% @templates.each do |template| %>
 	<fieldset>
-		<legend>Template <%= template.id %></legend>
+		<legend><%=link_to 'Template '+template.id.to_s, download_document_path(template.document) %></legend>
 		<div class="template wrapper">
 			<fieldset class="welcome_portlet float">
 				<legend>Tiers</legend>

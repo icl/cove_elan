@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228223522) do
+ActiveRecord::Schema.define(:version => 20120302010537) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20120228223522) do
   create_table "elan_parser_alignable_annotations", :force => true do |t|
     t.string "svg_ref"
     t.string "ext_ref"
-    t.string "annotation_value"
+    t.text   "annotation_value"
   end
 
   create_table "elan_parser_alignable_annotations_time_slots", :force => true do |t|
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20120228223522) do
 
   create_table "elan_parser_constraints", :force => true do |t|
     t.string "stereotype"
-    t.string "description"
+    t.text   "description"
   end
 
   create_table "elan_parser_controlled_cv_entries_vocabularies", :force => true do |t|
@@ -105,12 +105,12 @@ ActiveRecord::Schema.define(:version => 20120228223522) do
 
   create_table "elan_parser_controlled_vocabularies", :force => true do |t|
     t.string "cv_id",       :null => false
-    t.string "description", :null => false
+    t.text   "description", :null => false
     t.string "ext_ref"
   end
 
   create_table "elan_parser_cv_entries", :force => true do |t|
-    t.string "description"
+    t.text   "description"
     t.string "ext_ref"
   end
 
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(:version => 20120228223522) do
     t.string "ext_ref"
     t.string "annotation_ref"
     t.string "previous_annotation"
-    t.string "annotation_value"
+    t.text   "annotation_value"
   end
 
   create_table "elan_parser_tiers", :force => true do |t|
@@ -233,8 +233,9 @@ ActiveRecord::Schema.define(:version => 20120228223522) do
   end
 
   create_table "templates", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "document_id"
   end
 
   create_table "users", :force => true do |t|
