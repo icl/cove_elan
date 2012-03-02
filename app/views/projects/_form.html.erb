@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= simple_form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -14,31 +14,15 @@
   <br /><br />
 
   <div class="field">
-    <%= f.label :project_corpus %>
-    <%= collection_select(:corpus, :corpus_id, @corpora, :id, :name, 
-      @selected_corpus.blank? ? {:prompt => "Please select"} : {:selected => @selected_corpus.id}) %>
-  </div>
-  <div class="field">
-    <%= f.label :project_name %><br />
-    <%= f.text_field :project_name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.input :name %><br />
   </div>
 
-  <p>Elan EAF document, used for project template tiers. All project work documents must contain the template tier set.</p>
-  <%= f.fields_for :documents do |document_form| %>
-    <div class="field">
-      <% if !@project.document.nil? and @project.document.eaf? %>
-        <p>Current Document: <%= File.basename(@project.document.eaf.to_s) %></p>
-      <% end %>
-      <%= document_form.file_field :eaf %>
-      <%= document_form.hidden_field :eaf_cache %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.association :templates, :collection => ::Template.all(:order => 'name'), 
+      :label_method => lambda { |x| x.name_or_id } %>
+  </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

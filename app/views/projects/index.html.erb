@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Project Name</th>
-    <th>Description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,13 +14,11 @@
 
 <% @projects.each do |project| %>
   <tr>
-    <td><%= project.project_name %></td>
-    <td><%= project.description %></td>
+    <td><%= project.name %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
-
 <% end %>
 </table>
 

@@ -24,7 +24,7 @@ class WorkDocument < ActiveRecord::Base
 
 		new_doc.save
 
-		template = Template.create(:document => new_doc)
+		template = Template.create(:document => new_doc, :user_id => self.user_id)
 
 		return template
 	end

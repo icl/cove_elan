@@ -13,16 +13,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
-    @corpora = Corpus.all
-    @selected_corpus  = @project.corpus
   end
 
   # GET /projects/new
   def new
     @project = Project.new
-
-    #Get a list of corpora for this project to attach to.
-    @corpora = Corpus.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,28 +26,10 @@ class ProjectsController < ApplicationController
 
   # POST /projects
   def create
-    @corpora = Corpus.all
-
-		@document = Document.new(:eaf => params[:project][:documents][:eaf])
-
-    @document.create_annotation_document if @document.eaf?
-
-    @project = Project.new(:project_name => params[:project][:project_name], 
-        :description => params[:project][:description],
-        :user_id => current_user.id,
-        :document => @document)
-
-		@document.save
-		
-    unless (params[:corpus][:corpus_id].empty?)
-      @project.corpus_id = params[:corpus][:corpus_id]
-      @selected_corpus = Corpus.find(params[:corpus][:corpus_id])
-    end
-
-    @project.save
+    @project = Project.new(params[:project])
 
     respond_to do |format|
-      if @project.valid?
+      if @project.save!
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
       else
         format.html { render action: "new" }
@@ -71,10 +48,14 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   def update
     @project = Project.find(params[:id])
-    @corpora = Corpus.all
+    @project.update_attributes(:name => params[:project][:name])
+
+    params[:project][:template_ids].each do |t|
+      @project.templates << Template.find(t) if !t.empty? and @project.templates.find_by_id(t).nil?
+    end
 
     respond_to do |format|
-      if @project.update_attributes(params[:project]) and @project.update_attributes(params[:corpus])
+      if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
       else
         format.html { render action: "edit" }

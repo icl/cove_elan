@@ -4,6 +4,7 @@ CoveElan::Application.routes.draw do
   resources :corpora
   resources :projects
   resources :work_documents
+  resources :templates
 #	resources :documents
 
   match 'documents/:id/download' => 'documents#download', :as => :download_document

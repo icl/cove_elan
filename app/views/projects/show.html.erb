@@ -2,32 +2,18 @@
 
 <p>
   <b>Project Name:</b>
-  <%= @project.project_name %>
+  <%= @project.name %>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%= @project.description %>
-</p>
-
-<p>
-  <b>Corpus:</b>
-  <%= @project.corpus.name %>
-</p>
-
-<p>
-  <b>Tier Template:</b>
-  <%= File.basename(@project.document.eaf.to_s) %>
-</p>
-
-<p>
-  <b>Project Tier List</b>
+  <b>Associated Templates:</b>
   <ul>
-    <% @project.document.tiers.each do |tier| %>
-      <li><%= tier[:tier_id] %></li>
+    <% @project.templates.each do |t| %>
+      <li><%= t.name_or_id %></li>
     <% end %>
   </ul>
 </p>
+
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
