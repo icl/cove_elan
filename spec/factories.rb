@@ -15,11 +15,26 @@ FactoryGirl.define do
 		end
   end
 
-#  factory :project do
-#    sequence(:project_name) { |n| "project_#{n}" }
-#    description "Some Cool Project"
-#		association(:corpus)
-#  end
+  factory :project do
+    sequence(:name) { |n| "project_#{n}" }
+		association(:user)
+  end
+
+  factory :template do
+    sequence(:name) { |n| "template_#{n}" }
+    association(:document)
+		association(:user)
+  end
+
+  factory :metadata_fields do
+    sequence(:name) { |n | "field_#{n}" }
+    field "string"
+  end
+
+  factory :metadata_values do
+    value("value")
+    associates(:metadata_fields)
+  end
 
 #  factory :project_with_work, :class => Project do
 #    sequence(:project_name) { |n| "project_#{n}" }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302070521) do
+ActiveRecord::Schema.define(:version => 20120303073045) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -221,6 +221,45 @@ ActiveRecord::Schema.define(:version => 20120302070521) do
 
   create_table "elan_parser_time_slots", :force => true do |t|
     t.integer "time_value", :null => false
+  end
+
+  create_table "meta_data_field_groups", :force => true do |t|
+    t.integer  "meta_data_field_id"
+    t.integer  "meta_data_group_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "meta_data_field_types", :force => true do |t|
+    t.string   "field_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "meta_data_fields", :force => true do |t|
+    t.string   "name"
+    t.integer  "meta_data_field_type_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  create_table "meta_data_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "meta_data_groupable_id"
+    t.string   "meta_data_groupable_type"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "meta_data_values", :force => true do |t|
+    t.string   "string_value"
+    t.text     "text_value"
+    t.integer  "integer_value"
+    t.integer  "meta_data_valuable_id"
+    t.string   "meta_data_valuable_type"
+    t.integer  "meta_data_field_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "project_templates", :force => true do |t|

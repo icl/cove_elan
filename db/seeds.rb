@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+MetaDataFieldType.create(:field_type => 'string')
+MetaDataFieldType.create(:field_type => 'integer')
+MetaDataFieldType.create(:field_type => 'text')

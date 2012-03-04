@@ -9,43 +9,49 @@
 
 <p>Templates</p>
 <% @templates.each do |template| %>
-	<fieldset>
-		<legend><%=link_to template.name_or_id, download_document_path(template.document) %></legend>
-		<div class="template wrapper">
-			<fieldset class="welcome_portlet float">
-				<legend>Tiers</legend>
-				<ul>
-					<% template.work_documents.first.document.tiers.each do |tier| %>
-						<li><%= tier[:tier_id] %></li>
-					<% end %>
-				</ul>
-				</fieldset>
-			<fieldset class="welcome_portlet float">
-				<legend>Media</legend>
-				<ul>
-					<% template.work_documents.first.document.media_descriptors.each do |media_descriptor| %>
-						<li><%= media_descriptor[:media_url] %></li>
-					<% end %>
-				</ul>
-			</fieldset>
-			<fieldset class="welcome_portlet float">
-				<legend>Working Documents</legend>
-				<% template.work_documents.each do |work_document| %>
-					<ul>
-						<li class="document-list-item">
-						<%=link_to File.basename(work_document.document.eaf.to_s) , download_document_path(work_document.document), 
-							:id => File.basename(work_document.document.eaf.to_s), :class => 'download-work_document' %> 
+  <div class="page-header">
+		<h2>
+      <%=link_to template.name_or_id, download_document_path(template.document) %>
+    </h2>
+  </div>
 
-						<%=link_to "", work_document, :class=> 'icon-eye-open view-work_document-link', :id => File.basename(work_document.document.eaf.to_s) %>
+  <div class="row">
+		<div class="span4">
+      <h4>Tiers</h4>
+      <ul>
+        <% template.work_documents.first.document.tiers.each do |tier| %>
+          <li><%= tier[:tier_id] %></li>
+        <% end %>
+      </ul>
+    </div>
 
-						
-						<div>
-							(Uploaded by: <%=work_document.user.first_name%> <%=work_document.user.last_name%> on <%=work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)
-						</div>  
-						</li>
-					</ul>
-				<% end %>
-			</fieldset>
+    <div class="span4">
+      <h4>Media</h4>
+      <ul>
+        <% template.work_documents.first.document.media_descriptors.each do |media_descriptor| %>
+          <li><%= media_descriptor[:media_url] %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="span4">
+      <h4>Working Documents</h4>
+      <% template.work_documents.each do |work_document| %>
+        <ul>
+          <li class="document-list-item">
+          <%=link_to File.basename(work_document.document.eaf.to_s) , download_document_path(work_document.document), 
+            :id => File.basename(work_document.document.eaf.to_s), :class => 'download-work_document' %> 
+
+          <%=link_to "", work_document, :class=> 'icon-eye-open view-work_document-link', :id => File.basename(work_document.document.eaf.to_s) %>
+
+          
+          <div>
+            (Uploaded by: <%=work_document.user.first_name%> <%=work_document.user.last_name%> on <%=work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)
+          </div>  
+          </li>
+        </ul>
+      <% end %>
+      </div>
 		</div>
 	</fieldset>
 <% end %>

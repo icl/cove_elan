@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @meta_data_group.name %>
+</p>
+
+<p>
+  <b>Fields:</b>
+  <ul>
+    <% @meta_data_group.meta_data_fields.each do |field| %>
+      <li><%= field.name %></li>
+    <% end %>
+  </ul>
+</p>
+
+
+<%= link_to 'Edit', edit_meta_data_group_path(@meta_data_group) %> |
+<%= link_to 'Back', meta_data_groups_path %>

@@ -1,0 +1,26 @@
+<h1>Meta Data Fields</h1>
+
+<p><%= link_to 'New Metadata Field', new_meta_data_field_path %>
+   | <%= link_to 'Manage Meta Data Groups', meta_data_groups_path %></p>
+
+<% @meta_data_fields.each do |m| %>
+  <div class="page-header">
+    <h2>
+      <%= m.name %>
+    </h2>
+      <p><%= link_to 'Edit', edit_meta_data_field_path(m) %> | <%= link_to 'Destroy', m, confirm: 'Are you sure?', method: :delete %></p>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+    <h4><%= m.name %> Groups</h4>
+    <ul>
+      <% m.meta_data_groups.each do |g| %>
+        <li>
+          <%= link_to g.name, meta_data_group_path(g) %>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+  </div>
+<% end %>

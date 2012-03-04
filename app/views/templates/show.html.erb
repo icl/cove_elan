@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b>Template Meta Data Group:</b>
+  <%= @template.meta_data_group ? @template.meta_data_group.name : "Not Assigned" %>
+</p>
+
+<p>
   <b>Associated Projects:</b>
   <ul>
     <% @template.projects.each do |p| %>
@@ -13,7 +18,6 @@
     <% end %>
   </ul>
 </p>
-
 
 <p>
   <b>Template Media:</b>

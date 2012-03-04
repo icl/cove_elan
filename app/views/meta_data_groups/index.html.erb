@@ -1,0 +1,47 @@
+<h1>Meta Data Groupings</h1>
+
+<p><%= link_to 'New Metadata Group', new_meta_data_group_path %>
+   | <%= link_to 'Manage Meta Data Fields', meta_data_fields_path %></p>
+
+<% @meta_data_groups.each do |m| %>
+  <div class="page-header">
+    <h2>
+      <%= m.name %>
+    </h2>
+      <p><%= link_to 'Edit', edit_meta_data_group_path(m) %> | <%= link_to 'Destroy', m, confirm: 'Are you sure?', method: :delete %></p>
+  </div>
+
+
+  <div class="row">
+    <div class="span4">
+      <h4><%= m.name %> Fields</h4>
+      <ul>
+        <% m.meta_data_fields.each do |f| %>
+          <li>
+            <%= link_to f.name, meta_data_field_path(f) %>
+            <ul>
+              <li>Field Data Type: <%= f.meta_data_field_type.field_type %></li>
+              <li>Value Count: <%= f.meta_data_values.count %></li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="span4">
+      &nbsp;
+    </div>
+
+    <div class="span4">
+      <h4>Associations</h4>
+      <ul>
+        <% m.related_objects.each do |r| %>
+          <li>
+            <%= r.class.name %>:
+            <%= link_to r.name, eval(r.class.name.downcase + '_path('+r.id.to_s+')') %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

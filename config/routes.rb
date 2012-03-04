@@ -1,4 +1,7 @@
 CoveElan::Application.routes.draw do
+  resources :meta_data_fields
+  resources :meta_data_groups
+
   devise_for :users
 
   resources :corpora

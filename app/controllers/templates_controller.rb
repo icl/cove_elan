@@ -13,6 +13,7 @@ class TemplatesController < ApplicationController
   # GET /templates/1/edit
   def edit
     @template = Template.find(params[:id])
+    @selected_meta_data_group = @template.meta_data_group
   end
 
   def show
@@ -26,9 +27,15 @@ class TemplatesController < ApplicationController
   # PUT /templates/1
   def update
     @template = Template.find(params[:id])
+    @selected_meta_data_group = @template.meta_data_group
+
+    MetaDataHelper.map_field_values params[:template][:meta_data_fields], @template
+
+    @template.meta_data_group = MetaDataGroup.find(params[:meta_data_group][:meta_data_group_id]) unless params[:meta_data_group][:meta_data_group_id].empty?
+    @template.name = params[:template][:name]
 
     respond_to do |format|
-      if @template.update_attributes(params[:template])
+      if @template.errors.count == 0 and @template.save
         format.html { redirect_to @template, notice: 'Template was successfully updated.' }
       else
         format.html { render action: "edit" }
