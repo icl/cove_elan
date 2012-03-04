@@ -37,7 +37,7 @@
       .data(tiers_with_annotations, function(d) { return d.id})
       .enter().append('g')
       .classed('tier', true)
-      .attr('transform', function(d, i) {return "translate(" + 0 + "," + (20 + i * 20) + ")"})
+      .attr('transform', function(d, i) {return "translate(" + 0 + "," + (40 + i * 20) + ")"})
       .selectAll('rect').data(function(d) { return d.annotations})
       .enter().append('rect')
       .attr('x', function(d) { return time_scale(d.ts_ref1)})
