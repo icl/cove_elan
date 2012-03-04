@@ -1,27 +1,26 @@
-<h1>Listing projects</h1>
-
-<table>
-  <tr>
-    <th>Project Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <tr>
-    <th>Project Documents</th>
-  </tr>
-
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
+<h1>Projects</h1>
 
 <%= link_to 'New Project', new_project_path %>
+
+<% @projects.each do |p| %>
+  <div class="page-header">
+    <h2>
+      <%= p.name %>
+    </h2>
+    <p><%= link_to 'Edit', edit_project_path(p) %> | <%= link_to 'Destroy', p, confirm: "Are you sure?", method: :delete %></p>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+      <h4>Project Templates</h4>
+      <% p.templates.each do |t| %>
+        <p><%= link_to t.name, template_path(t) %></p>
+      <% end %>
+    </div>
+
+    <div class="span4">
+      <h4>Metadata Group</h4>
+      <p><%= p.meta_data_group.name %></p>
+    </div>
+  </div>
+<% end %>

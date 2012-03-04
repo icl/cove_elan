@@ -20,6 +20,7 @@
   </div>
 
   <div class="field">
+    <%= f.label "Meta Data Group" %>
     <%= collection_select(:meta_data_group, :meta_data_group_id, MetaDataGroup.all, :id, :name,
       @selected_meta_data_group.blank? ? {:prompt => "Please Select..."} : {:selected => @selected_meta_data_group.id}) %>
   </div>

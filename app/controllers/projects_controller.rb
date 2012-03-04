@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    @selected_meta_data_group = @project.meta_data_group
+    @selected_templates = @project.templates
   end
 
   # GET /projects/new
@@ -48,14 +50,21 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   def update
     @project = Project.find(params[:id])
+
+    @selected_meta_data_group = @project.meta_data_group
+    @selected_templates = @project.templates
+
     @project.update_attributes(:name => params[:project][:name])
 
-    params[:project][:template_ids].each do |t|
-      @project.templates << Template.find(t) if !t.empty? and @project.templates.find_by_id(t).nil?
-    end
+    MetaDataHelper.map_field_values params[:project][:meta_data_fields], @project
+
+    @project.template_ids = params[:templates][:templates]
+
+    @project.meta_data_group = MetaDataGroup.find(params[:meta_data_group][:meta_data_group_id]) unless params[:meta_data_group][:meta_data_group_id].empty?
+
 
     respond_to do |format|
-      if @project.update_attributes(params[:project])
+      if @project.errors.count == 0 and @project.save
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
       else
         format.html { render action: "edit" }
