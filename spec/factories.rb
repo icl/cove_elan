@@ -26,34 +26,28 @@ FactoryGirl.define do
 		association(:user)
   end
 
-  factory :metadata_fields do
-    sequence(:name) { |n | "field_#{n}" }
-    field "string"
+  factory :meta_data_field_type do
+    field_type "string"
   end
 
-  factory :metadata_values do
-    value("value")
-    associates(:metadata_fields)
+  factory :meta_data_field do
+    sequence(:name) { |n| "field_#{n}" }
+    association(:meta_data_field_type)
   end
 
-#  factory :project_with_work, :class => Project do
-#    sequence(:project_name) { |n| "project_#{n}" }
-#    description "Some Cool Project"
-#		association(:corpus)
-#    association(:document)
-#  end
+  factory :meta_data_value do
+    string_value "Test String Value"
+    association(:meta_data_field)
+  end
 
-#  factory :corpus do
-#    sequence(:name) { |n| "corpus_#{n}" }
-#    description "A bunch of Media"
-#  end
+  factory :meta_data_field_group do
+    association(:meta_data_field)
+    association(:meta_data_group)
+  end
 
-#  factory :corpus_with_work, :class => Corpus do
-#    sequence(:name) { |n| "corpus_#{n}" }
-#    description "A bunch of Media"
-#    association(:document)
-#  end
-
+  factory :meta_data_group do
+    sequence(:name) { |n| "group_#{n}" }
+  end
 
 	factory :work_document do
 		association(:document)

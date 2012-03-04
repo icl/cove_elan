@@ -28,7 +28,7 @@ describe "Dashboard" do
       end
 
       it "has a link to view the template" do
-        within ".template-list-item" do
+        within ".page-header" do
           page.should have_link @work_document.template.name_or_id,
             :href => download_document_path(@work_document.template.document)
         end
