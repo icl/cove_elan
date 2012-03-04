@@ -45,6 +45,6 @@
       .attr('width', function(d) { return time_scale(d.ts_ref2 - d.ts_ref1 + time_start)})
       .attr('height', 10);
 
-    
+  return $(annotations_view);
   };
 })( jQuery );
