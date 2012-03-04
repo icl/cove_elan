@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require underscore
+//= require d3
+//= require d3.layout
+//= require d3.time
+//= require d3.chart
 //= require_tree .

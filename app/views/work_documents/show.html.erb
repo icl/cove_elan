@@ -1,3 +1,7 @@
+
+<!-- Bootstrap Data -->
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -5,5 +9,13 @@
   <%= File.basename(@work_document.document.eaf.to_s) %>
 </p>
 
+<div id="viewer"></div>
+
 <%= link_to 'Edit', edit_work_document_path(@work_document) %> |
 <%= link_to 'Back', work_documents_path %>
+
+<script>
+  $().DocViz( <%= @work_document.document.annotations.to_json.html_safe %>,
+              <%= @work_document.document.tiers.to_json.html_safe %>)
+</script>
+
