@@ -41,3 +41,8 @@ border-radius: 3px;
 .welcome_portlet {
 	width: 33%
 }
+
+  #viewer {
+    position: fixed;
+  }
+    
