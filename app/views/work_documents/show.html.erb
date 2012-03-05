@@ -35,33 +35,6 @@
   $().DocViz( <%= @work_document.document.annotations.to_json.html_safe %>,
               <%= @work_document.document.tiers.to_json.html_safe %>)
 
-
-              var annotations = <%= @work_document.document.annotations.to_json.html_safe%>;
-              var tiers = <%= @work_document.document.tiers.to_json.html_safe %>;
-
-
 </script>
-<style>
-
-svg {
-  font: 10px sans-serif;
-}
-
-path {
-  fill: steelblue;
-}
-
-.axis path, .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.brush .extent {
-  stroke: #fff;
-  fill-opacity: .125;
-  shape-rendering: crispEdges;
-}
 
 
-</style>
