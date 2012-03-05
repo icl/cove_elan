@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/icl/elan_parser.git
-  revision: 98359d3bd4ab869c7a2ef5689bf69e4795ea3dec
+  revision: 0c1610ef905c7320f6b0db7c0c3e27d979bc7155
   specs:
-    elan_parser (0.0.4)
+    elan_parser (0.0.5)
       activerecord
       happymapper
       nokogiri

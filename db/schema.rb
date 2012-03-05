@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120303073045) do
+ActiveRecord::Schema.define(:version => 20120305073358) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -98,20 +98,18 @@ ActiveRecord::Schema.define(:version => 20120303073045) do
     t.text   "description"
   end
 
-  create_table "elan_parser_controlled_cv_entries_vocabularies", :force => true do |t|
-    t.integer "controlled_vocabularie_id"
-    t.integer "cv_entrie_id"
-  end
-
   create_table "elan_parser_controlled_vocabularies", :force => true do |t|
-    t.string "cv_id",       :null => false
-    t.text   "description", :null => false
-    t.string "ext_ref"
+    t.string  "cv_id",                  :null => false
+    t.text    "description",            :null => false
+    t.string  "ext_ref"
+    t.integer "annotation_document_id"
   end
 
   create_table "elan_parser_cv_entries", :force => true do |t|
-    t.text   "description"
-    t.string "ext_ref"
+    t.integer "controlled_vocabulary_id"
+    t.text    "description"
+    t.string  "ext_ref"
+    t.string  "cv_entry",                 :null => false
   end
 
   create_table "elan_parser_external_references", :force => true do |t|
