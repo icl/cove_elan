@@ -2,7 +2,7 @@ require 'spec_helper'
 describe "welcome page" do
 
   
-  it "should allow me to sign in" do
+  it "should allow me to sign in", :js => true do
     @user = Factory.create :user
     visit '/'
 
