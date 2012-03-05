@@ -2,6 +2,11 @@
 //
 (function( $ ) {
   $.fn.DocViz = function( annotations, tiers) {
+
+    annotations.forEach(function(anno) {
+       anno.start_time = anno.ts_ref1 / 1000.0;
+       anno.end_time = anno.ts_ref2 / 1000.0 ;
+    }); 
  var margin = {top: 10, right: 10, bottom: 100, left: 40},
     margin2 = {top: 430, right: 10, bottom: 20, left: 40},
     width = 640 - margin.left - margin.right,
@@ -41,7 +46,7 @@ var focus = svg.append("g")
 var context = svg.append("g")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-  x.domain(d3.extent(annotations.map(function(d) { return d.ts_ref1; })));
+  x.domain(d3.extent(annotations.map(function(d) { return d.start_time; })));
   y.domain([0, d3.max(tiers.map(function(d, i) { return i; }))]);
   x2.domain(x.domain());
   y2.domain(y.domain());
@@ -53,7 +58,7 @@ var context = svg.append("g")
       return tier;
     });
 
-     var time_start = _.min(annotations, function(anno) { return anno.ts_ref1 }).ts_ref1;
+
 
     var tiers = focus.selectAll('g.tier')
       .data(tiers_with_annotations, function(d) { return d.id})
@@ -62,9 +67,9 @@ var context = svg.append("g")
       .attr('transform', function(d, i) {return "translate(" + 0 + "," + (40 + i * 20) + ")"})
       .selectAll('rect').data(function(d) { return d.annotations})
       .enter().append('rect')
-      .attr('x', function(d) { return x(d.ts_ref1)})
+      .attr('x', function(d) { return x(d.start_time)})
       .attr('y', 5)
-      .attr('width', function(d) { return x(d.ts_ref2 - d.ts_ref1 + time_start)})
+      .attr('width', function(d) { return x(d.end_time) - x(d.start_time) })
       .attr('height', 10);
 
   focus.append("g")
@@ -73,15 +78,8 @@ var context = svg.append("g")
       .call(xAxis);
 
 
-
-      /*
-  context.append("path")
-      .data([data])
-      .attr("d", area2);
-      */
-
       context.selectAll('circle').data(annotations).enter().append("circle")
-      .attr('cx', function(d) { return x2(d.ts_ref1) })
+      .attr('cx', function(d) { return x2(d.start_time) })
       .attr('cy', 40)
       .attr('r', 1);
 
@@ -101,9 +99,9 @@ var context = svg.append("g")
 function brush() {
   x.domain(brush.empty() ? x2.domain() : brush.extent());
 
-  tiers.attr('x', function(d) { return x(d.ts_ref1)})
+  tiers.attr('x', function(d) { return x(d.start_time)})
       .attr('y', 5)
-      .attr('width', function(d) { return x( d.ts_ref2) - x(d.ts_ref1)})
+      .attr('width', function(d) { return x( d.end_time) - x(d.start_time)})
       .attr('height', 10);
 
   focus.select(".x.axis").call(xAxis);
