@@ -7,8 +7,25 @@
 
 <div class="row">
 
-  <div class="span4">stuff goes here </div>
-  <div class="span8">
+  <div class="span4">
+    <table class="table">
+      <% @work_document.document.annotations.each do | annotation | %>
+        <tr>
+          <td>
+            <%= annotation[:annotation_value] %>
+          </td>
+          <td>
+            <%= annotation[:ts_ref1] / 1000 %>
+          </td>
+          <td>
+            <%= annotation[:ts_ref2] / 1000%>
+        </td>
+        </tr>
+      <% end %> 
+    </div>
+  </table>
+  </div>
+  <div class="span6">
   <div id="viewer"></div>
   </div>
 </div>
