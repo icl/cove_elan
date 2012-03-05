@@ -9,7 +9,7 @@
     });
 
     var width = 620;
-    var height = 500;
+    var height = 200;
     var time_start = _.min(annotations, function(anno) { return anno.ts_ref1 }).ts_ref1;
     var time_end = _.max(annotations, function(anno) { return anno.ts_ref2}).ts_ref2;
 
