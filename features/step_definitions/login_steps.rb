@@ -25,3 +25,31 @@ Given /^I am signed in$/ do
   step "I should be signed in"
 end
 
+Given /^I fill in bad credentials$/ do
+  fill_in "Email", :with => User.first.email
+  fill_in "Password", :with => "thisistotallynotgoingtowork" 
+end
+
+Then /^I should get a bad sign in message$/ do
+  within ".alert-error" do
+    page.should have_content I18n.t 'devise.failure.invalid' 
+  end
+end
+
+Then /^I should get a successful sign in message$/ do
+  within ".alert-success" do
+    page.should have_content I18n.t 'devise.sessions.signed_in'
+  end
+ end
+
+Given /^I sign out$/ do
+  within "#user-menu" do
+    click_link "Sign out"
+  end
+end
+
+Then /^I should get a sign out message$/ do
+  within ".alert-success" do
+    page.should have_content I18n.t 'devise.sessions.signed_out'
+  end  
+end
