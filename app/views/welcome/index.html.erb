@@ -37,7 +37,7 @@
     </div>
 
     <div class="span5">
-      <h4>Uploads</h4>
+      <h4>Recent Uploads</h4>
       <% template.work_documents.order("created_at DESC").limit(3).each do |work_document| %>
         <ul>
           <li class="document-list-item">
