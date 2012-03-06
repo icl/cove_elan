@@ -44,8 +44,8 @@ def login_user
     visit '/'
 
     within '#new_user' do
-      fill_in 'Email', with: @user.email
-      fill_in "Password", with: '123456'
+      fill_in 'user_email', with: @user.email
+      fill_in "user_password", with: '123456'
 
       click_button "Sign in"
     end

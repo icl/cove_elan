@@ -13,6 +13,31 @@
  *= require_tree .
 */
 
+#user-menu .navbar-form input.nav-dark {
+padding: 4px 9px;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 13px;
+font-weight: normal;
+line-height: 1;
+color: white;
+color: rgba(255, 255, 255, 0.75);
+background: #666;
+background: rgba(255, 255, 255, 0.3);
+border: 1px solid #111;
+-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+-moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+-webkit-transition: none;
+-moz-transition: none;
+-ms-transition: none;
+-o-transition: none;
+transition: none;
+}
+
+#user-menu .navbar-form input {
+  width: 100px;
+}
+
 body {
 padding-top: 60px;
 }

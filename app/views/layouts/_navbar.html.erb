@@ -31,10 +31,21 @@
             </li>
 
          <% else %>
-          <li>
-            <%= link_to('Sign in', new_user_session_path)  %>
-          </li>
+           <li>
+
+           <%= form_for(User.new, :as => :user, :url => session_path(:user), :html => {:class => 'navbar-form'}) do |f| %>
+             <%= f.text_field :email, :size => 5, :placeholder => "email", :class => 'nav-dark' %>
+
+             <%= f.password_field :password, :size => 5, :placeholder => "password", :class => 'nav-dark' %>
+
+             <%= f.hidden_field :remember_me, :value => true%>
+  
+           <%= f.submit "Sign in" %>
           <% end %>
+          </li>
+
+          <% end %>
+
         </li>
       </ul>
       </div>

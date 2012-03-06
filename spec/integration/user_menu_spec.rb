@@ -28,7 +28,7 @@ describe "User Menu" do
     it "should show a sign in link" do
       visit  '/'
       within "#user-menu" do
-        page.should have_content "Sign in"
+        page.should have_css "#new_user"
       end
     end
     it "should show a sign up link"

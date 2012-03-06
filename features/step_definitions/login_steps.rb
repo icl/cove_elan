@@ -3,8 +3,8 @@ When /^I visit the home page$/ do
 end
 
 When /^I fill in valid login credentials$/ do
-  fill_in "Email", :with => User.first.email
-  fill_in "Password", :with => "123456" 
+  fill_in "user_email", :with => User.first.email
+  fill_in "user_password", :with => "123456" 
 end
 
 When /^I sign in$/ do
@@ -26,8 +26,8 @@ Given /^I am signed in$/ do
 end
 
 Given /^I fill in bad credentials$/ do
-  fill_in "Email", :with => User.first.email
-  fill_in "Password", :with => "thisistotallynotgoingtowork" 
+  fill_in "user_email", :with => User.first.email
+  fill_in "user_password", :with => "thisistotallynotgoingtowork" 
 end
 
 Then /^I should get a bad sign in message$/ do
@@ -52,4 +52,9 @@ Then /^I should get a sign out message$/ do
   within ".alert-success" do
     page.should have_content I18n.t 'devise.sessions.signed_out'
   end  
+end
+
+
+Then /^I should not see a warning about logging in$/ do
+    page.should_not have_content I18n.t 'devise.failure.unauthenticated'
 end
