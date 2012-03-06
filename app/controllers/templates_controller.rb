@@ -30,8 +30,7 @@ class TemplatesController < ApplicationController
     @selected_meta_data_group = @template.meta_data_group
 
     MetaDataHelper.map_field_values params[:template][:meta_data_fields], @template
-
-    @template.meta_data_group = MetaDataGroup.find(params[:meta_data_group][:meta_data_group_id]) unless params[:meta_data_group][:meta_data_group_id].empty?
+    @template.meta_data_group = MetaDataGroup.find(params[:template][:meta_data_group]) 
     @template.name = params[:template][:name]
 
     respond_to do |format|

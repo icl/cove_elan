@@ -1,4 +1,4 @@
-<%= form_for(@template) do |f| %>
+<%= simple_form_for(@template) do |f| %>
   <% if @template.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@template.errors.count, "error") %> prohibited this template from being saved:</h2>
@@ -11,25 +11,11 @@
     </div>
   <% end %>
 
-  <br /><br />
+    <%= f.input :name, :value => @template.name_or_id %>
 
-  <div class="field">
-    <%= f.label @template.name_or_id %>
-    <br />
-    <%= f.text_field :name, :value => @template.name_or_id %>
-  </div>
+    <%= f.input :meta_data_group, :collection => MetaDataGroup.all, :as => :select%>
 
-  <div class="field">
-    <%= f.label "Meta Data Group" %>
-    <%= collection_select(:meta_data_group, :meta_data_group_id, MetaDataGroup.all, :id, :name,
-      @selected_meta_data_group.blank? ? {:prompt => "Please Select..."} : {:selected => @selected_meta_data_group.id}) %>
-  </div>
-
-  <div class="field">
     <%= render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, :object => @template } %>
-  </div>
 
-  <div class="actions">
     <%= f.button :submit %>
-  </div>
 <% end %>
