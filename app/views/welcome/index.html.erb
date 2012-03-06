@@ -1,13 +1,14 @@
-<h1>Welcome to the Cove Elan System</h1>
+<div class="row">
+  <div class="span2">
+    <h1>Upload</h1>
+  </div>
+  <div class="span8">
+    <%= render 'form' %>
+  </div>
+</div>
 
-<p><%= link_to :work_documents, work_documents_path %></p>
-
-<h3>Upload a Document:</h3>
-<%= render 'form' %>
-
-<h4>Existing Structure</h4>
-
-<p>Templates</p>
+<div class="row">
+  <div class="span12">
 <% @templates.each do |template| %>
   <div class="page-header">
 		<h2>
@@ -16,7 +17,7 @@
   </div>
 
   <div class="row">
-		<div class="span4">
+		<div class="span2">
       <h4>Tiers</h4>
       <ul>
         <% template.work_documents.first.document.tiers.each do |tier| %>
@@ -34,20 +35,15 @@
       </ul>
     </div>
 
-    <div class="span4">
-      <h4>Working Documents</h4>
-      <% template.work_documents.each do |work_document| %>
+    <div class="span5">
+      <h4>Uploads</h4>
+      <% template.work_documents.order("created_at DESC").limit(3).each do |work_document| %>
         <ul>
           <li class="document-list-item">
-          <%=link_to File.basename(work_document.document.eaf.to_s) , download_document_path(work_document.document), 
+          <%=link_to "#{work_document.user.full_name} #{work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')}" , download_document_path(work_document.document), 
             :id => File.basename(work_document.document.eaf.to_s), :class => 'download-work_document' %> 
 
           <%=link_to "", work_document, :class=> 'icon-eye-open view-work_document-link', :id => File.basename(work_document.document.eaf.to_s) %>
-
-          
-          <div>
-            (Uploaded by: <%=work_document.user.first_name%> <%=work_document.user.last_name%> on <%=work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')%>)
-          </div>  
           </li>
         </ul>
       <% end %>
