@@ -6,8 +6,7 @@ describe "navbar" do
     describe "Work Document Link" do
       it "redirects me to the sign in page" do
         visit '/'
-        click_navbar_link "Work Documents"
-        current_path.should == new_user_session_path
+        find('.nav').should_not have_button("Work Documents")
       end
     end
   end

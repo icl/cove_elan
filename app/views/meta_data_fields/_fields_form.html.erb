@@ -1,8 +1,7 @@
-<% if object.meta_data_group %>
-  <% object.meta_data_group.meta_data_fields.each do |mdf| %>
-    <%= f.simple_fields_for :meta_data_fields do |m| %>
-      <%= m.input mdf.name, :as => mdf.meta_data_field_type.field_type, 
-        :input_html => { :value => (MetaDataHelper.get_field_values mdf, object) } %>
+<% if fields %>
+  <% fields.each do |n, m| %>
+    <%= f.simple_fields_for(m) do |z| %>
+      <%= z.input n, :as => m[1].meta_data_field_type.field_type, :label => n, :input_html => { :value => m[0] } %>
     <% end %>
   <% end %>
 <% end %>

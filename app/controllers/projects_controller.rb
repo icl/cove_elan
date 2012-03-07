@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @selected_meta_data_group = @project.meta_data_group
     @selected_templates = @project.templates
+    @meta_data_fields = MetaDataHelper.get_field_objects @project
   end
 
   # GET /projects/new
@@ -29,6 +30,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(params[:project])
+    @selected_meta_data_group = @project.meta_data_group
 
     respond_to do |format|
       if @project.save!
@@ -50,17 +52,17 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   def update
     @project = Project.find(params[:id])
-
     @selected_meta_data_group = @project.meta_data_group
     @selected_templates = @project.templates
+    @meta_data_fields = MetaDataHelper.get_field_objects @project
 
     @project.update_attributes(:name => params[:project][:name])
 
-    MetaDataHelper.map_field_values params[:project][:meta_data_fields], @project
+    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @project, params[:project][:meta_data_field]
 
     @project.template_ids = params[:templates][:templates]
 
-    @project.meta_data_group = MetaDataGroup.find(params[:meta_data_group][:meta_data_group_id]) unless params[:meta_data_group][:meta_data_group_id].empty?
+    @project.meta_data_group = MetaDataGroup.find(params[:project][:meta_data_group]) 
 
 
     respond_to do |format|

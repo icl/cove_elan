@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= simple_form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -27,13 +27,12 @@
   </div>
 
   <div class="field">
-    <%= f.label "Meta Data Group" %>
-    <%= collection_select(:meta_data_group, :meta_data_group_id, MetaDataGroup.all, :id, :name,
-      @selected_meta_data_group.blank? ? {:prompt => "Please Select..."} : {:selected => @selected_meta_data_group.id}) %>
+    <%= f.input :meta_data_group, :collection => MetaDataGroup.all, :as => :select,
+      :selected => @project.meta_data_group ? @selected_meta_data_group.id : nil, :prompt => @project.meta_data_group ? nil : "Please select..." %>
   </div>
 
   <div class="field">
-    <%= render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, :object => @project } %>
+    <%= render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, :object => @project, :fields => @meta_data_fields } %>
   </div>
 
   <div class="actions">

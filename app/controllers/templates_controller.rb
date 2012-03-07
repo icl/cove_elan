@@ -14,6 +14,7 @@ class TemplatesController < ApplicationController
   def edit
     @template = Template.find(params[:id])
     @selected_meta_data_group = @template.meta_data_group
+    @meta_data_fields = MetaDataHelper.get_field_objects @template
   end
 
   def show
@@ -28,8 +29,10 @@ class TemplatesController < ApplicationController
   def update
     @template = Template.find(params[:id])
     @selected_meta_data_group = @template.meta_data_group
+    @meta_data_fields = MetaDataHelper.get_field_objects @template
 
-    MetaDataHelper.map_field_values params[:template][:meta_data_fields], @template
+    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @template, params[:template][:meta_data_field]
+
     @template.meta_data_group = MetaDataGroup.find(params[:template][:meta_data_group]) 
     @template.name = params[:template][:name]
 
