@@ -3,19 +3,23 @@
       <div class="container">
 
         <%= link_to "Cove", root_path, :class => 'brand'  %>
-      <ul class="nav">
-        <li>
-          <%= link_to "Work Documents", work_documents_path %>
-        </li>
-        <li>
-          <%= link_to "Templates", templates_path %>
-        </li>
-        <li>
-          <%= link_to "Projects", projects_path %>
-        </li>
-        <li>
-          <%= link_to "Metadata", meta_data_groups_path %>
-        </li>
+        <ul class="nav">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to "Work Documents", work_documents_path %>
+            </li>
+            <li>
+              <%= link_to "Templates", templates_path %>
+            </li>
+            <li>
+              <%= link_to "Projects", projects_path %>
+            </li>
+            <li>
+              <%= link_to "Metadata", meta_data_groups_path %>
+            </li>
+          <% else %>
+            <li><%= link_to "Sign up", new_registration_path(:user) %></li>
+          <% end %>
       </ul>
 
       <ul id="user-menu" class="nav pull-right">
