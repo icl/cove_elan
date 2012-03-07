@@ -28,7 +28,7 @@
               <%= gravatar_for current_user.email, :size => 20 %>
               </li>
               <li>
-              <%= link_to current_user.email, edit_user_password_path(current_user) %>
+              <%= link_to current_user.email, edit_user_password_path(current_user), :class=> 'view_user' %>
               </li>
           <li>
             <%= link_to('Sign out', destroy_user_session_path, :method => :delete) %>
