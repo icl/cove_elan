@@ -74,6 +74,14 @@ class Document < ActiveRecord::Base
 				return annotations
 			end
 
+			def related_template
+				if self.documentable_type == "WorkDocument" then
+					return WorkDocument.find(self.documentable_id).template
+				else
+					return Template.find_by_document_id(self.id)
+				end
+			end
+
       private
       def annotation_document_is_valid
         unless @annotation_document.nil?
