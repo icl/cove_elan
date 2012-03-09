@@ -33,7 +33,7 @@ class TemplatesController < ApplicationController
 
     MetaDataHelper.validate_and_save_field_values @meta_data_fields, @template, params[:template][:meta_data_field]
 
-    @template.meta_data_group = MetaDataGroup.find(params[:template][:meta_data_group]) 
+    @template.meta_data_group = MetaDataGroup.find(params[:template][:meta_data_group]) unless params[:template][:meta_data_group].empty?
     @template.name = params[:template][:name]
 
     respond_to do |format|

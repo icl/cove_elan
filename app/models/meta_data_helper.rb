@@ -41,12 +41,14 @@ class MetaDataHelper
   def self.get_field_objects map_object
     field_objects = {}
 
-    map_object.meta_data_group.meta_data_fields.each do |f|
-      meta_data_value = map_object.meta_data_values.find_by_meta_data_field_id(f.id)
-      meta_data_field_type = f.meta_data_field_type.field_type
+		if map_object.meta_data_group then
+			map_object.meta_data_group.meta_data_fields.each do |f|
+				meta_data_value = map_object.meta_data_values.find_by_meta_data_field_id(f.id)
+				meta_data_field_type = f.meta_data_field_type.field_type
 
-      field_objects[f.name] = [meta_data_value.nil? ? "" : eval('meta_data_value.'+meta_data_field_type+'_value'), f]
-    end
+				field_objects[f.name] = [meta_data_value.nil? ? "" : eval('meta_data_value.'+meta_data_field_type+'_value'), f]
+			end
+		end
 
     return field_objects
   end
