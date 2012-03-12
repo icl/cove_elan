@@ -1,0 +1,38 @@
+<h1>Template Duplication Viewer</h1>
+
+<style stype="text/css">
+  .chart rect {
+    stroke: #FFF;
+  }
+
+  .viewer_wrapper {
+    height: 60px;
+    margin: 0 0 5px 0;
+    padding: 5px 5px 0 5px;
+  }
+
+</style>
+
+<% viewer_index = 0 %>
+
+<% @duplicates.each do |tier, annotation| %>
+  <% unless annotation.empty? %>
+  <div class="span16">
+  <h3>Tier <%=tier%> </h3>
+  <% annotation.each do |k,v| %>
+    <h4>Overlapping annotations for "<%=k%>" </h4>
+    <br />
+    <% v.each_with_index do |overlap, index| %>
+      <%= overlap.inspect %>
+      <% viewer_index += 1 %>
+      <div class="span16">
+      <div class="viewer_wrapper" id="viewer_<%=viewer_index%>"></div>
+      </div>
+      <script>
+        $().AnnotationOverlap( <%= overlap %>, <%=viewer_index%> );
+      </script>
+    <% end %>
+  <% end %>
+  </div>
+  <% end %>
+<% end %>
