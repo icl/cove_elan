@@ -15,4 +15,6 @@
 //= require twitter/bootstrap
 //= require underscore
 //= require d3.v2
+//= require ember
+//= require brio/app
 //= require_tree .

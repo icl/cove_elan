@@ -6,31 +6,12 @@
 
 <div class="row">
 
-  <div class="span4">
-    <table class="table">
-      <% @work_document.document.annotations.each do | annotation | %>
-        <tr>
-          <td>
-            <%= annotation[:annotation_value] %>
-          </td>
-          <td>
-            <%= annotation[:ts_ref1] / 1000 %>
-          </td>
-          <td>
-            <%= annotation[:ts_ref2] / 1000%>
-        </td>
-        </tr>
-      <% end %> 
-    </div>
-  </table>
-  </div>
-  <div class="span6">
+  <div class="span12">
   <div id="viewer"></div>
   </div>
 </div>
-<%=  @work_document.document.annotations.to_json.html_safe %>
 <script>
-  $().DocViz( <%= @work_document.document.annotations.to_json.html_safe %>,
+  $().conBrio( <%= @work_document.document.annotations.to_json.html_safe %>,
               <%= @work_document.document.tiers.to_json.html_safe %>)
 
 </script>
