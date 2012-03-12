@@ -1,5 +1,5 @@
 #= require jquery
-#= require d3
+#= require d3.v2
 #= require underscore
 #= require document_viewer
 
@@ -20,7 +20,7 @@ describe "Document Viewer", ->
     annotations = [{"ts_ref1": 0, "ts_ref2": 1 }]
     tiers = [{"id":5}]
     $().DocViz(annotations, tiers)
-    expect($($('#viewer g')[0]).attr('transform')).toEqual("translate(0,40)")
+    expect($($('#viewer g')[0]).attr('transform')).toEqual("translate(40,10)")
     $('#viewer').remove()
 
   it "it offsets the later tiers by 20 each", ->
@@ -28,7 +28,7 @@ describe "Document Viewer", ->
     annotations = [{"ts_ref1": 0, "ts_ref2": 1 }]
     tiers = [{"id":5}, {"id":7},{"id":256}]
     $().DocViz(annotations, tiers)
-    expect($($('#viewer g')[2]).attr('transform')).toEqual("translate(0,80)")
+    expect($($('#viewer g')[2]).attr('transform')).toEqual("translate(0,60)")
     $('#viewer').remove()
 
     
