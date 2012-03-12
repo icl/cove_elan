@@ -5,6 +5,27 @@
 
 
 describe "Brio", ->
+
+  describe "Context/Detail Controller", ->
+    context_extent ={}
+    detail_extent ={}
+
+    beforeEach ->
+      context_extent = Brio.Extent.create({start: 50, end:100})
+      detail_extent = Brio.Extent.create({start: 50, end:100})
+      $('body').append('<div id="viewer"></div>')
+
+    afterEach ->
+      $('#viewer').remove()
+      
+
+    it "attaches to a context time region"
+    it "attaches to a detail time region"
+    it "attaches to a context view"
+    it "attaches tp a detail view"
+    it "has a detail scale"
+    it "has a context scale"
+
   describe "Extent", ->
     it "has a start time", ->
       expect(
@@ -45,10 +66,12 @@ describe "Brio", ->
       expect( Brio.Scale.create({
         domain: Brio.Extent.create({start: 4, end:10})
       }).getPath('domain.extent')).toEqual([4,10])
+
     it "has a range", ->
       expect( Brio.Scale.create({
         range: Brio.Extent.create({start: 0, end:1})
       }).getPath('range.extent')).toEqual([0,1])
+
     it "scales values based on its domain and range", -> 
       expect( Brio.Scale.create({
         domain: Brio.Extent.create({start: 50, end:100}),
@@ -61,6 +84,5 @@ describe "Brio", ->
         domain: Brio.Extent.create({start: 50, end:100}),
         range: Brio.Extent.create({start: 0, end:1})
       })
-
       s.setPath('domain.start', 0)
       expect(s.get('scale')(75)).toEqual(0.75)

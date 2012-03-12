@@ -8,5 +8,5 @@ Brio.Scale = Ember.Object.extend({
           .range(this.getPath('range.extent'));
   }.property('domain.extent', 'range.extent'),
 
-  
+ 
 });
