@@ -28,7 +28,7 @@
   <div id="viewer"></div>
   </div>
 </div>
-
+<%=  @work_document.document.annotations.to_json.html_safe %>
 <script>
   $().DocViz( <%= @work_document.document.annotations.to_json.html_safe %>,
               <%= @work_document.document.tiers.to_json.html_safe %>)

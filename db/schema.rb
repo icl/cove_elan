@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305073358) do
+ActiveRecord::Schema.define(:version => 20120311185922) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(:version => 20120305073358) do
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
-    t.string "svg_ref"
-    t.string "ext_ref"
-    t.text   "annotation_value"
+    t.string  "svg_ref"
+    t.string  "ext_ref"
+    t.integer "annotation_value_id"
   end
 
   create_table "elan_parser_alignable_annotations_time_slots", :force => true do |t|
@@ -81,6 +81,10 @@ ActiveRecord::Schema.define(:version => 20120305073358) do
   create_table "elan_parser_annotation_documents_tiers", :force => true do |t|
     t.integer "annotation_document_id"
     t.integer "tier_id"
+  end
+
+  create_table "elan_parser_annotation_values", :force => true do |t|
+    t.text "annotation_value"
   end
 
   create_table "elan_parser_annotations", :force => true do |t|
