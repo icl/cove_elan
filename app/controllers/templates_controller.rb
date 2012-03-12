@@ -54,4 +54,9 @@ class TemplatesController < ApplicationController
       format.html { redirect_to templates_url }
     end
   end
+
+  def duplication
+    @template = Template.find(params[:id])
+    @duplicates = @template.overlapping_annotations
+  end
 end

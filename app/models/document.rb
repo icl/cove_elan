@@ -58,27 +58,42 @@ class Document < ActiveRecord::Base
 			def annotations
 				annotations = Array.new
 
-				self.annotation_document.tiers.each do |tier|
-					tier.annotations.each do |annotation|
-						ts1 = annotation.alignable_annotation.alignable_annotation_time_slot.time_slot_ref1.time_value
-						ts2 = annotation.alignable_annotation.alignable_annotation_time_slot.time_slot_ref2.time_value
-						annotations.push(
-							:annotation_value => annotation.alignable_annotation.annotation_value,
-							:tier_id => tier.id,
-							:ts_ref1 => ts1,
-							:ts_ref2 => ts2
-						)
-					end
+				self.tiers.each do |tier|
+          temp_annotations = tier_annotations tier
+
+          temp_annotations.each do |annotation|
+            annotations.push annotation
+          end
 				end
 
 				return annotations
 			end
 
+      def tier_annotations tier
+        annotations = Array.new
+
+        document_tier = self.annotation_document.tiers.find_by_tier_id(tier[:tier_id])
+
+        document_tier.annotations.each do |annotation|
+          annotation_detail = Hash.new
+          ts1 = annotation.alignable_annotation.alignable_annotation_time_slot.time_slot_ref1.time_value
+          ts2 = annotation.alignable_annotation.alignable_annotation_time_slot.time_slot_ref2.time_value
+            annotation_detail[:annotation_value] = annotation.alignable_annotation.annotation_value.annotation_value
+            annotation_detail[:tier_id] = tier[:id]
+            annotation_detail[:ts_ref1] = ts1
+            annotation_detail[:ts_ref2] = ts2
+
+            annotations.push(annotation_detail)
+        end
+
+        return annotations
+      end
+
 			def related_template
-				if self.documentable_type == "WorkDocument" then
-					return WorkDocument.find(self.documentable_id).template
-				else
+				if self.documentable_type.nil? then
 					return Template.find_by_document_id(self.id)
+				else
+          return eval(self.documentable_type + '.find('+self.documentable_id.to_s+').template')
 				end
 			end
 

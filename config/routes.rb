@@ -13,6 +13,8 @@ CoveElan::Application.routes.draw do
 
   match 'documents/:id/download' => 'documents#download', :as => :download_document
 
+  match 'templates/:id/duplication' => 'templates#duplication'
+
   authenticated do
       root :to => 'welcome#index'
   end
