@@ -12,7 +12,7 @@ Brio.DetailView = Ember.Object.extend({
     self.set('detail_scale_view', self.get('view').append('g').attr('class', 'detail axis'));
   
     self.get('view').append('rect').attr('x', 0)
-    .attr('y', 20).attr('width', 1180).attr('height', 300)
+    .attr('y', 20).attr('width', 1180).attr('height', 300).attr('fill', 'white');
 
     self.update();
 
@@ -35,13 +35,12 @@ Brio.DetailView = Ember.Object.extend({
     
 
     var tiers = self.get('view').selectAll('g.tier')
-            .data(self.getPath('controller.tiers'));
+            .data(self.getPath('controller.tiers'), function(d) {return d.id});
             
         tiers.enter().append('g').attr('class', 'tier')
-            .attr("transform", function(d,i){ return "translate(0," + (30 + (30 * i)) + ")"}).append('text').attr('x', 20)
-           .attr('y',12).attr('stroke', 'white')
-          .text(function(d){ return d.tier_id})
-            ;
+            .attr("transform", function(d,i){ return "translate(0," + (30 + (30 * i)) + ")"})            .append('text').attr('x', 20)
+            .attr('y',12)
+            .text(function(d){ return d.tier_id});
 
     var annos = tiers.selectAll('rect.annotation')
                 .data(function(d) {return d.annotations = _.filter(self.getPath('controller.annotations'), function(anno) 
@@ -61,7 +60,8 @@ Brio.DetailView = Ember.Object.extend({
     .attr('y', 5)
     .attr('height', 10)
     .attr('width', function(d){ return self.getPath('controller.detail_x_scale')(d.ts_ref2 - d.ts_ref1)})
-    .attr('stroke', 'blue'); 
+    .attr('fill', '#28313E')
+    .attr('stroke', '#50678D'); 
 
     //annos.append();
   }

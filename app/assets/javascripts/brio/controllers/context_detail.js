@@ -7,7 +7,6 @@ Brio.ContextDetailController = Ember.Object.extend({
 
  receive_zoom: function() {
     this.adjust_extents();
-    console.warn(d3.event.scale);
  },
  adjust_extents: function() {
     this.get('detail_view').update();
