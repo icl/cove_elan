@@ -40,8 +40,8 @@
       fill_array.push( [ x1_max, x2_min, top_color ] );
     }
 
-    o_intersect = fill_array[1][0] - fill_array[0][1];
-    if (o_intersect == 940)
+    o_intersect = fill_array[0][0] - fill_array[1][0];
+    if (o_intersect == 940 || o_intersect == 0)
       o_intersect = fill_array[0][1] + fill_array[1][1];
 
     chart.selectAll("rect")

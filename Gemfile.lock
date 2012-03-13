@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/icl/avcrb.git
+  revision: fa877dfdba44816a57f1e168d097f85ed0aed0e7
+  specs:
+    avcrb (0.0.1)
+
+GIT
   remote: git://github.com/icl/elan_parser.git
   revision: 940c3b3b38232bd80f0ea13b1d8d53c3ac63c880
   specs:
@@ -15,12 +21,6 @@ GIT
     simple_form (2.0.0.rc)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
-
-GIT
-  remote: git@github.com:icl/avcrb.git
-  revision: fa877dfdba44816a57f1e168d097f85ed0aed0e7
-  specs:
-    avcrb (0.0.1)
 
 GEM
   remote: https://rubygems.org/
