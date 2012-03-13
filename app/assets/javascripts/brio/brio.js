@@ -32,41 +32,13 @@ main_view = d3.select("#viewer").append('svg').attr('width', width).attr('height
 view_controller.set('main_view', main_view);
 view_controller.set('detail_view', 
                     Brio.DetailView.create({controller:view_controller, parentView: main_view}));
-view_controller.get('detail_view').get('update');
 
-var contextAxis = d3.svg.axis().scale(view_controller.get('context_x_scale'));
+view_controller.set('context_view',
+                    Brio.ContextView.create({controller:view_controller, parentView: main_view}));
+
 
 //ScaleView
 
-
-var context_scale_view = view_controller.get('main_view').append('g')
-                                   .attr('class', 'context axis')
-                                   .attr("transform", "translate(0," + 500 + ")")
-                                   .call(contextAxis);
-
-context_scale_view.append('rect')
-           .attr('class', 'detail-area')
-           .attr('x', function() { return view_controller.get('detail_extent_in_context')[0]})
-           .attr('y', 10)
-           .attr('height', 20)
-           .attr('stroke', 'black')
-           .attr('fill', 'none')
-           .attr('width', function() { 
-             return view_controller.get('detail_extent_in_context')[1] - 
-               view_controller.get('detail_extent_in_context')[0]});
-
-
-
-
-
-context_scale_view.selectAll('rect.annotation').data(annotations).enter()
-.append('rect')
-.attr('class', 'annotation')
-.attr('x', function(d) { return view_controller.get('detail_x_scale')(d.ts_ref1)})
-.attr('y', 5)
-.attr('height', 5)
-.attr('width', 5)
-.attr('stroke', 'blue');
 
 
 
