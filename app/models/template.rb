@@ -1,3 +1,5 @@
+require 'interval_tree'
+
 class Template < ActiveRecord::Base
   validates :user, :presence => true
 
@@ -43,16 +45,9 @@ class Template < ActiveRecord::Base
   end
 
   #Remove any annotations with duplicate start and end time slots
-  def remove_duplicate_annotations annotation_time_slots
-    #Find duplicates within the array, and mark them before creating permutations of them
-    annotation_time_slots.each do |ts, ts_array|
-      if ts_array.uniq.count == 1
-        annotation_time_slots.delete(ts)
-      end
-    end
-
-    return annotation_time_slots
-  end
+	def get_unique_permutations annotation_time_slot
+		return annotation_time_slot.uniq.permutation.to_a
+	end
 
   def overlapping_annotations
     tier_annotations = annotations_by_tier
@@ -62,43 +57,30 @@ class Template < ActiveRecord::Base
     tier_annotations.each do |tier, annotation|
       tier_overlap_slots[tier] = {}
 
-      #Find duplicates within the array, and mark them before creating permutations of them
-      remove_duplicate_annotations annotation
-
       annotation.each do |value, ts_array|
-        annotation_permutations = ts_array.permutation
-        overlap_slots = Array.new
+				overlap_slots = Array.new
+				intervals = Array.new
+				unique = ts_array.uniq
 
-        annotation_permutations.each_with_index do |p, index|
+				#Build ranges for each unique interval
+				unique.each do |u|
+					intervals.push( (u[0]...u[1]) )
+				end
 
-          p.each do |x|
-            num_1 = x[0]
-            num_2 = x[1]
-            #Compare with the next value, otherwise compare with the first value
-            if p[index+1] then
-              second_1 = p[index+1][0]
-              second_2 = p[index+1][1]
-            else
-              second_1 = p[0][0]
-              second_2 = p[0][1]
-            end
+				#Build our interval tree
+				i_tree = IntervalTree::Tree.new(intervals)
+				
+				unique.each do |u|
+					interval = (u[0]...u[1])
+					search_result = i_tree.search(interval)
+					if search_result[0] != interval and search_result.length > 0 then
+						overlap_slots.push([ u, [search_result[0].begin, search_result[1].end]])
+					end
+				end
+				tier_overlap_slots[tier][value] = overlap_slots
+    	end
+ 	 	end
 
-            #Test for overlap so long as each permutation is unique
-            overlap = ( (num_1 - second_2) * (second_1 - num_2) > 0) unless (num_1 == second_1 && num_2 == second_2)
-
-            if overlap then
-               overlap_slots.push([ [num_1, num_2], [second_1, second_2] ]) \
-                unless overlap_slots.include?([ [num_1, num_2], [second_1, second_2] ]) \
-                  or overlap_slots.include?([ [second_1, second_2], [num_1, num_2] ])
-            end
-          end
-
-          tier_overlap_slots[tier][value] = overlap_slots
-
-        end
-      end
-    end
-
-    return tier_overlap_slots
-  end
+		return tier_overlap_slots
+	end
 end
