@@ -16,7 +16,7 @@ Brio.ContextView = Ember.Object.extend({
      self.set('detail_in_context', self.get('view').append('rect')
            .attr('class', 'detail-area')
            .attr('x', function() { return self.getPath('controller.detail_extent_in_context')[0]})
-           .attr('y', 10)
+           .attr('y', 0)
            .attr('height', 20)
            .attr('stroke', 'black')
            .attr('fill', 'none')
@@ -28,17 +28,17 @@ Brio.ContextView = Ember.Object.extend({
 
 
 
-self.get('view').selectAll('rect.annotation').data(self.getPath('controller.annotations',
-                                                                function(d) {return d.id})).enter()
-.append('rect')
-.attr('class', 'annotation')
-.attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1)})
-.attr('y', 5)
-.attr('height', 5)
-.attr('width', 5)
-.attr('stroke', 'blue');
+      self.get('view').selectAll('rect.annotation').data(self.getPath('controller.annotations',
+                                                                      function(d) {return d.id})).enter()
+          .append('rect')
+          .attr('class', 'annotation')
+          .attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1)})
+          .attr('y', 5)
+          .attr('height', 5)
+          .attr('width', 5)
+          .attr('stroke', 'blue');
 
-  self.update();
+    self.update();
   },
 
   update: function() {
