@@ -16,6 +16,12 @@ GIT
       actionpack (~> 3.0)
       activemodel (~> 3.0)
 
+GIT
+  remote: git@github.com:icl/avcrb.git
+  revision: fa877dfdba44816a57f1e168d097f85ed0aed0e7
+  specs:
+    avcrb (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -50,7 +56,6 @@ GEM
       activesupport
       builder
     arel (3.0.0)
-    avcrb (0.0.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     capistrano (2.11.2)
@@ -226,7 +231,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
-  avcrb
+  avcrb!
   capistrano (~> 2.11)
   capybara
   carrierwave
