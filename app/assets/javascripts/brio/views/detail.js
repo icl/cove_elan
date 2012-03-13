@@ -50,16 +50,8 @@ Brio.DetailView = Ember.Object.extend({
 
     var annos = tiers.selectAll('rect.annotation')
                 .data(function(d) {return d.annotations = _.filter(self.getPath('controller.annotations'), function(anno) 
-                                  { return anno.tier_id == d.id})}, function(d){ return d.id});
-
-    annos.attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1)}) 
-    .attr('width', function(d){ return self.getPath('controller.detail_x_scale')(d.ts_ref2) - 
-                                       self.getPath('controller.detail_x_scale')(d.ts_ref1)});
-    self.get('view').selectAll('rect.annotation').attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1)}) 
-    .attr('width', function(d){ return self.getPath('controller.detail_x_scale')(d.ts_ref2) - 
-                                       self.getPath('controller.detail_x_scale')(d.ts_ref1)});
-
-    annos.enter()
+                                  { return anno.tier_id == d.id})}, function(d){ return d.id})
+                                  .enter()
     .append('rect')
     .attr('class', 'annotation')
     .attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1)})
@@ -70,6 +62,31 @@ Brio.DetailView = Ember.Object.extend({
     .attr('stroke', '#50678D')
     .attr('rx', 3)
     .attr('ry', 4).attr('fill-opacity', '0.5'); 
+;
+
+    var labels = tiers.selectAll('text.anno_label').data(function(d) {return d.annotations = _.filter(self.getPath('controller.annotations'), function(anno) 
+                                  { return anno.tier_id == d.id})}, function(d){ return d.id})
+                                  .enter()
+                                  .append('text')
+                                  .attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1) + 3})
+                                  .attr('y', 17)
+                                  .attr('class', 'anno_label')
+                                  .text(function(d){ return d.annotation_value });
+
+
+
+    annos.attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1)}) 
+    .attr('width', function(d){ return self.getPath('controller.detail_x_scale')(d.ts_ref2) - 
+                                       self.getPath('controller.detail_x_scale')(d.ts_ref1)});
+
+
+    
+    self.get('view').selectAll('rect.annotation').attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1)}) 
+    .attr('width', function(d){ return self.getPath('controller.detail_x_scale')(d.ts_ref2) - 
+                                       self.getPath('controller.detail_x_scale')(d.ts_ref1)});
+
+    self.get('view').selectAll('text.anno_label')
+    .attr('x', function(d) { return self.getPath('controller.detail_x_scale')(d.ts_ref1) + 3});
 
     //annos.append();
   }
