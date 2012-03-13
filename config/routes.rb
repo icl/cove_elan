@@ -1,5 +1,6 @@
 CoveElan::Application.routes.draw do
 
+  match '/thumb/:filename.:extension/:offset' => 'thumbs#show'
   resources :meta_data_fields
   resources :meta_data_groups
 

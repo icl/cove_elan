@@ -9,6 +9,5 @@ Feature: View Annotations
 
   Scenario: Viewing a document
     When I look at a work document
-    Then I should see a table of annotations
-    And an image of the tiers
+    Then an image of the tiers
 

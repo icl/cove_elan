@@ -10,5 +10,5 @@ When /^I select a metadata group$/ do
 end
 
 Then /^I should see fields for that group$/ do
-  page.should have_content "Field 1"
+  page.should have_content "field_1"
 end
