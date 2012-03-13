@@ -82,6 +82,7 @@ class Document < ActiveRecord::Base
             annotation_detail[:tier_id] = tier[:id]
             annotation_detail[:ts_ref1] = ts1
             annotation_detail[:ts_ref2] = ts2
+            annotation_detail[:id] = annotation.id
 
             annotations.push(annotation_detail)
         end
