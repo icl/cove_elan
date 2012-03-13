@@ -21,7 +21,8 @@ var view_controller = Brio.ContextDetailController.create({
                                                   {return item.ts_ref2}).ts_ref2]))
                                   .range([0,width]),
  detail_axis: function(){ return d3.svg.axis().scale(this.get('detail_x_scale'))},
- annotations: annotations
+ annotations: annotations,
+ tiers: tiers
 });
 window.view_controller = view_controller;
 
