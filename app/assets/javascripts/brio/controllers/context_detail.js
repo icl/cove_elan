@@ -6,7 +6,17 @@ Brio.ContextDetailController = Ember.Object.extend({
  }.property(),
 
  receive_zoom: function() {
+    this.getPath('context_view.brush').extent(this.get('detail_x_scale').domain());
     this.adjust_extents();
+ },
+ receive_brush: function(){
+   
+   this.get('detail_x_scale').domain(
+    this.getPath('context_view.brush').empty() ? this.getPath('context_x_scale').domain() : this.getPath('context_view.brush').extent()
+ );
+    
+   
+   this.adjust_extents();
  },
  adjust_extents: function() {
     this.get('detail_view').update();
