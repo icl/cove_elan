@@ -4,8 +4,8 @@ Brio.ContextView = Ember.Object.extend({
     var self = this;
 
      self.set('view', self.get('parentView').append('g')
-                                            .attr('class', 'context axis')
-                                            .attr("transform", "translate(0," + 500 + ")"));
+                                            .attr('class', 'context axis'));
+                                            //.attr("transform", "translate(0," + 500 + ")"));
 
      self.set('axis', d3.svg.axis().scale(view_controller.get('context_x_scale')));
 
@@ -19,7 +19,8 @@ Brio.ContextView = Ember.Object.extend({
            .attr('y', 0)
            .attr('height', 20)
            .attr('stroke', 'black')
-           .attr('fill', 'none')
+           .attr('fill', 'blue')
+           .attr('fill-opacity', 0.2)
            .attr('width', function() { 
              return self.getPath('controller.detail_extent_in_context')[1] - 
                self.getPath('controller.detail_extent_in_context')[0]}));

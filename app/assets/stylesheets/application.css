@@ -12,6 +12,11 @@
  *= require_self
  *= require_tree .
 */
+.detail .domain {
+ fill: blue;
+ fill-opacity: 0.2;
+ height: 20px;
+}
 
 #user-menu .navbar-form input.nav-dark {
 padding: 4px 9px;
