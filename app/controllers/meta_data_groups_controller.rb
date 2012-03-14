@@ -1,4 +1,6 @@
 class MetaDataGroupsController < ApplicationController
+
+  before_filter :authenticate_user!
   # GET /meta_data_groups
   # GET /meta_data_groups.json
   def index

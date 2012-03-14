@@ -1,4 +1,6 @@
 class MetaDataFieldsController < ApplicationController
+
+  before_filter :authenticate_user!
   # GET /meta_data_fields
   # GET /meta_data_fields.json
   def index
