@@ -3,7 +3,7 @@ Brio.DetailView = Ember.Object.extend({
     this._super();
     var self = this;
     self.set('view', this.get('parentView').append('g')
-        .attr('class', 'detail-view').attr("transform", "translate(0," + 30 + ")"));
+        .attr('class', 'detail-view').attr("transform", "translate(0," + 20 + ")"));
     self.set('zoom',  d3.behavior.zoom().x(self.getPath('controller.detail_x_scale')).scaleExtent([1,200])
                                  .on('zoom',function() {self.get('controller').receive_zoom()}));
     
