@@ -31,6 +31,10 @@ describe "User Menu" do
         page.should have_css "#new_user"
       end
     end
-    it "should show a sign up link"
+    it "should show a sign up link" do
+      visit '/'
+        page.should have_content "Sign up"
+      
+    end
   end
 end
