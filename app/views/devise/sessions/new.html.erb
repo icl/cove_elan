@@ -1,15 +1,18 @@
-<h2>Sign in</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <%= f.input :email %>
+<div class="row">
+  <div class="offset3">
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal'}) do |f| %>
+    <%= f.input :email %>
 
-  <%= f.input :password %>
+    <%= f.input :password %>
 
-  <% if devise_mapping.rememberable? -%>
-    <%= f.input :remember_me, :as => :boolean, :label => false%>
-    <%=f.label :remember_me, :class => 'checkbox' %>
-  <% end -%>
+    <% if devise_mapping.rememberable? -%>
+    
+      <%= f.input :remember_me, :as => :boolean, :html =>{ :class => 'span2'}%>
+    <% end -%>
 
-  <div><%= f.button :submit, "Sign in" %></div>
-<% end %>
+    <div class="controls"><%= f.button :submit, "Sign in" %></div>
+  <% end %>
 
-<%= render "links" %>
+  <%= render "links" %>
+</div>
+</div>
