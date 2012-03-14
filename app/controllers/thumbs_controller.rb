@@ -1,4 +1,7 @@
 class ThumbsController < ApplicationController
+ 
+  before_filter :authenticate_user!
+
   def show
     if !(File.exists? "private/frames/#{params[:filename]}_#{params[:offset]}.jpg")
     @frame = Avcrb::FrameRipper.new("private/videos/#{params[:filename]}.#{params[:extension]}",
