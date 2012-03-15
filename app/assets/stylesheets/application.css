@@ -12,10 +12,19 @@
  *= require_self
  *= require_tree .
 */
+
+.container {
+ padding-left:20px;
+ padding-right:20px;
+}
 .detail .domain {
  fill: blue;
  fill-opacity: 0.2;
  height: 20px;
+}
+
+#user-menu {
+margin-right: -10px;
 }
 
 #user-menu .navbar-form input.nav-dark {
@@ -72,9 +81,6 @@ border-radius: 3px;
 	width: 33%
 }
 
-  #viewer {
-    position: fixed;
-  }
 
 
 svg {
@@ -97,4 +103,7 @@ path {
   shape-rendering: crispEdges;
 }
 
-
+ div.container.card {
+  background: white;
+  box-shadow: 3px 3px 26px rgba(50, 50, 50, 0.75);
+ }
