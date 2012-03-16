@@ -1,0 +1,21 @@
+     <div id= "alerts" class="container">
+    <div class="row">
+      <div class="span12">
+        <% flash.each do | name, message| %>
+          <% if name == :alert %>
+          <div class="alert alert-error" data-dismiss="alert">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <%= message %>
+          </div>
+        <% elsif name == :notice %>
+          <div class="alert alert-success" data-dismiss="alert">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <%= message %>
+          </div>
+
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+

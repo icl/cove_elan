@@ -8,12 +8,15 @@
 </head>
 <body>
   <div class="wrapper">
+
     <%= render 'layouts/navbar' %>
+    <%= render 'layouts/alerts' %>
 
     <div class="container card">
       <%= yield %>
     </div>
-  <div class="push"><!--//--></div> 
+  
+    <div class="push"><!--//--></div> 
   </div>
   <footer class="container-fluid">
     <p>Boom</p>
