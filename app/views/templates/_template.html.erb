@@ -1,0 +1,50 @@
+  <div class="page-header">
+		<h2>
+      <%=link_to template.name_or_id, download_document_path(template.document) %>
+    </h2>
+  </div>
+
+
+  <% unless template.work_documents.empty? %>
+    <div class="row">
+      <div class="span2">
+        <h4>Tiers</h4>
+        <dl class="dl-horizontal">
+        <% template.work_documents.first.document.tiers.each do |tier| %>
+            <dt><%= tier[:tier_id] %></dt>
+          <% end %>
+        </dl>
+      </div>
+
+      <div class="span4">
+        <h4>Media</h4>
+        <ul>
+          <% template.work_documents.first.document.media_descriptors.each do |media_descriptor| %>
+            <li><%= media_descriptor[:media_url] %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="span5">
+        <h4>Recent Uploads</h4>
+        <% template.work_documents.order("created_at DESC").limit(3).each do |work_document| %>
+          <ul>
+            <li class="document-list-item">
+            <%=link_to "#{work_document.user.full_name} #{work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')}" , download_document_path(work_document.document), 
+              :id => File.basename(work_document.document.eaf.to_s), :class => 'download-work_document' %> 
+
+            <%=link_to "", work_document, :class=> 'icon-eye-open view-work_document-link', :id => File.basename(work_document.document.eaf.to_s) %>
+            </li>
+          </ul>
+        <% end %>
+        </div>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="span6">
+          <h4>This template contains no work documents.</h4>
+        </div>
+      </div>
+    <% end %>
+	</fieldset>
+
