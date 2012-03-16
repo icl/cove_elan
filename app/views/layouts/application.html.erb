@@ -7,29 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render 'layouts/navbar' %>
-  <div id= "alerts" class="container">
-    <div class="row">
-      <div class="span12">
-        <% flash.each do | name, message| %>
-          <% if name == :alert %>
-          <div class="alert alert-error" data-dismiss="alert">
-            <a class="close" data-dismiss="alert" href="#">×</a>
-            <%= message %>
-          </div>
-        <% elsif name == :notice %>
-          <div class="alert alert-success" data-dismiss="alert">
-            <a class="close" data-dismiss="alert" href="#">×</a>
-            <%= message %>
-          </div>
+  <div class="wrapper">
+    <%= render 'layouts/navbar' %>
 
-        <% end %>
-        <% end %>
-      </div>
+    <div class="container card">
+      <%= yield %>
     </div>
+  <div class="push"><!--//--></div> 
   </div>
-  <div class="container card">
-    <%= yield %>
-  </div>
+  <footer class="container-fluid">
+    <p>Boom</p>
+  </footer>
 </body>
 </html>

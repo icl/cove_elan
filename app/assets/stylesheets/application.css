@@ -12,6 +12,29 @@
  *= require_self
  *= require_tree .
 */
+/* borrowed from https://gist.github.com/1953801#file_gistfile1.html */
+		  html, body { height: 100%; }
+
+			footer {
+				padding: 0 10px 0 10px;
+				border-top: 1px solid #eee;
+				color: white;
+				background-color: black;
+			}
+
+			footer > p {
+				margin-bottom: 11px;
+				margin-top: 13px;
+			}
+
+		.wrapper {
+				min-height: 100%;
+				height: auto !important;
+				height: 100%;
+				margin: 0 auto -43px;
+			}
+			.push { height: 100px; } /* Just some arbitrary space to add between footer and rest of the content, when they are close */
+      
 
 .container {
  padding-left:20px;
@@ -69,9 +92,7 @@ border-radius: 3px;
 }
 
 
-.wrapper {
-	width: 960px;
-}
+
 
 .float {
 	float: left;
