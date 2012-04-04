@@ -11,6 +11,9 @@ gem 'carrierwave'
 gem 'avcrb', :git => 'git://github.com/icl/avcrb.git'
 gem 'ember-rails'
 
+
+gem 'resque'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
