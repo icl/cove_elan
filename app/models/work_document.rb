@@ -53,7 +53,7 @@ class WorkDocument < ActiveRecord::Base
 
 	#Look thru the document media descriptors and tiers to identify if this template becomes a template or not
 	def template_identify
-		return if !self.document.valid? or !self.template_id.nil?
+		return if !self.document or !self.document.valid? or !self.template_id.nil?
 
 		self_tiers = Array.new
 		self_media = Array.new

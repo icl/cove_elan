@@ -1,9 +1,8 @@
-Resque.inline = true
-
 require 'ar_after_transaction'
 require 'resque'
-
 require 'template_identifier'
+
+Resque.inline = true
 
 Resque.class_eval do
   class << self

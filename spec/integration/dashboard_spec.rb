@@ -11,12 +11,11 @@ describe "Dashboard" do
         visit('/work_documents/new')
         attach_file('work_document[documents][eaf]', File.join(Rails.root, 'spec', 'fixtures', '02_09.eaf'))
         click_on('Create Work document')
-        print page.html
+        @work_document = WorkDocument.last
         visit '/'
        end
 
       it "has a link to download it" do
-
         within ".document-list-item" do
           page.should have_link File.basename(@work_document.document.eaf.to_s), 
 						:href => download_document_path(@work_document.document)
