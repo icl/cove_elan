@@ -55,6 +55,8 @@ GEM
     airbrake (3.0.9)
       activesupport
       builder
+    ar_after_transaction (0.2.4)
+      activerecord
     arel (3.0.0)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -223,6 +225,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    state_machine (1.1.2)
     term-ansicolor (1.0.7)
     therubyracer (0.9.10)
       libv8 (~> 3.3.10)
@@ -247,6 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
+  ar_after_transaction
   avcrb!
   capistrano (~> 2.11)
   capybara
@@ -269,4 +273,5 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form!
+  state_machine
   uglifier (>= 1.0.3)
