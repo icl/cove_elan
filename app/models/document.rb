@@ -3,7 +3,7 @@ require 'carrierwave/orm/activerecord'
 class Document < ActiveRecord::Base
       validates :eaf, :presence => true
       validate :annotation_document_is_valid, :on => :create
-      validate :eaf_conforms_to_xsd
+      validate :eaf_schema_errors
 
 			belongs_to :documentable, :polymorphic => true
       belongs_to :annotation_document, :class_name => "ElanParser::DB::AnnotationDocument", :dependent => :destroy
@@ -109,9 +109,11 @@ class Document < ActiveRecord::Base
       end
 
 
-      def eaf_conforms_to_xsd
-        nokogiri_doc =  nokogiri_doc = Nokogiri::XML(File.read(eaf.path))
-        elan_validator = ElanParser::Helper::Validator.new
-        @validation_errors = elan_validator.validate_elan_xml(nokogiri_doc)
+      def eaf_schema_errors
+        if eaf.path
+          nokogiri_doc =  nokogiri_doc = Nokogiri::XML(File.read(eaf.path))
+          elan_validator = ElanParser::Helper::Validator.new
+          @validation_errors = elan_validator.validate_elan_xml(nokogiri_doc)
+        end
       end
 end

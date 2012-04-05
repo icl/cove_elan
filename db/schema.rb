@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120311185922) do
+ActiveRecord::Schema.define(:version => 20120405224010) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120311185922) do
     t.integer  "annotation_document_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.string   "state"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
@@ -313,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20120311185922) do
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
     t.integer  "template_id"
+    t.string   "state"
   end
 
 end
