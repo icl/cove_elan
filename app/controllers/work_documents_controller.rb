@@ -35,7 +35,7 @@ class WorkDocumentsController < ApplicationController
 		@work_document = WorkDocument.new(:document => @document, 
 			:user_id => current_user.id)
 
-   #@document.create_annotation_document if @document.eaf?
+    @document.create_annotation_document if @document.eaf?
 		@document.save if @document.valid?
 
 		@work_document.save
