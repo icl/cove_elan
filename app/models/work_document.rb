@@ -24,6 +24,10 @@ class WorkDocument < ActiveRecord::Base
 
   end
 
+  def document_processed?
+    document.valid?
+  end
+
   def async_template_identify
     Resque.enqueue(TemplateIdentifer, self.id)
   end
