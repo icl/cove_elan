@@ -13,8 +13,8 @@
 <% if @work_document.ready? %>
 
   <script>
-  $().conBrio( <%#= @work_document.document.annotations.to_json.html_safe %>,
-              <%#= @work_document.document.tiers.to_json.html_safe %>)
+  $().conBrio( <%= @work_document.document.annotations.to_json.html_safe %>,
+              <%= @work_document.document.tiers.to_json.html_safe %>)
 
   </script>
 
