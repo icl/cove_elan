@@ -18,12 +18,14 @@ describe :work_document do
 
       it "should transition from waiting to processing" do
         doc = WorkDocument.new
+        doc.stub(:async_template_identify)
         doc.process!
         doc.should be_processing
       end
 
       it "should not transition from waiting to ready" do
         doc = WorkDocument.new
+        doc.stub(:async_template_identify)
         doc.process!
         doc.should_not be_ready
       end
@@ -31,6 +33,7 @@ describe :work_document do
     context "processing" do
       before :each do 
         @doc = WorkDocument.new
+        @doc.stub(:async_template_identify)
         @doc.process!
       end
 
