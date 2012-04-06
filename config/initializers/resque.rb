@@ -1,5 +1,6 @@
 require 'ar_after_transaction'
 require 'resque'
+
 require 'template_identifier'
 
 Resque.inline = true

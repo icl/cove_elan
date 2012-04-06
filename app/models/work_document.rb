@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 class WorkDocument < ActiveRecord::Base
 	after_create :async_template_identify
 
