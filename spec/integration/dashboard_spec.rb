@@ -7,9 +7,11 @@ describe "Dashboard" do
     describe "Each Document" do
 
       before :each do
-        @work_document = Factory.create(:work_document)
-
         login_user
+        visit('/work_documents/new')
+        attach_file('work_document[documents][eaf]', File.join(Rails.root, 'spec', 'fixtures', '02_09.eaf'))
+        click_on('Create Work document')
+        @work_document = WorkDocument.last
         visit '/'
        end
 

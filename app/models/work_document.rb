@@ -1,7 +1,5 @@
 class WorkDocument < ActiveRecord::Base
-	#validates :project, :presence => true
-  #validate :matches_project_tiers, :on => :save
-	after_create { template_identify }
+	after_create :async_template_identify
 
 	has_one :document, :as => :documentable, :dependent => :destroy
 
@@ -10,6 +8,29 @@ class WorkDocument < ActiveRecord::Base
 	accepts_nested_attributes_for :document
 
 	belongs_to :template
+
+  state_machine :initial => :waiting do
+
+    event :process do
+      transition :waiting => :processing
+    end
+
+    event :finish do
+      transition :processing => :ready, :if => :document_processed?
+      transition all => :failed
+    end
+
+    state :processing
+
+  end
+
+  def document_processed?
+    document.valid?
+  end
+
+  def async_template_identify
+    Resque.enqueue(TemplateIdentifer, self.id)
+  end
 
 	#belongs_to :project
 	def clone_for_template
@@ -32,7 +53,7 @@ class WorkDocument < ActiveRecord::Base
 
 	#Look thru the document media descriptors and tiers to identify if this template becomes a template or not
 	def template_identify
-		return if !self.document.valid? or !self.template_id.nil?
+		return if !self.document or !self.document.valid? or !self.template_id.nil?
 
 		self_tiers = Array.new
 		self_media = Array.new

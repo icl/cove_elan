@@ -29,16 +29,11 @@ class WorkDocumentsController < ApplicationController
 
   # POST /work_documents
   def create
-    #@projects = Project.all
+
 		@document = Document.new(:eaf => params[:work_document][:documents][:eaf])
-		#@work_document = WorkDocument.new(:document => @document, 
-		#	:user_id => current_user.id, :project_id => params[:project][:project_id])
+
 		@work_document = WorkDocument.new(:document => @document, 
 			:user_id => current_user.id)
-
-    #unless (params[:project][:project_id].empty?) then
-    #  @selected_project = Project.find(params[:project][:project_id])
-    #end
 
     @document.create_annotation_document if @document.eaf?
 		@document.save if @document.valid?

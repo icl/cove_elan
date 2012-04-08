@@ -1,3 +1,5 @@
+require 'resque/server'
+
 CoveElan::Application.routes.draw do
 
   match '/thumb/:filename.:extension/:offset' => 'thumbs#show'
@@ -18,6 +20,7 @@ CoveElan::Application.routes.draw do
 
   authenticated do
       root :to => 'welcome#index'
+      mount Resque::Server.new, :at => "/resque"
   end
 
   root :to => 'landing#index'
