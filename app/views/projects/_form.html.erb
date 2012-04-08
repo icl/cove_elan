@@ -27,8 +27,7 @@
   </div>
 
   <div class="field">
-    <%= f.input :meta_data_group, :collection => MetaDataGroup.all, :as => :select,
-      :selected => @project.meta_data_group ? @selected_meta_data_group.id : nil, :prompt => @project.meta_data_group ? nil : "Please select..." %>
+    <%= f.association :meta_data_groups %>
   </div>
 
   <div class="field">

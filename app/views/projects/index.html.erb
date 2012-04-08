@@ -19,8 +19,10 @@
     </div>
 
     <div class="span4">
-      <h4>Metadata Group</h4>
-      <p><%= p.meta_data_group.name %></p>
+      <h4>Assigned Meta Data Groups</h4>
+      <% p.meta_data_group_assignments.each do |assignment| %>
+        <p><%= assignment.meta_data_group.name %></p>
+      <% end %>
     </div>
   </div>
 <% end %>

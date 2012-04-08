@@ -13,7 +13,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
-    @selected_meta_data_group = @project.meta_data_group
+    
+    @meta_data_groups = @project.meta_data_group_assignments
+
     @selected_templates = @project.templates
     @meta_data_fields = MetaDataHelper.get_field_objects @project
   end
@@ -30,7 +32,8 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(params[:project])
-    @selected_meta_data_group = @project.meta_data_group
+
+    @meta_data_groups = @project.meta_data_group_assignments
 
     respond_to do |format|
       if @project.save!

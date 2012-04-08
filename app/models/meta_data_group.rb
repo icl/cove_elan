@@ -2,20 +2,23 @@ class MetaDataGroup < ActiveRecord::Base
   has_many :meta_data_field_groups
   has_many :meta_data_fields, :through => :meta_data_field_groups
 
-	belongs_to :meta_data_groupable, :polymorphic => true
+	has_many :meta_data_group_assignments
+	has_many :templates, :through => :meta_data_group_assignments, :source => :meta_data_group_assignable, :source_type => 'Template'
+	has_many :projects, :through => :meta_data_group_assignments, :source => :meta_data_group_assignable, :source_type => 'Project'
 
-  #Return reflection objects outside of meta data fields and groups
+	#Return a distinct list of assigned polymorphic types
   def related_objects
-    invalid_reflections = ["meta_data_field_groups", "meta_data_fields"]
-
     related_objects = Array.new
 
-    MetaDataGroup.reflect_on_all_associations.each do |a|
-      unless invalid_reflections.include?(a.name.to_s)
-        related_object = eval('self.' + a.name.to_s)
-        related_objects.push(related_object) if related_object
-      end
-    end
+		self.meta_data_group_assignments.uniq.each do |assignment|
+			object_type = assignment.meta_data_group_assignable_type
+			object_id = assignment.meta_data_group_assignable_id
+
+			related_object = eval(object_type+'.find('+object_id.to_s+')')
+			related_objects.push(related_object)
+		end
+
+		puts related_objects.inspect
 
     return related_objects
   end

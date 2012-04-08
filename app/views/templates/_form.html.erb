@@ -13,8 +13,7 @@
 
     <%= f.input :name, :input_html => { :value => @template.name_or_id } %>
 
-    <%= f.input :meta_data_group, :collection => MetaDataGroup.all, :as => :select,
-      :selected => @template.meta_data_group ? @selected_meta_data_group.id : nil, :prompt => @template.meta_data_group ? nil : "Please select..." %>
+    <%= f.association :meta_data_groups %>
 
     <%= render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, :object => @template, :fields => @meta_data_fields } %>
 

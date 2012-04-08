@@ -13,7 +13,7 @@ class TemplatesController < ApplicationController
   # GET /templates/1/edit
   def edit
     @template = Template.find(params[:id])
-    @selected_meta_data_group = @template.meta_data_group
+    @meta_data_groups = @template.meta_data_group_assignments
     @meta_data_fields = MetaDataHelper.get_field_objects @template
   end
 
@@ -28,12 +28,13 @@ class TemplatesController < ApplicationController
   # PUT /templates/1
   def update
     @template = Template.find(params[:id])
-    @selected_meta_data_group = @template.meta_data_group
+    @meta_data_groups = @template.meta_data_group_assignments
+    
+    MetaDataHelper.reset_group_assignments(@template, params[:template][:meta_data_group_ids])
+
     @meta_data_fields = MetaDataHelper.get_field_objects @template
 
     MetaDataHelper.validate_and_save_field_values @meta_data_fields, @template, params[:template][:meta_data_field]
-
-    @template.meta_data_group = MetaDataGroup.find(params[:template][:meta_data_group]) unless params[:template][:meta_data_group].empty?
     @template.name = params[:template][:name]
 
     respond_to do |format|

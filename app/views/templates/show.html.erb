@@ -6,8 +6,10 @@
 </p>
 
 <p>
-  <b>Template Meta Data Group:</b>
-  <%= @template.meta_data_group ? @template.meta_data_group.name : "Not Assigned" %>
+  <b>Assigned Template Meta Data Groups:</b>
+  <% @template.meta_data_groups.each do |group| %>
+    <p><%= group.name %></p>
+  <% end %>
 </p>
 
 <p>

@@ -41,15 +41,35 @@ class MetaDataHelper
   def self.get_field_objects map_object
     field_objects = {}
 
-		if map_object.meta_data_group then
-			map_object.meta_data_group.meta_data_fields.each do |f|
-				meta_data_value = map_object.meta_data_values.find_by_meta_data_field_id(f.id)
-				meta_data_field_type = f.meta_data_field_type.field_type
-
-				field_objects[f.name] = [meta_data_value.nil? ? "" : eval('meta_data_value.'+meta_data_field_type+'_value'), f]
-			end
+		if map_object.meta_data_group_assignments then
+      map_object.meta_data_group_assignments.each do |assignment|
+        assignment.meta_data_group.meta_data_fields.each do |f|
+				  meta_data_value = map_object.meta_data_values.find_by_meta_data_field_id(f.id)
+				  meta_data_field_type = f.meta_data_field_type.field_type
+				  field_objects[f.name] = [meta_data_value.nil? ? "" : eval('meta_data_value.'+meta_data_field_type+'_value'), f]
+        end
+      end
 		end
 
     return field_objects
+  end
+
+  def self.reset_group_assignments map_object, meta_data_group_assignments
+
+    #Destroy existing assignments
+    MetaDataGroupAssignment.where(:meta_data_group_assignable_id => map_object.id,
+      :meta_data_group_assignable_type => map_object.class.name).each do |group|
+        group.destroy
+      end
+
+    #Remove empty elements from input array
+    meta_data_group_assignments.reject! { |e| e.empty? }
+
+    #Create new assignments
+    meta_data_group_assignments.each do |group|
+      MetaDataGroupAssignment.create(:meta_data_group_id => group,
+        :meta_data_group_assignable_type => map_object.class.name,
+        :meta_data_group_assignable_id => map_object.id)
+    end
   end
 end
