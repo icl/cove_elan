@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120409050807) do
     t.integer  "annotation_document_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.string   "state"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
