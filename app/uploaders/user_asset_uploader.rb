@@ -16,6 +16,7 @@ class UserAssetUploader < CarrierWave::Uploader::Base
     "assets/#{model.id.to_s.split(//).join('/')}/store_#{model.id}/"
   end
 
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')

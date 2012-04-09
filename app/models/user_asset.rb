@@ -6,4 +6,5 @@ class UserAsset < ActiveRecord::Base
   belongs_to :capture
 
   mount_uploader :file_name, UserAssetUploader
+
 end
