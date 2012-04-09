@@ -1,4 +1,3 @@
-@javascript
 Feature: View Annotations
     As a user
     I would like to see annotations that have been entered
