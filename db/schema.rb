@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409050807) do
+ActiveRecord::Schema.define(:version => 20120409185729) do
+
+  create_table "captures", :force => true do |t|
+    t.text     "path"
+    t.string   "name"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -303,6 +312,7 @@ ActiveRecord::Schema.define(:version => 20120409050807) do
     t.string   "content_type"
     t.text     "headers"
     t.integer  "user_id"
+    t.integer  "capture_id"
   end
 
   create_table "users", :force => true do |t|

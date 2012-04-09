@@ -1,9 +1,9 @@
 When /^I ask COVE to scan "([^"]*)"$/ do |capture_path|
-  Capture.new(File.join("private", "data_sources", capture_path))
+  Capture.create(path: File.join("private", "data_sources", capture_path))
 end
 
 Then /^COVE should create record a capture for "([^"]*)"$/ do |capture_path|
-  Capture.where(path: capture_path).first.should_not be_nil 
+  Capture.where(path: File.join("private", "data_sources", capture_path)).first.should_not be_nil 
 end
 
 Then /^create assets for any files in "([^"]*)"$/ do |capture_path|
