@@ -12,6 +12,7 @@ CoveElan::Application.routes.draw do
   resources :projects
   resources :work_documents
   resources :templates
+  resources :user_assets
 #	resources :documents
 
   match 'documents/:id/download' => 'documents#download', :as => :download_document

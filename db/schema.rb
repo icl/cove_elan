@@ -11,24 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120406224004) do
-
-  create_table "asset_types", :force => true do |t|
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "content_type"
-    t.string   "content_disposition"
-    t.string   "asset_type_name"
-  end
-
-  create_table "assets", :force => true do |t|
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.string   "file_name"
-    t.text     "hash"
-    t.integer  "assetable_id"
-    t.string   "assetable_type"
-  end
+ActiveRecord::Schema.define(:version => 20120409050807) do
 
   create_table "corpora", :force => true do |t|
     t.string "name",        :null => false
@@ -42,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20120406224004) do
     t.integer  "annotation_document_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
-    t.string   "state"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
@@ -308,6 +290,18 @@ ActiveRecord::Schema.define(:version => 20120406224004) do
     t.string   "name"
     t.integer  "user_id"
     t.integer  "project_template_id"
+  end
+
+  create_table "user_assets", :force => true do |t|
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "file_name"
+    t.text     "file_hash"
+    t.integer  "assetable_id"
+    t.string   "assetable_type"
+    t.string   "content_type"
+    t.text     "headers"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
