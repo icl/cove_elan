@@ -5,4 +5,4 @@ before_script:
   - "psql -c 'create database cove_elan_test;' -U postgres"
   - 'cp config/database.travis config/database.yml'
 
-script: "rake db:migrate && rake cucumber && rspec spec/"
+script: "rake db:migrate && rake cucumber && rspec --format doc spec/"
