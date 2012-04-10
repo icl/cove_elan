@@ -1,3 +1,5 @@
+<div class="row span10">
+
   <div class="page-header">
 		<h2>
       <%=link_to template.name_or_id, download_document_path(template.document) %>
@@ -6,18 +8,16 @@
 
 
   <% unless template.work_documents.empty? %>
-    <div class="row span10">
-
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-        <li><a href="#tiers" data-toggle="tab">Tiers</a></li>
-        <li><a href="#media" data-toggle="tab">Media</a></li>
-        <li><a href="#assets" data-toggle="tab">Assets</a></li>
-        <li><a href="#work_documents" data-toggle="tab">Work Documents</a></li>
+        <li class="active"><a href="#home<%=t_index%>" data-toggle="tab">Home</a></li>
+        <li><a href="#tiers<%=t_index%>" data-toggle="tab">Tiers</a></li>
+        <li><a href="#media<%=t_index%>" data-toggle="tab">Media</a></li>
+        <li><a href="#assets<%=t_index%>" data-toggle="tab">Assets</a></li>
+        <li><a href="#work_documents<%=t_index%>" data-toggle="tab">Work Documents</a></li>
       </ul>
 
       <div class="tab-content">
-        <div class="tab-pane active" id="home">
+        <div class="tab-pane active" id="home<%=t_index%>">
           <div class="accordion" id="template_body_accordion">
             <% template.meta_data_values.each_with_index do |mv, index| %>
               <div class="accordion-group">
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div class="tab-pane" id="tiers">
+        <div class="tab-pane" id="tiers<%=t_index%>">
           <h4>Tiers</h4>
           <dl class="dl-horizontal">
           <% template.work_documents.first.document.tiers.each do |tier| %>
@@ -44,7 +44,7 @@
           </dl>
         </div>
 
-        <div class="tab-pane" id="media">
+        <div class="tab-pane" id="media<%=t_index%>">
           <h4>Media</h4>
           <ul>
             <% template.work_documents.first.document.media_descriptors.each do |media_descriptor| %>
@@ -53,7 +53,7 @@
           </ul>
         </div>
 
-        <div class="tab-pane" id="assets">
+        <div class="tab-pane" id="assets<%=t_index%>">
               <h4>Assets</h4>
                 <% template.user_assets.each_with_index do |asset, index| %>
                   <p><%= link_to File.basename(asset.file_name.to_s), eval(asset.class.name.underscore.downcase + '_path('+asset.id.to_s+')') %></p>
@@ -91,7 +91,7 @@
                 <% end %>
         </div>
 
-        <div class="tab-pane" id="work_documents">
+        <div class="tab-pane" id="work_documents<%=t_index%>">
           <h4>Recent Uploads</h4>
           <% template.work_documents.order("created_at DESC").limit(3).each do |work_document| %>
             <ul>
@@ -104,10 +104,10 @@
               </li>
             </ul>
           <% end %>
+      </div>
+      </div>
+  
           <% else %>
             <h4>This template contains no work documents.</h4>
           <% end %>
-      </div>
-    </div>
-  </fieldset>
-
+</div>

@@ -10,8 +10,8 @@
 
 <div class="row">
   <div class="span12">
-    <% @templates.each do |template| %>
-      <%= render :partial => template %>
+    <% @templates.each_with_index do |template, t_index| %>
+      <%= render :partial => template, :locals => {:t_index => t_index} %>
     <% end %>
 
     <script>
