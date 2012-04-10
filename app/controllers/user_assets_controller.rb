@@ -13,7 +13,8 @@ class UserAssetsController < ApplicationController
     @user_asset = UserAsset.find(params[:id])
 
     respond_to do |format|
-      format.html
+      format.html {render}
+      format.any {send_file @user_asset.file_name.path, :disposition => 'inline'}
     end
   end
 
