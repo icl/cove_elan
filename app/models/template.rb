@@ -3,18 +3,21 @@ require 'interval_tree'
 class Template < ActiveRecord::Base
   validates :user, :presence => true
 
-	has_many :work_documents
+has_many :work_documents
   has_many :project_templates
   has_many :projects, :through => :project_templates
 
- 	has_many :meta_data_values, :as => :meta_data_valuable, :dependent => :destroy
+  has_many :meta_data_values, :as => :meta_data_valuable, :dependent => :destroy
 
-	has_many :meta_data_group_assignments, :as => :meta_data_group_assignable
-	has_many :meta_data_groups, :through => :meta_data_group_assignments
+  has_many :meta_data_group_assignments, :as => :meta_data_group_assignable
+  has_many :meta_data_groups, :through => :meta_data_group_assignments
+
+  has_many :user_asset_assignments, :as => :user_asset_assignable
+  has_many :user_assets, :through => :user_asset_assignments
 
 
-	belongs_to :document, :dependent => :destroy
-	belongs_to :user
+  belongs_to :document, :dependent => :destroy
+  belongs_to :user
 
   accepts_nested_attributes_for :meta_data_groups
 

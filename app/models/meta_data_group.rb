@@ -5,6 +5,7 @@ class MetaDataGroup < ActiveRecord::Base
 	has_many :meta_data_group_assignments
 	has_many :templates, :through => :meta_data_group_assignments, :source => :meta_data_group_assignable, :source_type => 'Template'
 	has_many :projects, :through => :meta_data_group_assignments, :source => :meta_data_group_assignable, :source_type => 'Project'
+	has_many :user_assets, :through => :meta_data_group_assignments, :source => :meta_data_group_assignable, :source_type => 'UserAsset'
 
 	#Return a distinct list of assigned polymorphic types
   def related_objects

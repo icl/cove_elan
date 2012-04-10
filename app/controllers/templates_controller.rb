@@ -28,6 +28,8 @@ class TemplatesController < ApplicationController
   # PUT /templates/1
   def update
     @template = Template.find(params[:id])
+
+    #Update meta data group assignments and field values
     @meta_data_groups = @template.meta_data_group_assignments
     
     MetaDataHelper.reset_group_assignments(@template, params[:template][:meta_data_group_ids])
@@ -36,6 +38,9 @@ class TemplatesController < ApplicationController
 
     MetaDataHelper.validate_and_save_field_values @meta_data_fields, @template, params[:template][:meta_data_field]
     @template.name = params[:template][:name]
+
+    #Update user asset assignments
+	  UserAssetHelper.reset_user_asset_assignments(@template, params[:template][:user_asset_ids])
 
     respond_to do |format|
       if @template.errors.count == 0 and @template.save

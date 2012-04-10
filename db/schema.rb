@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409185729) do
+ActiveRecord::Schema.define(:version => 20120410020849) do
 
   create_table "captures", :force => true do |t|
     t.text     "path"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20120409185729) do
     t.integer  "annotation_document_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
-    t.string   "state"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
@@ -302,13 +301,17 @@ ActiveRecord::Schema.define(:version => 20120409185729) do
     t.integer  "project_template_id"
   end
 
+  create_table "user_asset_assignments", :force => true do |t|
+    t.integer "user_asset_id"
+    t.integer "user_asset_assignable_id"
+    t.string  "user_asset_assignable_type"
+  end
+
   create_table "user_assets", :force => true do |t|
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "file_name"
     t.text     "file_hash"
-    t.integer  "assetable_id"
-    t.string   "assetable_type"
     t.string   "content_type"
     t.text     "headers"
     t.integer  "user_id"

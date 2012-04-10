@@ -1,0 +1,16 @@
+<p>
+  <b>File Name:</b>
+  <%= File.basename(@user_asset.file_name.to_s) %>
+</p>
+
+<div class="row">
+
+<div class="span12">
+  <div id="field">
+    <%= render :partial => 'meta_data' %>
+  </div>
+  <div id="viewer">
+    <%= display_asset(@user_asset) %>
+  </div>
+</div>
+</div>

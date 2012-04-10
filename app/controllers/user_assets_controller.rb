@@ -18,12 +18,37 @@ class UserAssetsController < ApplicationController
     end
   end
 
+  def edit
+    @user_asset = UserAsset.find(params[:id])
+    @meta_data_groups = @user_asset.meta_data_group_assignments
+    @meta_data_fields = MetaDataHelper.get_field_objects @user_asset
+  end
+
   # GET /assets/new
   def new
     @user_asset = UserAsset.new
 
     respond_to do |format|
       format.html # new.html.erb
+    end
+  end
+
+  def update
+    @user_asset = UserAsset.find(params[:id])
+    @meta_data_groups = @user_asset.meta_data_group_assignments
+    
+    MetaDataHelper.reset_group_assignments(@user_asset, params[:user_asset][:meta_data_group_ids])
+
+    @meta_data_fields = MetaDataHelper.get_field_objects @user_asset
+
+    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @user_asset, params[:user_asset][:meta_data_field]
+
+    respond_to do |format|
+      if @user_asset.errors.count == 0 and @user_asset.save
+        format.html { redirect_to @user_asset, notice: 'Asset was successfully updated.' }
+      else
+        format.html { render action: "edit" }
+      end
     end
   end
 

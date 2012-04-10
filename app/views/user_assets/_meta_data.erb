@@ -1,0 +1,6 @@
+<%= simple_form_for(@user_asset) do |f| %>
+    <%= f.association :meta_data_groups %>
+    <%= render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, :object => @user_asset, :fields => @meta_data_fields } %>
+
+    <%= f.submit %>
+<% end %>

@@ -16,7 +16,7 @@
         </dl>
       </div>
 
-      <div class="span4">
+      <div class="span3">
         <h4>Media</h4>
         <ul>
           <% template.work_documents.first.document.media_descriptors.each do |media_descriptor| %>
@@ -25,7 +25,16 @@
         </ul>
       </div>
 
-      <div class="span5">
+      <div class="span2">
+        <h4>Assets</h4>
+        <ul>
+          <% template.user_assets.each do |asset| %>
+            <li><%= link_to File.basename(asset.file_name.to_s), eval(asset.class.name.underscore.downcase + '_path('+asset.id.to_s+')') %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="span3">
         <h4>Recent Uploads</h4>
         <% template.work_documents.order("created_at DESC").limit(3).each do |work_document| %>
           <ul>
@@ -41,10 +50,11 @@
       </div>
     <% else %>
       <div class="row">
-        <div class="span6">
+        <div class="span2">
           <h4>This template contains no work documents.</h4>
         </div>
       </div>
     <% end %>
-	</fieldset>
+
+</fieldset>
 

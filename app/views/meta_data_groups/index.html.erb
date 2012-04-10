@@ -38,7 +38,11 @@
         <% m.related_objects.each do |r| %>
           <li>
             <%= r.class.name %>:
-            <%= link_to r.name, eval(r.class.name.downcase + '_path('+r.id.to_s+')') %>
+	    <% if r.class.name == "UserAsset" %>
+              <%= link_to File.basename(r.file_name.to_s), eval(r.class.name.underscore.downcase + '_path('+r.id.to_s+')') %>
+	    <% else %>
+              <%= link_to r.name, eval(r.class.name.underscore.downcase + '_path('+r.id.to_s+')') %>
+            <% end %>
           </li>
         <% end %>
       </ul>
