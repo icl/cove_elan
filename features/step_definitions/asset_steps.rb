@@ -35,15 +35,14 @@ Given /^I navigate to its page$/ do
 end
 
 Then /^I should see the video$/ do
-  within "#viewer" do
-    page.should have_css "video.main"
-  end
+page.should have_xpath("//video[contains(@src, '#{user_asset_path(id: UserAsset.last.id, format: 'm4v' )}')]")
+  
+
 end
 
 Then /^I should see the image$/ do
-  within "#viewer" do
-    page.should have_css "img.main"
-  end
+
+page.should have_xpath("//img[contains(@src, '#{user_asset_path(id: UserAsset.last.id, format: 'jpg' )}')]")
 end
 
 When /^I look at the page for an image asset$/ do
