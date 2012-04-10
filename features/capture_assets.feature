@@ -8,7 +8,8 @@ Feature: Capture Data
     Given COVE is authorized to scan "some_path"
 
   Scenario: Upload one file
-
+  
+  @wip
   Scenario: Scan a path
     When I ask COVE to scan "some_path"
     Then COVE should create record a capture for "some_path"
