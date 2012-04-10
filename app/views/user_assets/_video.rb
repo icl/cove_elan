@@ -1,1 +1,0 @@
-<video class="main"></video>
