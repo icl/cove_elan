@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
 
     @project.update_attributes(:name => params[:project][:name])
 
-    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @project, params[:project][:meta_data_field]
+    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @project, params[:project][:meta_data_field] unless params[:project][:meta_data_field].nil?
 
     @project.template_ids = params[:templates][:templates]
 

@@ -10,8 +10,15 @@
 
 <div class="row">
   <div class="span12">
-<% @templates.each do |template| %>
-  <%= render :partial => template %>
-<% end %>
-</div>
+    <% @templates.each do |template| %>
+      <%= render :partial => template %>
+    <% end %>
+
+    <script>
+      $(function() {
+        $('#templateTabs').tab('show');
+        $(".collapse").collapse();
+      });
+    </script>
+  </div>
 </div>

@@ -36,7 +36,8 @@ class TemplatesController < ApplicationController
 
     @meta_data_fields = MetaDataHelper.get_field_objects @template
 
-    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @template, params[:template][:meta_data_field]
+    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @template, params[:template][:meta_data_field] unless params[:template][:meta_data_field].nil?
+
     @template.name = params[:template][:name]
 
     #Update user asset assignments

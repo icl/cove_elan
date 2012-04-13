@@ -6,55 +6,108 @@
 
 
   <% unless template.work_documents.empty? %>
-    <div class="row">
-      <div class="span2">
-        <h4>Tiers</h4>
-        <dl class="dl-horizontal">
-        <% template.work_documents.first.document.tiers.each do |tier| %>
-            <dt><%= tier[:tier_id] %></dt>
-          <% end %>
-        </dl>
-      </div>
+    <div class="row span10">
 
-      <div class="span3">
-        <h4>Media</h4>
-        <ul>
-          <% template.work_documents.first.document.media_descriptors.each do |media_descriptor| %>
-            <li><%= media_descriptor[:media_url] %></li>
-          <% end %>
-        </ul>
-      </div>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+        <li><a href="#tiers" data-toggle="tab">Tiers</a></li>
+        <li><a href="#media" data-toggle="tab">Media</a></li>
+        <li><a href="#assets" data-toggle="tab">Assets</a></li>
+        <li><a href="#work_documents" data-toggle="tab">Work Documents</a></li>
+      </ul>
 
-      <div class="span2">
-        <h4>Assets</h4>
-        <ul>
-          <% template.user_assets.each do |asset| %>
-            <li><%= link_to File.basename(asset.file_name.to_s), eval(asset.class.name.underscore.downcase + '_path('+asset.id.to_s+')') %></li>
-          <% end %>
-        </ul>
-      </div>
+      <div class="tab-content">
+        <div class="tab-pane active" id="home">
+          <div class="accordion" id="template_body_accordion">
+            <% template.meta_data_values.each_with_index do |mv, index| %>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#template_body_accordion" href="#template_body_collapse<%=index%>"><%=mv.meta_data_field.name%></a>
+                </div>
 
-      <div class="span3">
-        <h4>Recent Uploads</h4>
-        <% template.work_documents.order("created_at DESC").limit(3).each do |work_document| %>
+                <div id="template_body_collapse<%=index%>" class="accordion-body collapse in" style="height: 0px;">
+                  <div class="accordion-inner">
+                    <p><%= MetaDataHelper.get_value_as_string mv %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tiers">
+          <h4>Tiers</h4>
+          <dl class="dl-horizontal">
+          <% template.work_documents.first.document.tiers.each do |tier| %>
+              <dt><%= tier[:tier_id] %></dt>
+            <% end %>
+          </dl>
+        </div>
+
+        <div class="tab-pane" id="media">
+          <h4>Media</h4>
           <ul>
-            <li class="document-list-item">
-            <%=link_to "#{work_document.user.full_name} #{work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')}" , download_document_path(work_document.document), 
-              :id => File.basename(work_document.document.eaf.to_s), :class => 'download-work_document' %> 
-
-            <%=link_to "", work_document, :class=> 'icon-eye-open view-work_document-link', :id => File.basename(work_document.document.eaf.to_s) %>
-            </li>
+            <% template.work_documents.first.document.media_descriptors.each do |media_descriptor| %>
+              <li><%= media_descriptor[:media_url] %></li>
+            <% end %>
           </ul>
-        <% end %>
         </div>
-      </div>
-    <% else %>
-      <div class="row">
-        <div class="span2">
-          <h4>This template contains no work documents.</h4>
-        </div>
-      </div>
-    <% end %>
 
-</fieldset>
+        <div class="tab-pane" id="assets">
+              <h4>Assets</h4>
+                <% template.user_assets.each_with_index do |asset, index| %>
+                  <p><%= link_to File.basename(asset.file_name.to_s), eval(asset.class.name.underscore.downcase + '_path('+asset.id.to_s+')') %></p>
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#meta_data<%=index%>" data-toggle="tab">Meta Data</a></li>
+                    <li><a href="#download<%=index%>" data-toggle="tab">Download</a></li>
+                    <li><a href="#view<%=index%>" data-toggle="tab">View</a></li>
+                  </ul>
+
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="meta_data<%=index%>">
+                      <div class="accordion" id="asset_body_accordion">
+                        <% asset.meta_data_values.each_with_index do |mv, index| %>
+                          <div class="accordion-group">
+                            <div class="accordion-heading">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#template_body_accordion" href="#template_body_collapse<%=index%>"><%=mv.meta_data_field.name%></a>
+                            </div>
+
+                            <div id="asset_body_collapse<%=index%>" class="accordion-body collapse in" style="height: 0px;">
+                              <div class="accordion-inner">
+                                <p><%= MetaDataHelper.get_value_as_string mv %></p>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="download<%=index%>">
+                      <p><a href="/user_assets/<%=asset.id%>/download">Download....</a></p>
+                    </div>
+                    <div class="tab-pane" id="view<%=index%>">
+                      <%= display_asset(asset) %>
+                    </div>
+                  </div>
+                <% end %>
+        </div>
+
+        <div class="tab-pane" id="work_documents">
+          <h4>Recent Uploads</h4>
+          <% template.work_documents.order("created_at DESC").limit(3).each do |work_document| %>
+            <ul>
+              <li class="document-list-item">
+                <%=link_to "#{work_document.user.full_name} #{work_document.created_at.strftime('%m/%d/%Y %H:%M:%S')}" ,
+                  download_document_path(work_document.document), 
+                  :id => File.basename(work_document.document.eaf.to_s), :class => 'download-work_document' %> 
+                <%=link_to "", work_document, :class=> 'icon-eye-open view-work_document-link', 
+                  :id => File.basename(work_document.document.eaf.to_s) %>
+              </li>
+            </ul>
+          <% end %>
+          <% else %>
+            <h4>This template contains no work documents.</h4>
+          <% end %>
+      </div>
+    </div>
+  </fieldset>
 

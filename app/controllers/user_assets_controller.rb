@@ -41,7 +41,7 @@ class UserAssetsController < ApplicationController
 
     @meta_data_fields = MetaDataHelper.get_field_objects @user_asset
 
-    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @user_asset, params[:user_asset][:meta_data_field]
+    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @user_asset, params[:user_asset][:meta_data_field] unless params[:user_asset][:meta_data_field].nil?
 
     respond_to do |format|
       if @user_asset.errors.count == 0 and @user_asset.save
@@ -76,6 +76,17 @@ class UserAssetsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to user_assets_url }
+    end
+  end
+
+  def download
+    @user_asset = UserAsset.find(params[:id])
+
+		file_name = @user_asset.file_name.to_s
+		file_name = file_name.gsub(" ", "_")
+
+    File.open(Rails.root.join("private" + file_name), 'r') do |f|
+      send_data f.read, :filename => File.basename(file_name)
     end
   end
 end

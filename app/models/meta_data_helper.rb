@@ -38,6 +38,12 @@ class MetaDataHelper
     return nil
   end
 
+  def self.get_value_as_string meta_data_value
+    type = MetaDataFieldType.find(meta_data_value.meta_data_field.meta_data_field_type_id).field_type
+
+    return eval('meta_data_value.' + type + '_value.to_s')
+  end
+
   def self.get_field_objects map_object
     field_objects = {}
 
