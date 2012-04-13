@@ -9,7 +9,7 @@ describe Capture do
     end
 
     after :each do
-      Capture.authorized_paths = []
+     # Capture.authorized_paths = []
     end
 
     it "captures paths that it has been authorized too" do
@@ -31,11 +31,11 @@ describe Capture do
 
     before :all do
       @capture_path = File.join(Rails.root, 'spec','fixtures')
-      Capture.authorize_path(@capture_path)
+     # Capture.authorize_path(@capture_path)
     end
 
     after :all do
-      Capture.authorized_paths = []
+     # Capture.authorized_paths = []
     end
 
     it "creates an Asset for each file" do
