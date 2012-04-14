@@ -81,12 +81,6 @@ class UserAssetsController < ApplicationController
 
   def download
     @user_asset = UserAsset.find(params[:id])
-
-		file_name = @user_asset.file_name.to_s
-		file_name = file_name.gsub(" ", "_")
-
-    File.open(Rails.root.join("private" + file_name), 'r') do |f|
-      send_data f.read, :filename => File.basename(file_name)
-    end
+    send_file @user_asset.file_name.path
   end
 end
