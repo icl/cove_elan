@@ -35,7 +35,7 @@ Given /^I navigate to its page$/ do
 end
 
 Then /^I should see the video$/ do
-page.should have_xpath("//video[contains(@src, '#{user_asset_path(id: UserAsset.last.id, format: 'm4v' )}')]")
+page.should have_xpath("//video/source[contains(@src, '#{user_asset_url(id: UserAsset.last.id, format: 'mp4' )}')]")
   
 
 end
