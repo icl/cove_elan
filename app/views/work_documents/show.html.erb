@@ -3,6 +3,18 @@
   <%= File.basename(@work_document.document.eaf.to_s) %>
 </p>
 
+<% @work_document.media_assets.each do |matches| -%>
+  <%= matches[0] %>
+  <p>Assets that possibly match:</p>
+  <ul>
+    <% matches[1].each do |asset| %>
+      <li>
+        <%= link_to asset.file_name.path,  download_user_asset_path(asset.id) %>
+      </li>
+    <% end %>
+  </ul>
+<% end -%>
+
 <div class="row">
 
 <div class="span12">

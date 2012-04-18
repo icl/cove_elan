@@ -32,6 +32,13 @@ class WorkDocument < ActiveRecord::Base
     Resque.enqueue(TemplateIdentifer, self.id)
   end
 
+  def media_assets
+
+    document.annotation_document.header.media_descriptors.map {|desc| [desc.media_url, UserAsset.match_basename(File.basename(desc.media_url)) ] }
+
+  end
+
+
 	#belongs_to :project
 	def clone_for_template
     elan_xml = ElanParser::XML::Build.new

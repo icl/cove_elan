@@ -20,4 +20,9 @@ class UserAsset < ActiveRecord::Base
     type_info =  %x[file --mime -b #{file_name.path} ]
     type_info.split(';')[0].split('/')[0]
   end
+
+  def self.match_basename(basename)
+    where(["file_name like ?", "%#{basename}"  ])
+  end
+
 end
