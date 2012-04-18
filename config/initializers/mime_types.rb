@@ -7,3 +7,4 @@
 
 Mime::Type.register "application/xml", :eaf
 Mime::Type.register "video/mp4", :m4v
+Mime::Type.register "video/mp4", :mp4

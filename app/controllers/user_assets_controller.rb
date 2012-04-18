@@ -14,7 +14,7 @@ class UserAssetsController < ApplicationController
 
     respond_to do |format|
       format.html {render}
-      format.any {send_file @user_asset.file_name.path, :disposition => 'inline'}
+      format.any {send_file @user_asset.file_name.path}
     end
   end
 

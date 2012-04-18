@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require video
 //= require underscore
 //= require d3.v2
 //= require ember

@@ -1,1 +1,4 @@
-<video controls="controls" src="<%= user_asset_path(id:video.id, format:'m4v')%>" class="main"></video>
+<video class="main video-js vjs-default-skin" controls preload="auto" data-setup='{"techOrder": ["flash"]}' width="480" height="270">
+  <source src="<%= user_asset_url(id:video.id, format: :mp4 )%>" type='video/mp4'>
+  </video>
+

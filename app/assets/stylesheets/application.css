@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require full_control
+ *= require video-js
  *= require_self
  *= require_tree .
 */
