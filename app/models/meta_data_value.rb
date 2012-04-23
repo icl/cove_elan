@@ -1,6 +1,7 @@
 class MetaDataValue < ActiveRecord::Base
   belongs_to :meta_data_valuable, :polymorphic => true
   belongs_to :meta_data_field
+  belongs_to :meta_data_group
 
   validate { meta_data_is_valid }
 

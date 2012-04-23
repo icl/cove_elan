@@ -7,10 +7,12 @@ has_many :work_documents
   has_many :project_templates
   has_many :projects, :through => :project_templates
 
-  has_many :meta_data_values, :as => :meta_data_valuable, :dependent => :destroy
+  #has_many :meta_data_values, :as => :meta_data_valuable, :dependent => :destroy
 
   has_many :meta_data_group_assignments, :as => :meta_data_group_assignable
   has_many :meta_data_groups, :through => :meta_data_group_assignments
+
+  has_many :meta_data_values, :as => :meta_data_valuable
 
   has_many :user_asset_assignments, :as => :user_asset_assignable
   has_many :user_assets, :through => :user_asset_assignments

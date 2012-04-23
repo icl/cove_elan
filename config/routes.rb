@@ -23,6 +23,7 @@ CoveElan::Application.routes.draw do
 
   match 'documents/:id/download' => 'documents#download', :as => :download_document
   match 'user_assets/:id/download' => 'user_assets#download', :as => :download_asset
+  match 'templates/:id/update_meta_data' => 'templates#update_meta_data'
 
   match 'templates/:id/duplication' => 'templates#duplication'
 
