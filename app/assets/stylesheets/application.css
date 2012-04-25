@@ -128,4 +128,12 @@ path {
  div.container.card {
   background: white;
   box-shadow: 3px 3px 26px rgba(50, 50, 50, 0.75);
+  padding-bottom: 20px;
  }
+
+
+ .smallish {
+font-size: 50%;
+color: red;
+ }
+
