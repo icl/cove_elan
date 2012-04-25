@@ -1,0 +1,7 @@
+<% if object.meta_data_groups %>
+  <% object.meta_data_groups.each do |group| %>
+    <%=render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, 
+      :fields => group.meta_data_fields,
+      :group => group } %>
+  <% end %>
+<% end %>

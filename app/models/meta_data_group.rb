@@ -2,6 +2,8 @@ class MetaDataGroup < ActiveRecord::Base
   has_many :meta_data_field_groups
   has_many :meta_data_fields, :through => :meta_data_field_groups
 
+  has_many :meta_data_values
+
 	has_many :meta_data_group_assignments
 	has_many :templates, :through => :meta_data_group_assignments, :source => :meta_data_group_assignable, :source_type => 'Template'
 	has_many :projects, :through => :meta_data_group_assignments, :source => :meta_data_group_assignable, :source_type => 'Project'

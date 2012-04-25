@@ -19,9 +19,20 @@ class TemplatesController < ApplicationController
 
   def show
     @template = Template.find(params[:id])
+    @meta_data_groups = @template.meta_data_group_assignments
+    @meta_data_fields = MetaDataHelper.get_field_objects @template
 
     respond_to do |format|
       format.html # show.html.erb
+    end
+  end
+
+  def update_meta_data
+    @template = Template.find(params[:id])
+    MetaDataHelper.save_groups_and_fields params[:template][:meta_data_group], @template
+
+    respond_to do |format|
+      format.html { redirect_to @template, notice: 'Template Metadata was successfully updated.' }
     end
   end
 
@@ -33,10 +44,6 @@ class TemplatesController < ApplicationController
     @meta_data_groups = @template.meta_data_group_assignments
     
     MetaDataHelper.reset_group_assignments(@template, params[:template][:meta_data_group_ids])
-
-    @meta_data_fields = MetaDataHelper.get_field_objects @template
-
-    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @template, params[:template][:meta_data_field] unless params[:template][:meta_data_field].nil?
 
     @template.name = params[:template][:name]
 
