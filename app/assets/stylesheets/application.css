@@ -137,3 +137,9 @@ font-size: 50%;
 color: red;
  }
 
+ #metadata {
+
+   border-left: 1px solid;
+   padding-left: 5px;
+   margin-left: 14px;
+   }
