@@ -6,10 +6,8 @@
 <div class="row">
 
 <div class="span12">
-  <div id="field">
-    <%= render :partial => 'meta_data' %>
-  </div>
   <div id="viewer">
+    <%= render 'form' %>
     <%= display_asset(@user_asset) %>
   </div>
 </div>

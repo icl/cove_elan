@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410020849) do
+ActiveRecord::Schema.define(:version => 20120425233210) do
 
   create_table "captures", :force => true do |t|
     t.text     "path"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120410020849) do
     t.integer  "annotation_document_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.string   "state"
   end
 
   create_table "elan_parser_alignable_annotations", :force => true do |t|
@@ -275,6 +276,7 @@ ActiveRecord::Schema.define(:version => 20120410020849) do
     t.integer  "meta_data_field_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.integer  "meta_data_group_id"
   end
 
   create_table "project_templates", :force => true do |t|
@@ -291,6 +293,19 @@ ActiveRecord::Schema.define(:version => 20120410020849) do
     t.string   "name"
     t.integer  "project_template_id"
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "templates", :force => true do |t|
     t.datetime "created_at",          :null => false

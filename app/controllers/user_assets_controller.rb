@@ -35,13 +35,8 @@ class UserAssetsController < ApplicationController
 
   def update
     @user_asset = UserAsset.find(params[:id])
-    @meta_data_groups = @user_asset.meta_data_group_assignments
-    
+
     MetaDataHelper.reset_group_assignments(@user_asset, params[:user_asset][:meta_data_group_ids])
-
-    @meta_data_fields = MetaDataHelper.get_field_objects @user_asset
-
-    MetaDataHelper.validate_and_save_field_values @meta_data_fields, @user_asset, params[:user_asset][:meta_data_field] unless params[:user_asset][:meta_data_field].nil?
 
     respond_to do |format|
       if @user_asset.errors.count == 0 and @user_asset.save

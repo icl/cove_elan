@@ -5,82 +5,49 @@
 
 
 
+
+
+
 <div class="row">
   <div class="span2">
     <h3>Metadata</h3>
-        <ul class="nav nav-list">
-          <li class="nav-header">FAR <span class="smallish">Corpus</span></li>
-          <li class="active"><a href="#"><i class="icon-white icon-list"></i>Phrases</a></li>
-          <li><a href="#"><i class="icon-user"></i>Dancers</a></li>
-          <li><a href="#"><i class="icon-volume-up"></i>Sound</a></li>
-          <li><a href="#"><i class="icon-film"></i>Camera</a></li>
-          <li class="nav-header">Marking <span class="smallish">Project</span></li>
-          <li><a href="#"><i class="icon-user"></i>Visible?</a></li>
+    <ul class="nav nav-list">
+      <li class="nav-header">FAR <span class="smallish">Corpus</span></li>
+
+      <% @user_asset.meta_data_groups.each do |group| %>
+        <li><a href="#"><i class="icon-list"></i><%= group.name%></a></li>
+         <% end %>
+        <li class="active"><a href="#"><i class="icon-white icon-list"></i>Phrases</a></li>
+        <li><a href="#"><i class="icon-user"></i>Dancers</a></li>
+        <li><a href="#"><i class="icon-volume-up"></i>Sound</a></li>
+        <li><a href="#"><i class="icon-film"></i>Camera</a></li>
+        <li class="nav-header">Marking <span class="smallish">Project</span></li>
+        <li><a href="#"><i class="icon-user"></i>Visible?</a></li>
         </ul>
       </div>
+
+
       <div id="metadata" class="span4">
-        <h3>Phrases</h3>
-        <form class="form-">
-          <fieldset>
-            <div class="control-group">
-              <label class="control-label" for="input01">Text input</label>
-              <div class="controls">
-                <input type="text" class="input-xlarge" id="input01">
-                <p class="help-block">hum dee dum </p>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="optionsCheckbox">Checkbox</label>
-              <div class="controls">
-                <label class="checkbox">
-                  <input type="checkbox" id="optionsCheckbox" value="option1">
-                  Option one is this and that
-                </label>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="select01">Select list</label>
-              <div class="controls">
-                <select id="select01">
-                  <option>something</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="multiSelect">Multicon-select</label>
-              <div class="controls">
-                <select multiple="multiple" id="multiSelect">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="fileInput">File input</label>
-              <div class="controls">
-                <input class="input-file" id="fileInput" type="file">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="textarea">Textarea</label>
-              <div class="controls">
-                <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
-              </div>
-            </div>
-            <div class="">
-              <button type="submit" class="btn btn-primary">Update Phrases</button>
-              <button class="btn">Cancel</button>
-            </div>
-          </fieldset>
-      </form>      
+
+        <%= simple_form_for @user_asset,
+          :url => url_for(:action => 'update_meta_data', :controller => 'user_assets'),
+          :method => 'post' do |f| %>
+
+
+
+          <% @user_asset.meta_data_groups.each do |group| %>
+            <%=render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, 
+              :fields => group.meta_data_fields,
+              :group => group } %>
+          <% end %>
+
+          <%= f.button :submit %>
+
+        <% end %>
+
+
     </div>
+
   <div id="preview" class="span6">
     <%= display_asset(@user_asset) %>
   </div>
