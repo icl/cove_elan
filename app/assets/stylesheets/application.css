@@ -14,6 +14,8 @@
  *= require_tree .
 */
 /* borrowed from https://gist.github.com/1953801#file_gistfile1.html */
+
+
 		  html, body { height: 100%; }
 
 			footer {
@@ -34,13 +36,10 @@
 				height: 100%;
 				margin: 0 auto -43px;
 			}
-			.push { height: 100px; } /* Just some arbitrary space to add between footer and rest of the content, when they are close */
+     
+     
+      /* Just some arbitrary space to add between footer and rest of the content, when they are close */
       
-
-.container {
- padding-left:20px;
- padding-right:20px;
-}
 .detail .domain {
  fill: blue;
  fill-opacity: 0.2;
@@ -128,9 +127,18 @@ path {
  div.container.card {
   background: white;
   box-shadow: 3px 3px 26px rgba(50, 50, 50, 0.75);
-  padding-bottom: 20px;
+  height: 550px;
+  padding: 20px;
  }
 
+ .main {
+position:fixed;
+width: 480px;
+ }
+
+#meta_nav {
+position:fixed;
+}
 
  .smallish {
 font-size: 50%;
@@ -138,8 +146,13 @@ color: red;
  }
 
  #metadata {
-
+  height: 100%;
    border-left: 1px solid;
    padding-left: 5px;
-   margin-left: 14px;
+   margin-left: 214px;
+  border-right: 1px solid;
+  margin-right: -1px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  height: 550px;
    }

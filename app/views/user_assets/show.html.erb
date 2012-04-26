@@ -1,15 +1,17 @@
-<p>
-  <b>File Name:</b>
-  <%= File.basename(@user_asset.file_name.to_s) %>
-</p>
-
-
 
 
 
 
 <div class="row">
   <div class="span2">
+    <div id="meta_nav" class="picker">
+      <p>
+  <b>File Name:</b>
+  <%= File.basename(@user_asset.file_name.to_s) %>
+</p>
+
+
+
     <h3>Metadata</h3>
     <ul class="nav nav-list">
       <li class="nav-header">FAR <span class="smallish">Corpus</span></li>
@@ -17,17 +19,11 @@
       <% @user_asset.meta_data_groups.each do |group| %>
         <li><a href="#"><i class="icon-list"></i><%= group.name%></a></li>
          <% end %>
-        <li class="active"><a href="#"><i class="icon-white icon-list"></i>Phrases</a></li>
-        <li><a href="#"><i class="icon-user"></i>Dancers</a></li>
-        <li><a href="#"><i class="icon-volume-up"></i>Sound</a></li>
-        <li><a href="#"><i class="icon-film"></i>Camera</a></li>
-        <li class="nav-header">Marking <span class="smallish">Project</span></li>
-        <li><a href="#"><i class="icon-user"></i>Visible?</a></li>
         </ul>
       </div>
+      </div>
 
-
-      <div id="metadata" class="span4">
+      <div id="metadata" class="span4" data-spy="scroll">
 
         <%= simple_form_for @user_asset,
           :url => url_for(:action => 'update_meta_data', :controller => 'user_assets'),
@@ -48,7 +44,7 @@
 
     </div>
 
-  <div id="preview" class="span6">
+    <div id="preview" class="span6">
     <%= display_asset(@user_asset) %>
   </div>
 
@@ -58,3 +54,9 @@
 
   </div>
 </div>
+
+
+<script>
+
+$('#meta_nav').scrollspy();
+</script>
