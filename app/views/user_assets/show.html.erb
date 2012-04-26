@@ -17,7 +17,7 @@
       <li class="nav-header">FAR <span class="smallish">Corpus</span></li>
 
       <% @user_asset.meta_data_groups.each do |group| %>
-        <li><a href="#"><i class="icon-list"></i><%= group.name%></a></li>
+        <li><a href="#formlet_<%=group.id.to_s%>"><i class="icon-list"></i><%= group.name%></a></li>
          <% end %>
         </ul>
       </div>
@@ -41,7 +41,9 @@
 
         <% end %>
 
-
+      <div style="height:550px">
+      boom
+      </div>
     </div>
 
     <div id="preview" class="span6">
@@ -58,5 +60,8 @@
 
 <script>
 
-$('#meta_nav').scrollspy();
+  $('#meta_nav').scrollspy( {"offset": 80 } );
+  $('[data-spy="scroll"]').each(function () {
+  var $spy = $(this).scrollspy('refresh')
+});
 </script>
