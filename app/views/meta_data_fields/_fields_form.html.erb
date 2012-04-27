@@ -1,6 +1,6 @@
 <% if fields %>
   <%= f.simple_fields_for group do |g| %>
-    <div class="span4" id="formlet_<%= group.id.to_s %>" style="padding-top:40px">
+    <div class="span4" id="formlet_<%= group.id.to_s %>">
       <fieldset>
     <legend  ><%= group.name %></legend>
     <% fields.each do |field| %>
