@@ -2,15 +2,14 @@
 
 
 
+<h1 class="page-header">
+Asset:  <%= File.basename(@user_asset.file_name.to_s) %>
+
+</h1>
+
 <div class="row">
   <div class="span2">
     <div id="meta_nav" class="picker">
-      <p>
-  <b>File Name:</b>
-  <%= File.basename(@user_asset.file_name.to_s) %>
-</p>
-
-
 
     <h3>Metadata</h3>
     <ul class="nav nav-list">
@@ -23,7 +22,7 @@
       </div>
       </div>
 
-      <div id="metadata" class="span4" data-spy="scroll">
+      <div id="metadata" class="span4" >
 
         <%= simple_form_for @user_asset,
           :url => url_for(:action => 'update_meta_data', :controller => 'user_assets'),
@@ -58,10 +57,3 @@
 </div>
 
 
-<script>
-
-  $('#meta_nav').scrollspy( {"offset": 80 } );
-  $('[data-spy="scroll"]').each(function () {
-  var $spy = $(this).scrollspy('refresh')
-});
-</script>

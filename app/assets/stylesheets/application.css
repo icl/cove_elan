@@ -105,18 +105,14 @@ path {
  div.container.card {
   background: white;
   box-shadow: 3px 3px 26px rgba(50, 50, 50, 0.75);
-  height: 550px;
-  padding: 20px;
+  padding: 0px 20px;
  }
 
  .main {
 position:fixed;
-width: 480px;
+width: 580px;
  }
 
-#meta_nav {
-position:fixed;
-}
 
  .smallish {
 font-size: 50%;
@@ -124,13 +120,10 @@ color: red;
  }
 
  #metadata {
-  height: 100%;
    border-left: 1px solid;
    padding-left: 5px;
    margin-left: 14px;
   border-right: 1px solid;
   margin-right: -1px;
-  overflow-y:scroll;
   overflow-x:hidden;
-  height: 550px;
    }
