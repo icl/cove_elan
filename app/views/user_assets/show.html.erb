@@ -3,7 +3,7 @@
 
 
 <h1 class="page-header">
-Asset:  <%= File.basename(@user_asset.file_name.to_s) %>
+  Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %></small>
 
 </h1>
 
@@ -20,16 +20,19 @@ Asset:  <%= File.basename(@user_asset.file_name.to_s) %>
           :url => url_for(:action => 'update_meta_data', :controller => 'user_assets'),
           :method => 'post', :html => {:class => "form-horizontal"}  do |f| %>
 
+        <ul class="unstyled">
 
 
           <% @user_asset.meta_data_groups.each do |group| %>
-            <%=render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, 
+            <li>
+              <%=render :partial => 'meta_data_fields/fields_form', :locals => { :f => f, 
               :fields => group.meta_data_fields,
               :group => group } %>
+
+            </li>
           <% end %>
-
+        </ul>
           <%= f.button :submit %>
-
         <% end %>
     </div>
 </div>
