@@ -1,3 +1,37 @@
+<div class="row" id="reviews" %>
+  <div class="span6" id="templates_to_review">
+    <h2>Templates that need Review</h2>
+    <% @templates_to_review.each_with_index do |template, t_index| %>
+      <div class="row">
+        <div class="span6" style="overflow-x:hidden">
+          <%= render :partial => template, :locals => {:t_index => t_index} %>
+        </div>
+      </div>
+    <% end %>
+          <script>
+        $(function() {
+          $('#templateTabs').tab('show');
+          $(".collapse").collapse();
+        });
+    </script>
+
+  
+  </div>
+
+  <div class="span6" id="assets_to_review">
+    <h2>Assets that need Review</h2>
+    <ul>
+      <% @assets_to_review.each do |asset| %>
+        <li>
+        <%= link_to asset.name, asset %>
+        </li>
+      <% end %>
+    <ul>
+  </div>
+
+</div>
+
+
 <div class="row" style="margin-top: 80px; margin-bottom:20px; min-height:200px;">
   <div class="offset2 span6" style="padding-top:50px">
     <div class="row ">
@@ -8,17 +42,4 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="span12">
-    <% @templates.each_with_index do |template, t_index| %>
-      <%= render :partial => template, :locals => {:t_index => t_index} %>
-    <% end %>
 
-    <script>
-      $(function() {
-        $('#templateTabs').tab('show');
-        $(".collapse").collapse();
-      });
-    </script>
-  </div>
-</div>

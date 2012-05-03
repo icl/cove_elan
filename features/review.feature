@@ -20,5 +20,5 @@ So that someone will fill in all the neccessary metadata
     Given an asset that needs review
     When I confirm that it has been reviewed
     Then it should not be marked to be reviewed
-    Then it shouldn't appear in the list to be reviewed
+    Then it should not appear in the list to be reviewed
 

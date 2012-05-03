@@ -25,4 +25,7 @@ class UserAsset < ActiveRecord::Base
     where(["file_name like ?", "%#{basename}"  ])
   end
 
+  def name
+    self.title || File.basename(file_name.to_s)
+  end
 end

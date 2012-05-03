@@ -83,4 +83,19 @@ When /^I confirm that it has been reviewed$/ do
   click_button("Update Asset")
 end
 
+Then /^it should appear in the list to be reviewed$/ do
+  visit root_path
+  within "#assets_to_review" do
+    page.should have_content "test.jpg"
+  end
+end
+
+Then /^it should not appear in the list to be reviewed$/ do
+  visit root_path
+  within "#assets_to_review" do
+    page.should_not have_content "test.jpg"
+  end
+end
+
+
 

@@ -2,7 +2,8 @@ class WelcomeController < ApplicationController
 	before_filter :authenticate_user!
 
   def index
-		@templates = Template.all
+		@templates_to_review = Template.where(:needs_review => true).all
+    @assets_to_review = UserAsset.where(needs_review: true)
 	#	@work_document = WorkDocument.all
 		@work_document = WorkDocument.new
 

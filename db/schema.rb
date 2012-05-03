@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503211352) do
+ActiveRecord::Schema.define(:version => 20120503224108) do
 
   create_table "captures", :force => true do |t|
     t.text     "path"
@@ -333,6 +333,7 @@ ActiveRecord::Schema.define(:version => 20120503211352) do
     t.integer  "user_id"
     t.integer  "capture_id"
     t.boolean  "needs_review", :default => true, :null => false
+    t.string   "title"
   end
 
   create_table "users", :force => true do |t|
