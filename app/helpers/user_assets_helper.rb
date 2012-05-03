@@ -6,7 +6,7 @@ module UserAssetsHelper
     if lookup_context.find_all("user_assets/_#{model.asset_type}").any?  
       render :partial => partial, :object => model
     else
-      render :partial => 'unknown', :object => model
+      render :partial => 'user_assets/unknown', :object => model
     end
   end
 end
