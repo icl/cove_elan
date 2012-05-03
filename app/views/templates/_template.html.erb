@@ -2,7 +2,7 @@
 
   <div class="page-header">
 		<h2>
-      <%=link_to template.name_or_id, download_document_path(template.document) %>
+      <%=link_to template.name_or_id, download_document_path(template.document) %><small> <%=link_to "Edit", edit_template_path(template) %></small>
     </h2>
   </div>
 
