@@ -37,7 +37,7 @@ class UserAssetsController < ApplicationController
     @user_asset = UserAsset.find(params[:id])
 
     MetaDataHelper.reset_group_assignments(@user_asset, params[:user_asset][:meta_data_group_ids])
-
+    @user_asset.update_attributes(params[:user_asset])
     respond_to do |format|
       if @user_asset.errors.count == 0 and @user_asset.save
         format.html { redirect_to @user_asset, notice: 'Asset was successfully updated.' }

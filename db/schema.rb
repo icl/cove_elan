@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425233210) do
+ActiveRecord::Schema.define(:version => 20120503211352) do
 
   create_table "captures", :force => true do |t|
     t.text     "path"
@@ -308,12 +308,13 @@ ActiveRecord::Schema.define(:version => 20120425233210) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "templates", :force => true do |t|
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "document_id"
     t.string   "name"
     t.integer  "user_id"
     t.integer  "project_template_id"
+    t.boolean  "needs_review",        :default => true, :null => false
   end
 
   create_table "user_asset_assignments", :force => true do |t|
@@ -323,14 +324,15 @@ ActiveRecord::Schema.define(:version => 20120425233210) do
   end
 
   create_table "user_assets", :force => true do |t|
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "file_name"
     t.text     "file_hash"
     t.string   "content_type"
     t.text     "headers"
     t.integer  "user_id"
     t.integer  "capture_id"
+    t.boolean  "needs_review", :default => true, :null => false
   end
 
   create_table "users", :force => true do |t|

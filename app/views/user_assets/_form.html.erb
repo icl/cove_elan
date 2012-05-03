@@ -1,4 +1,4 @@
-<%= simple_form_for @user_asset, :html => {:multipart => true} do |f| %>
+<%= simple_form_for @user_asset, :html => {:multipart => true, :class => 'form-horizontal'} do |f| %>
   <% if @user_asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user_asset.errors.count, "error") %> prohibited this user_asset from being saved:</h2>
@@ -11,15 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-      <%= f.association :meta_data_groups %>
-  </div>
 
-  <div class="field">
+  <%= f.input :needs_review, :label => "Needs Review" %>
+    <%= f.association :meta_data_groups %>
+
     <%= f.file_field :file_name %>
-  </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Asset" %>
   </div>
 <% end %>
