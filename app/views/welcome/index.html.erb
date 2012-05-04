@@ -23,9 +23,7 @@
     <ul>
       <% @assets_to_review.each do |asset| %>
         <li>
-        <h3>
           <%= link_to asset.name, asset %>
-          <small><%= link_to "Edit", edit_user_asset_path(asset.id) %> </small>
         </li>
       <% end %>
     <ul>
