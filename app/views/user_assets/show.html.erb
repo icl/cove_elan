@@ -2,10 +2,12 @@
 
 
 <h1 class="page-header">
-Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %> 
+Asset: <small> 
   <%= simple_form_for @user_asset, :remote => true do |f| %>
-      <%= f.input :needs_review, :as => :hidden, :input_html => {:value => !@user_asset.needs_review } %>
-      <%= f.button :submit, @user_asset.needs_review ? "Needs Review" : "Mark for Review" , :id => 'review_button',  "data-toggle" => "button", :class => "btn #{' btn-danger active' if @user_asset.needs_review}"  %>
+    <%= f.input :title, :placeholder => File.basename(@user_asset.file_name.to_s), :label => false %>
+    <%= f.input :needs_review, :as => :hidden, :input_html => {:disabled => 'disabled', :class => 'review_field', :value => !@user_asset.needs_review } %>
+
+      <a href="#" id="review_button" data-toggle="button" class="<%= "btn #{' btn-danger active' if @user_asset.needs_review}" %>"><%= @user_asset.needs_review ? "Needs Review" : "Mark for Review"%></a>
     <% end %>
 </h1>
 <div class="row">
@@ -46,16 +48,25 @@ Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %>
 
 <script>
   $('.edit_user_asset').bind('ajax:success', function(){
+    $('.review_field').attr('disabled', true);
+    
+    $('#user_asset_title').parents('.control-group').addClass('success');
+});
+
+$("#review_button").bind('click', function(){
   var button = $("#review_button");
   button.toggleClass('btn-danger');
 
   if (button.hasClass('active')) {
-    button.val('Needs Review');
+    button.text('Needs Review');
+    $('.review_field').val('f');
   } else {
-    button.val('Request Review');
+  button.text('Request Review');
+  $('.review_field').val('t');
+
  }
+ $('.review_field').removeAttr('disabled');
+ $('.edit_user_asset').submit();
 });
-
-
 </script>
 
