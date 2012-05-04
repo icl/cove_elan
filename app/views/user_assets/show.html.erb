@@ -7,7 +7,6 @@ Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %>
       <%= f.input :needs_review, :as => :hidden, :input_html => {:value => !@user_asset.needs_review } %>
       <%= f.button :submit,  "Needs Review", :id => 'review_button',  "data-toggle" => "button", :class => "btn #{' btn-danger active' if @user_asset.needs_review}"  %>
     <% end %>
-          <%#= link_to "Edit", edit_user_asset_path(@user_asset)%></small>
 </h1>
 <div class="row">
   <div class="span8">
