@@ -2,7 +2,7 @@ class UserAssetsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @user_assets = UserAsset.all
+    @user_assets = UserAsset.order('id DESC').all
 
     respond_to do |format|
       format.html # index.html.erb

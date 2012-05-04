@@ -5,7 +5,7 @@
 Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %> 
   <%= simple_form_for @user_asset, :remote => true do |f| %>
       <%= f.input :needs_review, :as => :hidden, :input_html => {:value => !@user_asset.needs_review } %>
-      <%= f.button :submit,  "Needs Review", :id => 'review_button',  "data-toggle" => "button", :class => "btn #{' btn-danger active' if @user_asset.needs_review}"  %>
+      <%= f.button :submit, @user_asset.needs_review ? "Needs Review" : "Mark for Review" , :id => 'review_button',  "data-toggle" => "button", :class => "btn #{' btn-danger active' if @user_asset.needs_review}"  %>
     <% end %>
 </h1>
 <div class="row">
@@ -48,6 +48,12 @@ Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %>
   $('.edit_user_asset').bind('ajax:success', function(){
   var button = $("#review_button");
   button.toggleClass('btn-danger');
+
+  if (button.hasClass('active')) {
+    button.val('Needs Review');
+  } else {
+    button.val('Request Review');
+ }
 });
 
 
