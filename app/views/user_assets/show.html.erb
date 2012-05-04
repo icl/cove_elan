@@ -3,10 +3,11 @@
 
 <h1 class="page-header">
 Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %> 
-        <% if @user_asset.needs_review %>
-          <span style="color:red"> <%= "Needs Review"  %></span>
-        <% end %>
-          <%= link_to "Edit", edit_user_asset_path(@user_asset)%></small>
+  <%= simple_form_for @user_asset, :remote => true do |f| %>
+      <%= f.input :needs_review, :as => :hidden, :input_html => {:value => !@user_asset.needs_review } %>
+      <%= f.button :submit,  "Needs Review", :id => 'review_button',  "data-toggle" => "button", :class => "btn #{' btn-danger active' if @user_asset.needs_review}"  %>
+    <% end %>
+          <%#= link_to "Edit", edit_user_asset_path(@user_asset)%></small>
 </h1>
 <div class="row">
   <div class="span8">
@@ -44,4 +45,12 @@ Asset: <small> <%= File.basename(@user_asset.file_name.to_s) %>
     </div>
 </div>
 
+<script>
+  $('.edit_user_asset').bind('ajax:success', function(){
+  var button = $("#review_button");
+  button.toggleClass('btn-danger');
+});
+
+
+</script>
 

@@ -107,6 +107,7 @@ path {
   box-shadow: 3px 3px 26px rgba(50, 50, 50, 0.75);
   padding: 0px 20px;
   padding-bottom: 70px;
+  padding-top: 20px;
   margin-bottom: 20px;
  }
 
@@ -120,3 +121,7 @@ legend i.icon-list {
   vertical-align: baseline;
 }
 
+#templates_to_review .row {
+
+  display:none;
+}
