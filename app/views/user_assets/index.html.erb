@@ -12,7 +12,7 @@
 
 <% @user_assets.each do |asset| %>
   <tr>
-    <td><%= link_to File.basename(asset.file_name.to_s), asset %></td>
+    <td><%= link_to asset.name, asset %></td>
     <td><%= link_to 'Edit', edit_user_asset_path(asset) %>
     <%= link_to 'Destroy', asset, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

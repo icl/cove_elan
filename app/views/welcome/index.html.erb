@@ -40,10 +40,10 @@
 
   <div class="span6" id="assets_to_review">
     <h2>Assets that need Review</h2>
-    <ul class="">
+    <ul class="unstyled">
       <% @assets_to_review.each do |asset| %>
         <li>
-          <%= link_to asset.name, asset %>
+        <%= icon_for_type asset.asset_type %> <%= link_to asset.name, asset %>
         </li>
       <% end %>
     <ul>
