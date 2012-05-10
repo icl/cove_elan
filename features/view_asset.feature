@@ -1,3 +1,4 @@
+@wip
 Feature: Looking at assets online
   As a user
   I would like to pre/view assets
