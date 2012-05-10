@@ -40,13 +40,19 @@
 
   <div class="span6" id="assets_to_review">
     <h2>Assets that need Review</h2>
-    <ul class="unstyled">
+    <table class="table table-striped table-bordered table-condensed">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Last Update</td>
+      </thead>
       <% @assets_to_review.each do |asset| %>
-        <li>
-        <%= icon_for_type asset.asset_type %> <%= link_to asset.name, asset %>
-        </li>
+        <tr>
+          <td><%= icon_for_type asset.asset_type %> <%= link_to asset.name, asset %></td>
+          <td><%= asset.updated_at.strftime('%F %I:%M%p') %>
+        </tr>
       <% end %>
-    <ul>
+    </table>
   </div>
 
 </div>
