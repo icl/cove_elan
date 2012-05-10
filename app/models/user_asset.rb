@@ -25,6 +25,6 @@ class UserAsset < ActiveRecord::Base
   end
 
   def name
-    self.title || File.basename(file_name.to_s)
+    self.title.blank? ? File.basename(file_name.to_s) : self.title
   end
 end
