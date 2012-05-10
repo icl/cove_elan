@@ -1,12 +1,12 @@
-<h1>Listing documents</h1>
+<h1>Files</h1>
 
 <%= link_to 'New User Asset', new_user_asset_path %>
 
 
-<table>
+<table class="table table-striped table-bordered table-condensed">
   <tr>
     <th>File Name</th>
-    <th>Type</th>
+    <th></th>
     <th></th>
   </tr>
 
@@ -14,7 +14,7 @@
   <tr>
     <td><%= link_to asset.name, asset %></td>
     <td><%= link_to 'Edit', edit_user_asset_path(asset) %>
-    <%= link_to 'Destroy', asset, confirm: 'Are you sure?', method: :delete %></td>
+  <td><%= link_to 'Destroy', asset, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

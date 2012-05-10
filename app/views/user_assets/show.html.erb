@@ -2,7 +2,7 @@
 
 
 <h1 class="page-header">
-Asset: <small> 
+  <%= @user_asset.asset_type.blank? ? "File" : @user_asset.asset_type.humanize %>: <small> 
   <%= simple_form_for @user_asset, :remote => true do |f| %>
     <%= f.input :title, :placeholder => File.basename(@user_asset.file_name.to_s), :label => false %>
     <%= f.input :needs_review, :as => :hidden, :input_html => {:disabled => 'disabled', :class => 'review_field', :value => !@user_asset.needs_review } %>
