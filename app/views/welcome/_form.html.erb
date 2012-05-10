@@ -11,13 +11,10 @@
     </div>
   <% end %>
 
-	<%= f.fields_for :documents do |document_form| %>
-		<div class="field">
-			<%= document_form.file_field :eaf %>
-			<%= document_form.hidden_field :eaf_cache %>
-		</div>
-	<% end %>
+  <%= f.fields_for :documents do |document_form| %>
+    <%= document_form.input :eaf, :label => false, :as => :file %>
+		<% end %>
   <div class="actions">
-    <%= f.button :submit, "Upload Elan Document", :class => 'btn btn-large btn-primary'%>
+    <%= f.button :submit, "Upload Elan Document", :class => 'btn btn-primary'%>
   </div>
 <% end %>
