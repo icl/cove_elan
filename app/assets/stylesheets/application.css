@@ -121,10 +121,6 @@ legend i.icon-list {
   vertical-align: baseline;
 }
 
-#templates_to_review .row {
-
-  display:none;
-}
 
 .edit_user_asset input {
   width:400px;
