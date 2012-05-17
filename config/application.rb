@@ -24,6 +24,14 @@ module CoveElan
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
 
+    #thanks http://blog.hasmanythrough.com/2011/6/1/limitless-strings-for-postgresql
+    #and http://confreaks.com/videos/889-railsconf2012-ten-things-you-didn-t-know-rails-could-do
+    initializer "postgresql.no_default_string_limit" do
+      ActiveSupport.on_load(:active_record) do
+        ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::NATIVE_DATABASE_TYPES[:string].delete(:limit)
+      end
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
